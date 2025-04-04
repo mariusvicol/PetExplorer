@@ -1,0 +1,357 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:2:1-39:12
+INJECTED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:2:1-39:12
+INJECTED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:2:1-39:12
+INJECTED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:2:1-39:12
+MERGED from [androidx.databinding:viewbinding:8.9.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\32152883ae2b2e24d9f09d07e5a064ae\transformed\viewbinding-8.9.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.material:material:1.12.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\7d3ebe02bea4e6defbd27f14e623db7e\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\b86b29976cc26336cf0b9e61541c42ea\transformed\constraintlayout-2.2.1\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\4544b10b5c582e0af56501072b788ea5\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\23414184b72fd17bdf4e987519912855\transformed\appcompat-1.7.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:17:1-44:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\4ba49b4656445214eb833cd053c90793\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\cec4ff2f7308381d0c3831558dec048f\transformed\play-services-base-18.0.1\AndroidManifest.xml:16:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\35f3e0b00d1d85ed3d72fe21e128c69f\transformed\play-services-tasks-18.0.1\AndroidManifest.xml:2:1-6:12
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\0fb90d18a1cc12183e02e6fce151ab57\transformed\play-services-basement-18.0.0\AndroidManifest.xml:16:1-26:12
+MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\offma\.gradle\caches\8.11.1\transforms\bd6138924ff65ecdd07fd8db9993fa63\transformed\fragment-1.5.4\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.8.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\5e8d63a442af04f8eb58cdb0282203e9\transformed\activity-1.8.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\da5cd8eb2641217e663b6a87d990ca79\transformed\savedstate-1.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\aae7de52b92fbc58c275a680670a4581\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f72074b942fa40a2751110c09f2ea590\transformed\emoji2-1.3.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.transition:transition:1.5.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\1795cb8bae8bfede73cb1cc7b5d1863b\transformed\transition-1.5.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\cf29ed3ea01ad6453dc8bc279aa21de6\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\71c458c1c7abd58f23239f0177f275ed\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\7757ca93401065da675a9236e8124ca7\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\607b7dbb25a33a2381dfe529abb628f6\transformed\lifecycle-livedata-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\3c7966be0b6d9a104b348aeca6230f8d\transformed\lifecycle-viewmodel-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\78862324ed7516d4f1370891f0189002\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\bc0915bd3c7df03954cef680e7136b67\transformed\lifecycle-livedata-core-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\17ef81f9f6f032c2423bc1f83e1a47bc\transformed\lifecycle-runtime-2.6.2\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\6bff0584fd567d9d1cc3d6fa555a4fab\transformed\lifecycle-viewmodel-savedstate-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\0c1c2a11b668dd9c3f670feef392b54d\transformed\core-ktx-1.13.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\33a4043b9d392818d02bea9c8527845e\transformed\drawerlayout-1.1.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\54bf5ce2b5519a0691ba974ca3622321\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\e14f780ec6b9d331acc79ec9c85173a2\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\ac5eabfc877c632eab35e9f2a93468d7\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\1e61fb531c75e64726a1d7270d07ca1c\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f1c27fa241359b0b392b870a87f33422\transformed\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\0f1f1649548cf14dc550d02bc21de558\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c102f2781bc7214d7f0aebb6f35cc3e9\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\2a6c2449b6dc10c00d15118e36ca9b39\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\96546abf9db6e9804ade582b4e2ce3e7\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\a098f8914d8ec27e7021981816ab6564\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\9143d7924d733bac173b080445b58e95\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\ed2c24ed69fc176050f8a00275a5157d\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\1c930eba4ca2f6aea21f79ea4ebd7340\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\4b12c2275c669f86c295e8091f5f2bd3\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\18755434f558755aa3a4066524e96ab7\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\4d15dcaddf53637730b3ee154dbe9af2\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3313292c0cf2ceb464cf276a990cdeaa\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:2:1-7:12
+	package
+		INJECTED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:2:11-69
+application
+ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:4:5-37:19
+INJECTED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:4:5-37:19
+MERGED from [com.google.android.material:material:1.12.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\7d3ebe02bea4e6defbd27f14e623db7e\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.12.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\7d3ebe02bea4e6defbd27f14e623db7e\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\b86b29976cc26336cf0b9e61541c42ea\transformed\constraintlayout-2.2.1\AndroidManifest.xml:7:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\b86b29976cc26336cf0b9e61541c42ea\transformed\constraintlayout-2.2.1\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:36:5-42:19
+MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:36:5-42:19
+MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\cec4ff2f7308381d0c3831558dec048f\transformed\play-services-base-18.0.1\AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\cec4ff2f7308381d0c3831558dec048f\transformed\play-services-base-18.0.1\AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\35f3e0b00d1d85ed3d72fe21e128c69f\transformed\play-services-tasks-18.0.1\AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\35f3e0b00d1d85ed3d72fe21e128c69f\transformed\play-services-tasks-18.0.1\AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\0fb90d18a1cc12183e02e6fce151ab57\transformed\play-services-basement-18.0.0\AndroidManifest.xml:20:5-24:19
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\0fb90d18a1cc12183e02e6fce151ab57\transformed\play-services-basement-18.0.0\AndroidManifest.xml:20:5-24:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f72074b942fa40a2751110c09f2ea590\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f72074b942fa40a2751110c09f2ea590\transformed\emoji2-1.3.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\78862324ed7516d4f1370891f0189002\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\78862324ed7516d4f1370891f0189002\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\a098f8914d8ec27e7021981816ab6564\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\a098f8914d8ec27e7021981816ab6564\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\9143d7924d733bac173b080445b58e95\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\9143d7924d733bac173b080445b58e95\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+	android:extractNativeLibs
+		INJECTED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:9:9-35
+	android:label
+		ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:7:9-41
+	android:roundIcon
+		ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:8:9-54
+	android:icon
+		ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:6:9-43
+	android:allowBackup
+		ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:5:9-35
+	android:theme
+		ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:10:9-53
+meta-data#com.google.android.geo.API_KEY
+ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:23:9-25:44
+	android:value
+		ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:25:13-41
+	android:name
+		ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:24:13-58
+activity#petexplorer.petexplorerclient.PetMap
+ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:27:9-36:20
+	android:label
+		ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:30:13-59
+	android:exported
+		ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:29:13-36
+	android:name
+		ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:28:13-35
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:31:13-35:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:32:17-69
+	android:name
+		ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:32:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:34:17-77
+	android:name
+		ADDED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml:34:27-74
+uses-sdk
+INJECTED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml
+INJECTED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml
+MERGED from [androidx.databinding:viewbinding:8.9.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\32152883ae2b2e24d9f09d07e5a064ae\transformed\viewbinding-8.9.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.databinding:viewbinding:8.9.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\32152883ae2b2e24d9f09d07e5a064ae\transformed\viewbinding-8.9.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.material:material:1.12.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\7d3ebe02bea4e6defbd27f14e623db7e\transformed\material-1.12.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.12.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\7d3ebe02bea4e6defbd27f14e623db7e\transformed\material-1.12.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\b86b29976cc26336cf0b9e61541c42ea\transformed\constraintlayout-2.2.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\b86b29976cc26336cf0b9e61541c42ea\transformed\constraintlayout-2.2.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\4544b10b5c582e0af56501072b788ea5\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\4544b10b5c582e0af56501072b788ea5\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\23414184b72fd17bdf4e987519912855\transformed\appcompat-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\23414184b72fd17bdf4e987519912855\transformed\appcompat-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\4ba49b4656445214eb833cd053c90793\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\4ba49b4656445214eb833cd053c90793\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\cec4ff2f7308381d0c3831558dec048f\transformed\play-services-base-18.0.1\AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\cec4ff2f7308381d0c3831558dec048f\transformed\play-services-base-18.0.1\AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\35f3e0b00d1d85ed3d72fe21e128c69f\transformed\play-services-tasks-18.0.1\AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\35f3e0b00d1d85ed3d72fe21e128c69f\transformed\play-services-tasks-18.0.1\AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\0fb90d18a1cc12183e02e6fce151ab57\transformed\play-services-basement-18.0.0\AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\0fb90d18a1cc12183e02e6fce151ab57\transformed\play-services-basement-18.0.0\AndroidManifest.xml:18:5-43
+MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\offma\.gradle\caches\8.11.1\transforms\bd6138924ff65ecdd07fd8db9993fa63\transformed\fragment-1.5.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\offma\.gradle\caches\8.11.1\transforms\bd6138924ff65ecdd07fd8db9993fa63\transformed\fragment-1.5.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.8.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\5e8d63a442af04f8eb58cdb0282203e9\transformed\activity-1.8.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\5e8d63a442af04f8eb58cdb0282203e9\transformed\activity-1.8.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\da5cd8eb2641217e663b6a87d990ca79\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\da5cd8eb2641217e663b6a87d990ca79\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\aae7de52b92fbc58c275a680670a4581\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\aae7de52b92fbc58c275a680670a4581\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f72074b942fa40a2751110c09f2ea590\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f72074b942fa40a2751110c09f2ea590\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.transition:transition:1.5.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\1795cb8bae8bfede73cb1cc7b5d1863b\transformed\transition-1.5.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.transition:transition:1.5.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\1795cb8bae8bfede73cb1cc7b5d1863b\transformed\transition-1.5.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\cf29ed3ea01ad6453dc8bc279aa21de6\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\cf29ed3ea01ad6453dc8bc279aa21de6\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\71c458c1c7abd58f23239f0177f275ed\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\71c458c1c7abd58f23239f0177f275ed\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\7757ca93401065da675a9236e8124ca7\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\7757ca93401065da675a9236e8124ca7\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\607b7dbb25a33a2381dfe529abb628f6\transformed\lifecycle-livedata-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\607b7dbb25a33a2381dfe529abb628f6\transformed\lifecycle-livedata-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\3c7966be0b6d9a104b348aeca6230f8d\transformed\lifecycle-viewmodel-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\3c7966be0b6d9a104b348aeca6230f8d\transformed\lifecycle-viewmodel-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\78862324ed7516d4f1370891f0189002\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\78862324ed7516d4f1370891f0189002\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\bc0915bd3c7df03954cef680e7136b67\transformed\lifecycle-livedata-core-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\bc0915bd3c7df03954cef680e7136b67\transformed\lifecycle-livedata-core-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\17ef81f9f6f032c2423bc1f83e1a47bc\transformed\lifecycle-runtime-2.6.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\17ef81f9f6f032c2423bc1f83e1a47bc\transformed\lifecycle-runtime-2.6.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\6bff0584fd567d9d1cc3d6fa555a4fab\transformed\lifecycle-viewmodel-savedstate-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\6bff0584fd567d9d1cc3d6fa555a4fab\transformed\lifecycle-viewmodel-savedstate-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\0c1c2a11b668dd9c3f670feef392b54d\transformed\core-ktx-1.13.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\0c1c2a11b668dd9c3f670feef392b54d\transformed\core-ktx-1.13.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\33a4043b9d392818d02bea9c8527845e\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\33a4043b9d392818d02bea9c8527845e\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\54bf5ce2b5519a0691ba974ca3622321\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\54bf5ce2b5519a0691ba974ca3622321\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\e14f780ec6b9d331acc79ec9c85173a2\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\e14f780ec6b9d331acc79ec9c85173a2\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\ac5eabfc877c632eab35e9f2a93468d7\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\ac5eabfc877c632eab35e9f2a93468d7\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\1e61fb531c75e64726a1d7270d07ca1c\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\1e61fb531c75e64726a1d7270d07ca1c\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f1c27fa241359b0b392b870a87f33422\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f1c27fa241359b0b392b870a87f33422\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\0f1f1649548cf14dc550d02bc21de558\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\0f1f1649548cf14dc550d02bc21de558\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c102f2781bc7214d7f0aebb6f35cc3e9\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c102f2781bc7214d7f0aebb6f35cc3e9\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\2a6c2449b6dc10c00d15118e36ca9b39\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\2a6c2449b6dc10c00d15118e36ca9b39\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\96546abf9db6e9804ade582b4e2ce3e7\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\96546abf9db6e9804ade582b4e2ce3e7\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\a098f8914d8ec27e7021981816ab6564\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\a098f8914d8ec27e7021981816ab6564\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\9143d7924d733bac173b080445b58e95\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\9143d7924d733bac173b080445b58e95\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\ed2c24ed69fc176050f8a00275a5157d\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\ed2c24ed69fc176050f8a00275a5157d\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\1c930eba4ca2f6aea21f79ea4ebd7340\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\1c930eba4ca2f6aea21f79ea4ebd7340\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\4b12c2275c669f86c295e8091f5f2bd3\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\4b12c2275c669f86c295e8091f5f2bd3\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\18755434f558755aa3a4066524e96ab7\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\18755434f558755aa3a4066524e96ab7\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\4d15dcaddf53637730b3ee154dbe9af2\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\4d15dcaddf53637730b3ee154dbe9af2\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3313292c0cf2ceb464cf276a990cdeaa\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3313292c0cf2ceb464cf276a990cdeaa\transformed\annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
+	android:targetSdkVersion
+		INJECTED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\offma\Desktop\PetExplorerMain\app\petexplorerclient\src\main\AndroidManifest.xml
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:23:5-79
+	android:name
+		ADDED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:23:22-76
+uses-permission#android.permission.INTERNET
+ADDED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:24:5-67
+	android:name
+		ADDED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:24:22-64
+uses-feature#0x00020000
+ADDED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:26:5-28:35
+	android:glEsVersion
+		ADDED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:27:9-41
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:28:9-32
+queries
+ADDED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:30:5-34:15
+package#com.google.android.apps.maps
+ADDED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:33:9-64
+	android:name
+		ADDED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:33:18-61
+uses-library#org.apache.http.legacy
+ADDED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:39:9-41:40
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:41:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\3ef485d61deb4f9d4ce94f9acbea37f9\transformed\play-services-maps-18.1.0\AndroidManifest.xml:40:13-50
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\cec4ff2f7308381d0c3831558dec048f\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\cec4ff2f7308381d0c3831558dec048f\transformed\play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\cec4ff2f7308381d0c3831558dec048f\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\cec4ff2f7308381d0c3831558dec048f\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\0fb90d18a1cc12183e02e6fce151ab57\transformed\play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\0fb90d18a1cc12183e02e6fce151ab57\transformed\play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\0fb90d18a1cc12183e02e6fce151ab57\transformed\play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f72074b942fa40a2751110c09f2ea590\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\78862324ed7516d4f1370891f0189002\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\78862324ed7516d4f1370891f0189002\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\9143d7924d733bac173b080445b58e95\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\offma\.gradle\caches\8.11.1\transforms\9143d7924d733bac173b080445b58e95\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f72074b942fa40a2751110c09f2ea590\transformed\emoji2-1.3.0\AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f72074b942fa40a2751110c09f2ea590\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f72074b942fa40a2751110c09f2ea590\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f72074b942fa40a2751110c09f2ea590\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f72074b942fa40a2751110c09f2ea590\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f72074b942fa40a2751110c09f2ea590\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f72074b942fa40a2751110c09f2ea590\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\78862324ed7516d4f1370891f0189002\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\78862324ed7516d4f1370891f0189002\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\offma\.gradle\caches\8.11.1\transforms\78862324ed7516d4f1370891f0189002\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
+permission#petexplorer.petexplorerclient.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
+uses-permission#petexplorer.petexplorerclient.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.13.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\c27b93185d90034e6401752b264db124\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\offma\.gradle\caches\8.11.1\transforms\f445ca574a4e38a074caa48a3e39f5ca\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
