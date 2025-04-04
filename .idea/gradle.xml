@@ -11,6 +11,12 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app/petexplorerclient" />
+            <option value="$PROJECT_DIR$/app/petexplorermodel" />
+            <option value="$PROJECT_DIR$/app/petexplorernetworking" />
+            <option value="$PROJECT_DIR$/app/petexplorerpersistence" />
+            <option value="$PROJECT_DIR$/app/petexplorerserver" />
+            <option value="$PROJECT_DIR$/app/petexplorerservices" />
           </set>
         </option>
       </GradleProjectSettings>
