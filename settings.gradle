@@ -21,3 +21,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "PetExplorerMain"
 include ':app'
+include ':app:petexplorerclient'
+include ':app:petexplorerserver'
+include ':app:petexplorerservices'
+include ':app:petexplorernetworking'
+include ':app:petexplorermodel'
+include ':app:petexplorerpersistence'

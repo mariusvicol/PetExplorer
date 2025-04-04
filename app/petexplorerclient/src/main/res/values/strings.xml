@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">PetExplorerClient</string>
+    <string name="title_activity_pet_map">PetMap</string>
+</resources>
