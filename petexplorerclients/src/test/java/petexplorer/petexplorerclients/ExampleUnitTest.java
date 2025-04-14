@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package petexplorer.petexplorerclients;
 
 import org.junit.Test;
 

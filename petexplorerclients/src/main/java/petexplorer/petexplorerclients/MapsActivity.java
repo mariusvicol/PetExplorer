@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package petexplorer.petexplorerclients;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -10,7 +10,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.example.myapplication.databinding.ActivityMapsBinding;
+
+import petexplorer.petexplorerclients.databinding.ActivityMapsBinding;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
