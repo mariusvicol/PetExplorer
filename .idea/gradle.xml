@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/app/petexplorerpersistence" />
             <option value="$PROJECT_DIR$/app/petexplorerserver" />
             <option value="$PROJECT_DIR$/app/petexplorerservices" />
+            <option value="$PROJECT_DIR$/petexplorerclient" />
           </set>
         </option>
       </GradleProjectSettings>
