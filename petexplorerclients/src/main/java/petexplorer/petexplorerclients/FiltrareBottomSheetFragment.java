@@ -1,5 +1,6 @@
 package petexplorer.petexplorerclients;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -63,6 +64,7 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
     }
 
     // Funcție pentru a permite mișcarea butoanelor
+    @SuppressLint("ClickableViewAccessibility")
     private void setTouchListenerForButton(Button button) {
         button.setOnTouchListener(new View.OnTouchListener() {
             @Override
