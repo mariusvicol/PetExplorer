@@ -1,10 +1,13 @@
 package petexplorer.petexplorerclients;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 import android.Manifest;
 import android.view.View;
@@ -22,7 +25,20 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.List;
+
+import domain.CabinetVeterinar;
 import petexplorer.petexplorerclients.databinding.ActivityMapsBinding;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import service.ApiService;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -90,12 +106,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     mMap.clear();
                     mMap.addMarker(new MarkerOptions().position(userLocation).title("Locația curentă"));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
+
+                    // Încărcăm cabinetele veterinare pe hartă
+                    loadVeterinaryOffices();
                 } else {
                     Toast.makeText(MapsActivity.this, "Locația curentă nu poate fi obținută", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -111,4 +131,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
     }
+
+    private void loadVeterinaryOffices() {
+        ApiService apiService = RetrofitClient.getApiService();
+        Call<List<CabinetVeterinar>> call = apiService.getCabineteVeterinare();
+        call.enqueue(new Callback<List<CabinetVeterinar>>() {
+            @Override
+            public void onResponse(Call<List<CabinetVeterinar>> call, Response<List<CabinetVeterinar>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d(TAG, "Răspunsul serverului: " + response.body().toString()); // Log la răspunsul primit
+                    List<CabinetVeterinar> cabinetVeterinarList = response.body();
+                    for (CabinetVeterinar cabinet : cabinetVeterinarList) {
+                        LatLng cabinetLocation = new LatLng(cabinet.getLatitudine(), cabinet.getLongitudine());
+                        mMap.addMarker(new MarkerOptions()
+                                .position(cabinetLocation)
+                                .title(cabinet.getNume_cabinet()));
+                    }
+                } else {
+                    Log.e(TAG, "Eroare răspuns server: " + response.code()); // Log pentru codul de răspuns al serverului
+                    Toast.makeText(MapsActivity.this, "Eroare la obținerea cabinetelor veterinare", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CabinetVeterinar>> call, Throwable t) {
+                Log.e(TAG, "Eroare la conectarea la server: ", t);
+                Toast.makeText(MapsActivity.this, "Eroare la conectarea la server", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }
