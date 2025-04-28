@@ -1,6 +1,7 @@
 package domain;
 
-public class Magazin extends Entity<Integer>{
+public class Magazin {
+    private Integer id;
     private Float longitudine;
     private Float latitudine;
     private String nume;
@@ -8,7 +9,8 @@ public class Magazin extends Entity<Integer>{
 
     public Magazin() {}
 
-    public Magazin(Float latitudine, Float longitudine, String nume, Boolean non_stop) {
+    public Magazin(Integer id,Float latitudine, Float longitudine, String nume, Boolean non_stop) {
+        this.id=id;
         this.latitudine = latitudine;
         this.longitudine = longitudine;
         this.nume = nume;
@@ -47,21 +49,30 @@ public class Magazin extends Entity<Integer>{
         this.non_stop = non_stop;
     }
 
+    public Integer getId(){
+        return this.id;
+    }
+
+    public void setId(Integer id){
+        this.id=id;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Farmacie farmacie = (Farmacie) o;
-        return getId().equals(farmacie.getId());
+        Magazin magazin = (Magazin) o;
+        return id.equals(magazin.id);
     }
 
     @Override
     public int hashCode() {
-        return getId().hashCode();
+        return this.id.hashCode();
     }
 
     @Override
     public String toString() {
-        return "Magazin { ID = "+getId().toString()+", Longitudine = "+ getLongitudine().toString() + ", Latitudine = "+ getLatitudine().toString()+ ", Nume = "+ getNume() + ", Non_stop = "+ getNon_stop().toString() + "}";
+        return "Magazin { ID = "+id.toString()+", Longitudine = "+ getLongitudine().toString() + ", Latitudine = "+ getLatitudine().toString()+ ", Nume = "+ getNume() + ", Non_stop = "+ getNon_stop().toString() + "}";
     }
 }

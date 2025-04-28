@@ -1,6 +1,6 @@
 package domain;
 
-public class Farmacie extends Entity<Integer>{
+public class Farmacie {
     private Integer id;
     private Float latitudine;
     private Float longitudine;
@@ -47,22 +47,30 @@ public class Farmacie extends Entity<Integer>{
         this.non_stop = non_stop;
     }
 
+    public Integer getid(){
+        return this.id;
+    }
+
+    public void setId(Integer id){
+        this.id =id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Farmacie farmacie = (Farmacie) o;
-        return getId().equals(farmacie.getId());
+        return id.equals(farmacie.id);
     }
 
     @Override
     public int hashCode() {
-        return getId().hashCode();
+        return id.hashCode();
     }
 
 
     @Override
     public String toString() {
-        return "Farmacie { ID = "+getId().toString()+", Longitudine = "+ getLongitudine().toString() + ", Latitudine = "+ getLatitudine().toString()+ ", Nume = "+ getNume() + ", Non_stop = "+ getNon_stop().toString() + "}";
+        return "Farmacie { ID = "+id.toString()+", Longitudine = "+ getLongitudine().toString() + ", Latitudine = "+ getLatitudine().toString()+ ", Nume = "+ getNume() + ", Non_stop = "+ getNon_stop().toString() + "}";
     }
 }
