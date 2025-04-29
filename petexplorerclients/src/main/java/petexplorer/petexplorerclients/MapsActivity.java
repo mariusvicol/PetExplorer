@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.tasks.OnSuccessListener;
 import android.location.Location;
 
@@ -34,6 +35,7 @@ import java.io.OutputStreamWriter;
 import java.util.List;
 
 import domain.CabinetVeterinar;
+import domain.Parc;
 import petexplorer.petexplorerclients.databinding.ActivityMapsBinding;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -109,6 +111,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     // Încărcăm cabinetele veterinare pe hartă
                     loadVeterinaryOffices();
+                    loadParcuri();
                 } else {
                     Toast.makeText(MapsActivity.this, "Locația curentă nu poate fi obținută", Toast.LENGTH_SHORT).show();
                 }
@@ -160,5 +163,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
+
+    public void loadParcuri() {
+        ApiService apiService = RetrofitClient.getApiService();
+        Call<List<Parc>> call = apiService.getParcuri();
+
+        call.enqueue(new Callback<List<Parc>>() {
+            @Override
+            public void onResponse(Call<List<Parc>> call, Response<List<Parc>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d(TAG, "Răspunsul serverului: " + response.body().toString());
+                    List<Parc> parcList = response.body();
+                    for (Parc parc : parcList) {
+                        LatLng parcLocation = new LatLng(parc.getLatitudine(), parc.getLongitudine());
+
+                        mMap.addMarker(new MarkerOptions()
+                                .position(parcLocation)
+                                .title(parc.getNume())
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))); // culoare verde
+                    }
+                } else {
+                    Toast.makeText(MapsActivity.this, "Eroare la obținerea parcurilor", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Parc>> call, Throwable t) {
+                Log.e(TAG, "Eroare la conectarea la server: ", t);
+                Toast.makeText(MapsActivity.this, "Eroare la conectarea la server", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
 }

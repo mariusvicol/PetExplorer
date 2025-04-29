@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class AnimalPierdut implements Serializable {
-    private Integer id; // Adaugăm ID-ul aici direct
+    private Integer id;
     private Float latitudine;
     private Float longitudine;
     private String nume_animal;

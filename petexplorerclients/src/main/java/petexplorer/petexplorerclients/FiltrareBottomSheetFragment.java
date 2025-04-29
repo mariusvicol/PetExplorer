@@ -32,6 +32,7 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
         Button filterButton2 = rootView.findViewById(R.id.filterButton2);
         Button filterButton3 = rootView.findViewById(R.id.filterButton3);
         Button filterButton4 = rootView.findViewById(R.id.filterButton4);
+        Button filterParcuri = rootView.findViewById(R.id.filterParcuri);
 
         // Setează un OnClickListener pentru fiecare buton
         filterButton1.setOnClickListener(v -> {
@@ -54,11 +55,22 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
             // Aici adaugi logica pentru filtrare 4
         });
 
+        filterParcuri.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Afișare parcuri pe hartă", Toast.LENGTH_SHORT).show();
+
+            if (getActivity() instanceof MapsActivity) {
+                ((MapsActivity) getActivity()).loadParcuri();
+            }
+
+            dismiss();
+        });
+
         // Permite mutarea butoanelor
         setTouchListenerForButton(filterButton1);
         setTouchListenerForButton(filterButton2);
         setTouchListenerForButton(filterButton3);
         setTouchListenerForButton(filterButton4);
+        setTouchListenerForButton(filterParcuri);
 
         return rootView;
     }

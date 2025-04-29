@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Parc {
+public class Parc implements Serializable {
     private Integer id;
     private Float latitudine;
     private Float longitudine;
