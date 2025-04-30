@@ -8,12 +8,12 @@
     android:padding="24dp">
 
     <!-- SearchView cu fundal și border -->
-    <androidx.appcompat.widget.SearchView
+    <SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/searchview_background"
+        android:background="@drawable/searchbar_custom"
         android:queryHint="Caută opțiune de filtrare" />
 
     <!-- Container pentru butoane -->
