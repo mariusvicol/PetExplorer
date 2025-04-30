@@ -3,4 +3,11 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="navigation_drawer_open">Deschide meniul</string>
     <string name="navigation_drawer_close">Închide meniul</string>
+
+    <string name="cabinete_veterinare">Cabinete Veterinare</string>
+    <string name="farmacii_veterinare">Farmacii Veterinare</string>
+    <string name="saloane">Saloane</string>
+    <string name="pensiuni">Pensiuni</string>
+    <string name="magazine">Petshops</string>
+    <string name="parcuri">Parcuri</string>
 </resources>
