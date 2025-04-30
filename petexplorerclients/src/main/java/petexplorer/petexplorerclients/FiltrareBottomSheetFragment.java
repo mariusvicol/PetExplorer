@@ -7,6 +7,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import androidx.appcompat.widget.SearchView;
+
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +35,27 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
         Button filterButton2 = rootView.findViewById(R.id.filterButton2);
         Button filterButton3 = rootView.findViewById(R.id.filterButton3);
         Button filterButton4 = rootView.findViewById(R.id.filterButton4);
+
+        LinearLayout buttonsLayout = rootView.findViewById(R.id.buttonsLayout);
+        SearchView searchView = rootView.findViewById(R.id.searchView);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (!newText.trim().isEmpty()) {
+                    buttonsLayout.setVisibility(View.GONE);
+                } else {
+                    buttonsLayout.setVisibility(View.VISIBLE);
+                }
+                return true;
+            }
+        });
+
 
         filterButton1.setOnClickListener(v -> {
             Toast.makeText(getContext(), "Filtrare 1 activata: Magazine veterinare", Toast.LENGTH_SHORT).show();
