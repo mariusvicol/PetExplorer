@@ -19,6 +19,7 @@ import android.widget.Button;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import android.location.Location;
 
@@ -115,6 +116,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_design));
         mMap = googleMap;
         if (currentLocation != null) {
             LatLng currentCoordinates = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
