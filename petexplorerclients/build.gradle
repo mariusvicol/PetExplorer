@@ -30,6 +30,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    buildToolsVersion '35.0.0'
 }
 
 dependencies {
@@ -45,4 +46,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    implementation 'com.google.android.gms:play-services-maps:19.2.0'
+    implementation 'com.google.android.gms:play-services-location:19.2.0'
+
 }

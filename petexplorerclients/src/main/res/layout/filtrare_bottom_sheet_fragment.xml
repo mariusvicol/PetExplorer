@@ -11,21 +11,21 @@
         android:id="@+id/filterButton1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Animale pierdute"
+        android:text="Magazine veterinare"
         android:layout_marginBottom="12dp" />
 
     <Button
         android:id="@+id/filterButton2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Animale găsite"
+        android:text="Farmacii veterinare"
         android:layout_marginBottom="12dp" />
 
     <Button
         android:id="@+id/filterButton3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Adopții disponibile"
+        android:text="Cabinete disponibile"
         android:layout_marginBottom="12dp" />
 
     <Button
@@ -33,5 +33,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Toate animalele" />
+
+    <Button
+        android:id="@+id/closeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Inchide"
+        android:layout_marginTop="12dp" />
+
 
 </LinearLayout>
