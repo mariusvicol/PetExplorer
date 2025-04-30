@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_account"
+        android:title="Contul meu"
+        android:icon="@drawable/ic_person" />
+
+    <item
+        android:id="@+id/nav_favorites"
+        android:title="Locuri favorite"
+        android:icon="@drawable/ic_favorite" />
+
+    <item
+        android:id="@+id/nav_lost_pets"
+        android:title="Animale pierdute"
+        android:icon="@drawable/ic_dog" />
+
+    <item
+        android:id="@+id/nav_settings"
+        android:title="Setări"
+        android:icon="@drawable/ic_settings" />
+    <item
+        android:id="@+id/nav_logout"
+        android:title="Logout"
+        android:icon="@drawable/ic_logout" />
+</menu>

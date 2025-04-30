@@ -33,16 +33,23 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
         Button filterButton3 = rootView.findViewById(R.id.filterButton3);
         Button filterButton4 = rootView.findViewById(R.id.filterButton4);
 
-        // Setează un OnClickListener pentru fiecare buton
         filterButton1.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Filtrare 1 activată", Toast.LENGTH_SHORT).show();
-            // Aici adaugi logica pentru filtrare 1
+            Toast.makeText(getContext(), "Filtrare 1 activata: Magazine veterinare", Toast.LENGTH_SHORT).show();
+            MapsActivity mapsActivity = (MapsActivity) getActivity();
+            if (mapsActivity != null) {
+                mapsActivity.loadMagazine();
+            }
         });
 
+
         filterButton2.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Filtrare 2 activată", Toast.LENGTH_SHORT).show();
-            // Aici adaugi logica pentru filtrare 2
+            Toast.makeText(getContext(), "Filtrare 2 activată: Farmacii veterinare", Toast.LENGTH_SHORT).show();
+             MapsActivity mapsActivity = (MapsActivity) getActivity();
+            if (mapsActivity != null) {
+                mapsActivity.loadFarmaciiVeterinare();
+            }
         });
+
 
         filterButton3.setOnClickListener(v -> {
             Toast.makeText(getContext(), "Filtrare 3 activată", Toast.LENGTH_SHORT).show();
@@ -54,11 +61,13 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
             // Aici adaugi logica pentru filtrare 4
         });
 
-        // Permite mutarea butoanelor
-        setTouchListenerForButton(filterButton1);
-        setTouchListenerForButton(filterButton2);
-        setTouchListenerForButton(filterButton3);
-        setTouchListenerForButton(filterButton4);
+        Button closeButton = rootView.findViewById(R.id.closeButton);
+        closeButton.setOnClickListener(v -> dismiss());
+
+        //setTouchListenerForButton(filterButton1);
+        //setTouchListenerForButton(filterButton2);
+        //setTouchListenerForButton(filterButton3);
+        //setTouchListenerForButton(filterButton4);
 
         return rootView;
     }
