@@ -1,46 +1,221 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/filterLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@android:color/white"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:background="@android:color/white">
+    android:padding="24dp">
 
-    <Button
-        android:id="@+id/filterButton1"
+    <!-- SearchView cu fundal și border -->
+    <SearchView
+        android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Animale pierdute"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/searchbar_custom"
+        android:queryHint="Caută opțiune de filtrare" />
 
-    <Button
-        android:id="@+id/filterButton2"
+    <!-- Container pentru butoane -->
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Animale găsite"
-        android:layout_marginBottom="12dp" />
+        android:layout_height="333dp"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/filterButton3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Adopții disponibile"
-        android:layout_marginBottom="12dp" />
+        <!-- prima linie de butoane -->
+        <LinearLayout
+            android:id="@+id/row1Layout"
+            android:layout_width="343dp"
+            android:layout_height="130dp"
+            android:layout_marginStart="10dp"
+            android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/filterButton4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Toate animalele" />
+            <!-- CABINETE VETERINARE BUTTON -->
+            <LinearLayout
+                android:layout_width="114dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
 
-    <Button
-        android:id="@+id/filterParcuri"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Afiseaza parcurile"
-        android:clickable="true"
-        android:focusable="true"/>
+                <ImageButton
+                    android:id="@+id/filterCabineteButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/cabinete_veterinare"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/cabinet" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cabinete_veterinare"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
 
+            <!-- FARMACII VETERINARE BUTTON -->
+            <LinearLayout
+                android:layout_width="114dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageButton
+                    android:id="@+id/filterFarmaciiButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/farmacii_veterinare"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/farmacie" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/farmacii_veterinare"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+            <!-- SALOANE BUTTON -->
+            <LinearLayout
+                android:layout_width="114dp"
+                android:layout_height="117dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageButton
+                    android:id="@+id/filterSaloaneButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/saloane"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/salon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/saloane"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!-- a doua linie-->
+        <LinearLayout
+            android:id="@+id/row2Layout"
+            android:layout_width="344dp"
+            android:layout_height="117dp"
+            android:layout_marginStart="10dp"
+            android:orientation="horizontal">
+
+            <!-- PENSIUNI BUTTON -->
+            <LinearLayout
+                android:layout_width="114dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageButton
+                    android:id="@+id/filterPensiuniButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/pensiuni"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/pensiuni" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pensiuni"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+            <!-- MAGAZINE VETERINARE BUTTON -->
+            <LinearLayout
+                android:layout_width="114dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageButton
+                    android:id="@+id/filterMagazineButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/magazine"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/magazin" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/magazine"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+            <!-- PARCURI BUTTON -->
+            <LinearLayout
+                android:layout_width="114dp"
+                android:layout_height="115dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageButton
+                    android:id="@+id/filterParcuriButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/parcuri"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/parc" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/parcuri"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+<!--        <Button-->
+<!--            android:id="@+id/filterButton4"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Toate animalele" />-->
+
+        <Button
+            android:id="@+id/closeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Inchide" />
+
+    </LinearLayout>
 </LinearLayout>
