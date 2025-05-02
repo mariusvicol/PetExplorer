@@ -9,9 +9,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import android.Manifest;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.widget.Button;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import android.location.Location;
@@ -39,10 +42,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.List;
+import java.util.Objects;
 
+import domain.AnimalPierdut;
 import domain.CabinetVeterinar;
 import domain.Farmacie;
 import domain.Magazin;
+import domain.Parc;
 import petexplorer.petexplorerclients.databinding.ActivityMapsBinding;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -77,6 +83,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        ImageButton animalePierduteButton = findViewById(R.id.animalePierduteButton);
+
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_account) {
@@ -84,6 +92,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             } else if (id == R.id.nav_favorites) {
                 Toast.makeText(this, "Favorite", Toast.LENGTH_SHORT).show();
             } else if (id == R.id.nav_lost_pets) {
+                animalePierduteButton.performClick();
                 Toast.makeText(this, "Animale pierdute", Toast.LENGTH_SHORT).show();
             } else if (id == R.id.nav_settings) {
                 Toast.makeText(this, "Setari", Toast.LENGTH_SHORT).show();
@@ -106,6 +115,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         filterButton = findViewById(R.id.filterButton);
         filterButton.setOnClickListener(view -> showBottomSheet());
+
+
+        animalePierduteButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MapsActivity.this, LostAnimalsActivity.class);
+            startActivity(intent);
+        });
     }
 
 
@@ -150,6 +165,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if (response.isSuccessful() && response.body() != null) {
                     Log.d(TAG, "Răspunsul serverului: " + response.body().toString()); // Log la răspunsul primit
                     List<CabinetVeterinar> cabinetVeterinarList = response.body();
+                    mMap.clear();
                     for (CabinetVeterinar cabinet : cabinetVeterinarList) {
                         LatLng cabinetLocation = new LatLng(cabinet.getLatitudine(), cabinet.getLongitudine());
                         Log.d("DEBUG", "Cabinet: " + cabinet.getNume_cabinet() + " Lat: " + cabinet.getLatitudine() + " Long: " + cabinet.getLongitudine());
@@ -218,6 +234,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if (response.isSuccessful() && response.body() != null) {
                     Log.d(TAG, "Raspunsul serverului: " + response.body());
                     List<Farmacie> farmacieList = response.body();
+                    mMap.clear();
                     for (Farmacie farmacie:farmacieList) {
                         LatLng farmacieLocation = new LatLng(farmacie.getLatitudine(), farmacie.getLongitudine());
                         mMap.addMarker(new MarkerOptions()
@@ -241,6 +258,40 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
     }
+
+    public void loadParcuri() {
+        ApiService apiService = RetrofitClient.getApiService();
+        Call<List<Parc>> call = apiService.getParcuri();
+
+        call.enqueue(new Callback<List<Parc>>() {
+            @Override
+            public void onResponse(Call<List<Parc>> call, Response<List<Parc>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d(TAG, "Răspunsul serverului: " + response.body().toString());
+                    List<Parc> parcList = response.body();
+                    mMap.clear();
+                    for (Parc parc : parcList) {
+                        LatLng parcLocation = new LatLng(parc.getLatitudine(), parc.getLongitudine());
+
+                        mMap.addMarker(new MarkerOptions()
+                                .position(parcLocation)
+                                .title(parc.getNume())
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))); // culoare verde
+                    }
+                } else {
+                    Log.e(TAG, "Eroare raspuns server: " + response.code());
+                    Toast.makeText(MapsActivity.this, "Eroare la obținerea parcurilor", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Parc>> call, Throwable t) {
+                Log.e(TAG, "Eroare la conectarea la server: ", t);
+                Toast.makeText(MapsActivity.this, "Eroare la conectarea la server", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     private void getLastLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

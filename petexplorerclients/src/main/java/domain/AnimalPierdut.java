@@ -1,33 +1,50 @@
 package domain;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
 public class AnimalPierdut implements Serializable {
-    private Integer id; // Adaugăm ID-ul aici direct
+    private Integer id;
+
+    @SerializedName("latitudine")
     private Float latitudine;
+
+    @SerializedName("longitudine")
     private Float longitudine;
-    private String nume_animal;
+
+    @SerializedName("nume_animal")
+    private String numeAnimal;
+
+    @SerializedName("descriere")
     private String descriere;
-    private String tip_caz;
+
+    @SerializedName("tip_caz")
+    private String tipCaz;
+
+    @SerializedName("poza")
     private String poza;
-    private String nr_telefon;
-    private LocalDate data_caz;
 
-    public AnimalPierdut() {
-    }
+    @SerializedName("nr_telefon")
+    private String nrTelefon;
 
-    public AnimalPierdut(Integer id, Float latitudine, Float longitudine, String nume_animal, String descriere,
-                         String tip_caz, String poza, String nr_telefon, LocalDate data_caz) {
+    @SerializedName("data_caz")
+    private String dataCaz; // Recomandat ca String dacă nu configurezi un adapter pentru LocalDate
+
+    public AnimalPierdut() {}
+
+    public AnimalPierdut(Integer id, Float latitudine, Float longitudine, String numeAnimal, String descriere,
+                         String tipCaz, String poza, String nrTelefon, String dataCaz) {
         this.id = id;
         this.latitudine = latitudine;
         this.longitudine = longitudine;
-        this.nume_animal = nume_animal;
+        this.numeAnimal = numeAnimal;
         this.descriere = descriere;
-        this.tip_caz = tip_caz;
+        this.tipCaz = tipCaz;
         this.poza = poza;
-        this.nr_telefon = nr_telefon;
-        this.data_caz = data_caz;
+        this.nrTelefon = nrTelefon;
+        this.dataCaz = dataCaz;
     }
 
     public Integer getId() {
@@ -54,12 +71,12 @@ public class AnimalPierdut implements Serializable {
         this.longitudine = longitudine;
     }
 
-    public String getNume_animal() {
-        return nume_animal;
+    public String getNumeAnimal() {
+        return numeAnimal;
     }
 
-    public void setNume_animal(String nume_animal) {
-        this.nume_animal = nume_animal;
+    public void setNumeAnimal(String numeAnimal) {
+        this.numeAnimal = numeAnimal;
     }
 
     public String getDescriere() {
@@ -70,12 +87,12 @@ public class AnimalPierdut implements Serializable {
         this.descriere = descriere;
     }
 
-    public String getTip_caz() {
-        return tip_caz;
+    public String getTipCaz() {
+        return tipCaz;
     }
 
-    public void setTip_caz(String tip_caz) {
-        this.tip_caz = tip_caz;
+    public void setTipCaz(String tipCaz) {
+        this.tipCaz = tipCaz;
     }
 
     public String getPoza() {
@@ -86,20 +103,20 @@ public class AnimalPierdut implements Serializable {
         this.poza = poza;
     }
 
-    public String getNr_telefon() {
-        return nr_telefon;
+    public String getNrTelefon() {
+        return nrTelefon;
     }
 
-    public void setNr_telefon(String nr_telefon) {
-        this.nr_telefon = nr_telefon;
+    public void setNrTelefon(String nrTelefon) {
+        this.nrTelefon = nrTelefon;
     }
 
-    public LocalDate getData_caz() {
-        return data_caz;
+    public String getDataCaz() {
+        return dataCaz;
     }
 
-    public void setData_caz(LocalDate data_caz) {
-        this.data_caz = data_caz;
+    public void setDataCaz(String dataCaz) {
+        this.dataCaz = dataCaz;
     }
 
     @Override
@@ -108,25 +125,12 @@ public class AnimalPierdut implements Serializable {
                 "id=" + id +
                 ", latitudine=" + latitudine +
                 ", longitudine=" + longitudine +
-                ", nume_animal='" + nume_animal + '\'' +
+                ", numeAnimal='" + numeAnimal + '\'' +
                 ", descriere='" + descriere + '\'' +
-                ", tip_caz='" + tip_caz + '\'' +
+                ", tipCaz='" + tipCaz + '\'' +
                 ", poza='" + poza + '\'' +
-                ", nr_telefon='" + nr_telefon + '\'' +
-                ", data_caz=" + data_caz +
+                ", nrTelefon='" + nrTelefon + '\'' +
+                ", dataCaz='" + dataCaz + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        AnimalPierdut other = (AnimalPierdut) obj;
-        return id != null && id.equals(other.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
     }
 }

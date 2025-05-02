@@ -36,6 +36,7 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
         ImageButton filterSaloaneButton = rootView.findViewById(R.id.filterSaloaneButton);
         ImageButton filterPensiuniButton = rootView.findViewById(R.id.filterPensiuniButton);
         ImageButton filterMagazineButton = rootView.findViewById(R.id.filterMagazineButton);
+        ImageButton filterParcuriButton = rootView.findViewById(R.id.filterParcuriButton);
 
         LinearLayout buttonsLayout = rootView.findViewById(R.id.buttonsLayout);
 
@@ -86,6 +87,23 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
             Toast.makeText(getContext(), "Filtrare 4 activată: Pensiuni", Toast.LENGTH_SHORT).show();
             // Aici adaugi logica pentru filtrare 4
         });
+
+        filterCabineteButton.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Filtrare 5 activată: Cabinete", Toast.LENGTH_SHORT).show();
+            MapsActivity mapsActivity = (MapsActivity) getActivity();
+            if (mapsActivity != null) {
+                mapsActivity.loadVeterinaryOffices();
+            }
+        });
+
+        filterParcuriButton.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Filtrare 6 activată: Parcuri", Toast.LENGTH_SHORT).show();
+            MapsActivity mapsActivity = (MapsActivity) getActivity();
+            if (mapsActivity != null) {
+                mapsActivity.loadParcuri();
+            }
+        });
+
 
         Button closeButton = rootView.findViewById(R.id.closeButton);
         closeButton.setOnClickListener(v -> dismiss());
