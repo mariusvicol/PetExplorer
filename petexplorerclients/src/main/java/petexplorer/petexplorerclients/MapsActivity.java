@@ -278,6 +278,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 .title(parc.getNume())
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))); // culoare verde
                     }
+                    if (!parcList.isEmpty()) {
+                        LatLng firstLocation = new LatLng(parcList.get(0).getLatitudine(), parcList.get(0).getLongitudine());
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstLocation, 12));
+                    }
                 } else {
                     Log.e(TAG, "Eroare raspuns server: " + response.code());
                     Toast.makeText(MapsActivity.this, "Eroare la obținerea parcurilor", Toast.LENGTH_SHORT).show();
