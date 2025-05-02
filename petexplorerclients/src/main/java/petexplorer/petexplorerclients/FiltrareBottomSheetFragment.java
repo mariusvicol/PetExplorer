@@ -7,11 +7,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SearchView;
+
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -28,37 +31,69 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
         View rootView = inflater.inflate(R.layout.filtrare_bottom_sheet_fragment, container, false);
 
         // Butoane pentru filtrare
-        Button filterButton1 = rootView.findViewById(R.id.filterButton1);
-        Button filterButton2 = rootView.findViewById(R.id.filterButton2);
-        Button filterButton3 = rootView.findViewById(R.id.filterButton3);
-        Button filterButton4 = rootView.findViewById(R.id.filterButton4);
+        ImageButton filterCabineteButton = rootView.findViewById(R.id.filterCabineteButton);
+        ImageButton filterFarmaciiButton = rootView.findViewById(R.id.filterFarmaciiButton);
+        ImageButton filterSaloaneButton = rootView.findViewById(R.id.filterSaloaneButton);
+        ImageButton filterPensiuniButton = rootView.findViewById(R.id.filterPensiuniButton);
+        ImageButton filterMagazineButton = rootView.findViewById(R.id.filterMagazineButton);
 
-        // Setează un OnClickListener pentru fiecare buton
-        filterButton1.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Filtrare 1 activată", Toast.LENGTH_SHORT).show();
-            // Aici adaugi logica pentru filtrare 1
+        LinearLayout buttonsLayout = rootView.findViewById(R.id.buttonsLayout);
+
+        SearchView searchView = rootView.findViewById(R.id.searchView);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (!newText.trim().isEmpty()) {
+                    buttonsLayout.setVisibility(View.GONE);
+                } else {
+                    buttonsLayout.setVisibility(View.VISIBLE);
+                }
+                return true;
+            }
         });
 
-        filterButton2.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Filtrare 2 activată", Toast.LENGTH_SHORT).show();
-            // Aici adaugi logica pentru filtrare 2
+
+        filterMagazineButton.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Filtrare 1 activata: Magazine Veterinare", Toast.LENGTH_SHORT).show();
+            MapsActivity mapsActivity = (MapsActivity) getActivity();
+            if (mapsActivity != null) {
+                mapsActivity.loadMagazine();
+            }
         });
 
-        filterButton3.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Filtrare 3 activată", Toast.LENGTH_SHORT).show();
+
+        filterFarmaciiButton.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Filtrare 2 activată: Farmacii veterinare", Toast.LENGTH_SHORT).show();
+             MapsActivity mapsActivity = (MapsActivity) getActivity();
+            if (mapsActivity != null) {
+                mapsActivity.loadFarmaciiVeterinare();
+            }
+        });
+
+
+        filterSaloaneButton.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Filtrare 3 activată: Saloane", Toast.LENGTH_SHORT).show();
             // Aici adaugi logica pentru filtrare 3
         });
 
-        filterButton4.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Filtrare 4 activată", Toast.LENGTH_SHORT).show();
+        filterPensiuniButton.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Filtrare 4 activată: Pensiuni", Toast.LENGTH_SHORT).show();
             // Aici adaugi logica pentru filtrare 4
         });
 
-        // Permite mutarea butoanelor
-        setTouchListenerForButton(filterButton1);
-        setTouchListenerForButton(filterButton2);
-        setTouchListenerForButton(filterButton3);
-        setTouchListenerForButton(filterButton4);
+        Button closeButton = rootView.findViewById(R.id.closeButton);
+        closeButton.setOnClickListener(v -> dismiss());
+
+        //setTouchListenerForButton(filterCabineteButton);
+        //setTouchListenerForButton(filterFarmaciiButton);
+        //setTouchListenerForButton(filterSaloaneButton);
+        //setTouchListenerForButton(filterPensiuniButton);
 
         return rootView;
     }

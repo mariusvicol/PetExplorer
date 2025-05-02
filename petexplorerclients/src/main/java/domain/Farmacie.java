@@ -47,7 +47,7 @@ public class Farmacie {
         this.non_stop = non_stop;
     }
 
-    public Integer getid(){
+    public Integer getId(){
         return this.id;
     }
 
