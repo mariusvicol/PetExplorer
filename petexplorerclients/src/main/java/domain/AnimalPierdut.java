@@ -2,6 +2,7 @@ package domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class AnimalPierdut implements Serializable {
     private Integer id;
@@ -127,6 +128,6 @@ public class AnimalPierdut implements Serializable {
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return Objects.hash(id);
     }
 }
