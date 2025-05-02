@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,7 +15,6 @@ import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import android.Manifest;
-import android.view.View;
 import android.widget.Button;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -32,23 +30,16 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.List;
-import java.util.Objects;
 
-import domain.AnimalPierdut;
 import domain.CabinetVeterinar;
 import domain.Farmacie;
 import domain.Magazin;
 import domain.Parc;
+import domain.PensiuneCanina;
+import domain.Salon;
 import petexplorer.petexplorerclients.databinding.ActivityMapsBinding;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -67,6 +58,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        getLastLocation();
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -104,9 +98,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             return true;
         });
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        getLastLocation();
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         if (mapFragment != null) {
@@ -133,13 +124,44 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_design));
         mMap = googleMap;
-        if (currentLocation != null) {
-            LatLng currentCoordinates = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(currentCoordinates).title("My Location"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentCoordinates, 15));
-        } else {
-            Toast.makeText(this, "Locația curentă nu este disponibilă", Toast.LENGTH_SHORT).show();
+
+        // Verificăm permisiunile pentru locație
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            return;
         }
+
+        // Permitem utilizarea locației pe hartă
+        mMap.setMyLocationEnabled(true);
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+
+        // Activăm controalele de zoom
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+
+        // Creăm un FusedLocationProviderClient
+        FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        // Solicităm locația curentă
+        fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
+
+                    // Adăugăm un marker pe hartă și mutăm camera
+                    mMap.clear();
+                    mMap.addMarker(new MarkerOptions().position(userLocation).title("Locația curentă"));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
+
+                    // Încărcăm cabinetele veterinare pe hartă
+                    loadVeterinaryOffices();
+                    // loadParcuri();
+                } else {
+                    Toast.makeText(MapsActivity.this, "Locația curentă nu poate fi obținută", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 
@@ -147,9 +169,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == FINE_PERMISSION_CODE) {
+        if (requestCode == 1) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getLastLocation();
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    mMap.setMyLocationEnabled(true);
+                }
             } else {
                 Toast.makeText(this, "Permisiunea de locație este necesară", Toast.LENGTH_SHORT).show();
             }
@@ -186,6 +210,70 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
     }
+
+    public void loadPensiuni() {
+        ApiService apiService = RetrofitClient.getApiService();
+        Call<List<PensiuneCanina>> call = apiService.getPensiuniCanine();
+
+        call.enqueue(new Callback<List<PensiuneCanina>>() {
+            @Override
+            public void onResponse(Call<List<PensiuneCanina>> call, Response<List<PensiuneCanina>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d(TAG, "Răspunsul serverului: " + response.body());
+                    List<PensiuneCanina> pensiuniList = response.body();
+                    mMap.clear();
+                    for (PensiuneCanina p : pensiuniList) {
+                        LatLng pLoc = new LatLng(p.getLatitude(), p.getLongitude());
+                        Log.d("DEBUG", "Pensiune: " + p.getName()+ " Lat: " + p.getLatitude() + " Long: " + p.getLongitude());
+                        mMap.addMarker(new MarkerOptions()
+                                .position(pLoc)
+                                .title(p.getName()));
+                    }
+                } else {
+                    Log.e(TAG, "Eroare răspuns server: " + response.code());
+                    Toast.makeText(MapsActivity.this, "Eroare la obținerea pensiunilor", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<PensiuneCanina>> call, Throwable t) {
+                Log.e(TAG, "Eroare la conectarea la server: ", t);
+                Toast.makeText(MapsActivity.this, "Eroare la conectarea la server", Toast.LENGTH_SHORT).show();
+            }
+        });
+     }
+
+     public void loadSaloane() {
+         ApiService apiService = RetrofitClient.getApiService();
+         Call<List<Salon>> call = apiService.getSaloane();
+
+         call.enqueue(new Callback<List<Salon>>() {
+             @Override
+             public void onResponse(Call<List<Salon>> call, Response<List<Salon>> response) {
+                 if (response.isSuccessful() && response.body() != null) {
+                     Log.d(TAG, "Răspunsul serverului: " + response.body());
+                     List<Salon> saloaneList = response.body();
+                     mMap.clear();
+                     for (Salon s : saloaneList) {
+                         LatLng pLoc = new LatLng(s.getLatitude(), s.getLongitude());
+                         Log.d("DEBUG", "Salon: " + s.getName()+ " Lat: " + s.getLatitude() + " Long: " + s.getLongitude());
+                         mMap.addMarker(new MarkerOptions()
+                                 .position(pLoc)
+                                 .title(s.getName()));
+                     }
+                 } else {
+                     Log.e(TAG, "Eroare răspuns server: " + response.code());
+                     Toast.makeText(MapsActivity.this, "Eroare la obținerea saloanelor", Toast.LENGTH_SHORT).show();
+                 }
+             }
+
+             @Override
+             public void onFailure(Call<List<Salon>> call, Throwable t) {
+                 Log.e(TAG, "Eroare la conectarea la server: ", t);
+                 Toast.makeText(MapsActivity.this, "Eroare la conectarea la server", Toast.LENGTH_SHORT).show();
+             }
+         });
+     }
 
     public void loadMagazine(){
         ApiService apiService = RetrofitClient.getApiService();
