@@ -78,16 +78,6 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
         });
 
 
-        filterSaloaneButton.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Filtrare 3 activată: Saloane", Toast.LENGTH_SHORT).show();
-            // Aici adaugi logica pentru filtrare 3
-        });
-
-        filterPensiuniButton.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Filtrare 4 activată: Pensiuni", Toast.LENGTH_SHORT).show();
-            // Aici adaugi logica pentru filtrare 4
-        });
-
         filterCabineteButton.setOnClickListener(v -> {
             Toast.makeText(getContext(), "Filtrare 5 activată: Cabinete", Toast.LENGTH_SHORT).show();
             MapsActivity mapsActivity = (MapsActivity) getActivity();
@@ -113,11 +103,11 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
         });
 
         filterSaloaneButton.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Filtrare 7 activata: Saloane", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Filtrare 8 activata: Saloane", Toast.LENGTH_SHORT).show();
             MapsActivity mapsActivity = (MapsActivity) getActivity();
 
             if (mapsActivity != null)
-                mapsActivity.loadPensiuni();
+                mapsActivity.loadSaloane();
         });
 
 

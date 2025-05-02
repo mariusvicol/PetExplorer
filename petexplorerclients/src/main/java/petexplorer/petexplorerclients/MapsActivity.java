@@ -155,7 +155,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
 
                     // Încărcăm cabinetele veterinare pe hartă
-                    loadVeterinaryOffices();
+                    //loadVeterinaryOffices();
                     // loadParcuri();
                 } else {
                     Toast.makeText(MapsActivity.this, "Locația curentă nu poate fi obținută", Toast.LENGTH_SHORT).show();
@@ -197,6 +197,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 .position(cabinetLocation)
                                 .title(cabinet.getNume_cabinet()));
                     }
+                    if (!cabinetVeterinarList.isEmpty()) {
+                        LatLng firstLocation = new LatLng(cabinetVeterinarList.get(0).getLatitudine(), cabinetVeterinarList.get(0).getLongitudine());
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstLocation, 12));
+                    }
                 } else {
                     Log.e(TAG, "Eroare răspuns server: " + response.code()); // Log pentru codul de răspuns al serverului
                     Toast.makeText(MapsActivity.this, "Eroare la obținerea cabinetelor veterinare", Toast.LENGTH_SHORT).show();
@@ -229,6 +233,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 .position(pLoc)
                                 .title(p.getName()));
                     }
+                    if (!pensiuniList.isEmpty()) {
+                        LatLng firstLocation = new LatLng(pensiuniList.get(0).getLatitude(), pensiuniList.get(0).getLongitude());
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstLocation, 12));
+                    }
                 } else {
                     Log.e(TAG, "Eroare răspuns server: " + response.code());
                     Toast.makeText(MapsActivity.this, "Eroare la obținerea pensiunilor", Toast.LENGTH_SHORT).show();
@@ -260,6 +268,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                          mMap.addMarker(new MarkerOptions()
                                  .position(pLoc)
                                  .title(s.getName()));
+                     }
+                     if (!saloaneList.isEmpty()) {
+                         LatLng firstLocation = new LatLng(saloaneList.get(0).getLatitude(), saloaneList.get(0).getLongitude());
+                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstLocation, 12));
                      }
                  } else {
                      Log.e(TAG, "Eroare răspuns server: " + response.code());
