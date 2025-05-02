@@ -104,6 +104,22 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
             }
         });
 
+        filterPensiuniButton.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Filtrare 7 activata: PensiuniCanine", Toast.LENGTH_SHORT).show();
+            MapsActivity mapsActivity = (MapsActivity) getActivity();
+
+            if (mapsActivity != null)
+                mapsActivity.loadPensiuni();
+        });
+
+        filterSaloaneButton.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Filtrare 7 activata: Saloane", Toast.LENGTH_SHORT).show();
+            MapsActivity mapsActivity = (MapsActivity) getActivity();
+
+            if (mapsActivity != null)
+                mapsActivity.loadPensiuni();
+        });
+
 
         Button closeButton = rootView.findViewById(R.id.closeButton);
         closeButton.setOnClickListener(v -> dismiss());
