@@ -96,6 +96,10 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
                                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                         }
                     }
+                    if (!animaleList.isEmpty()) {
+                        LatLng firstLocation = new LatLng(animaleList.get(0).getLatitudine(), animaleList.get(0).getLongitudine());
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstLocation, 12));
+                    }
                     adapter.updateData(animaleList.stream()
                             .filter(a -> "pierdut".equals(a.getTipCaz()))
                             .collect(Collectors.toList()));
@@ -133,6 +137,10 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
                                     .title(animal.getNumeAnimal())
                                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                         }
+                    }
+                    if (!animaleList.isEmpty()) {
+                        LatLng firstLocation = new LatLng(animaleList.get(0).getLatitudine(), animaleList.get(0).getLongitudine());
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstLocation, 12));
                     }
                     adapter.updateData(animaleList.stream()
                             .filter(a -> "vazut".equals(a.getTipCaz()))
