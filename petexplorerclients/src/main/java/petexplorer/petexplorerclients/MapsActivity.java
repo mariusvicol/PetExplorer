@@ -83,6 +83,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        ImageButton animalePierduteButton = findViewById(R.id.animalePierduteButton);
+
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_account) {
@@ -90,6 +92,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             } else if (id == R.id.nav_favorites) {
                 Toast.makeText(this, "Favorite", Toast.LENGTH_SHORT).show();
             } else if (id == R.id.nav_lost_pets) {
+                animalePierduteButton.performClick();
                 Toast.makeText(this, "Animale pierdute", Toast.LENGTH_SHORT).show();
             } else if (id == R.id.nav_settings) {
                 Toast.makeText(this, "Setari", Toast.LENGTH_SHORT).show();
@@ -113,7 +116,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         filterButton = findViewById(R.id.filterButton);
         filterButton.setOnClickListener(view -> showBottomSheet());
 
-        ImageButton animalePierduteButton = findViewById(R.id.animalePierduteButton);
+
         animalePierduteButton.setOnClickListener(v -> {
             Intent intent = new Intent(MapsActivity.this, LostAnimalsActivity.class);
             startActivity(intent);

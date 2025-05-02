@@ -36,17 +36,36 @@
         </LinearLayout>
 
     <!-- Buton Animale Pierdute peste harta -->
-    <ImageButton
-        android:id="@+id/animalePierduteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:background="@drawable/fab_background"
-        android:contentDescription="Animale Pierdute"
-        android:padding="16dp"
-        android:src="@drawable/ic_dog"
-        android:elevation="6dp" />
+        <LinearLayout
+            android:id="@+id/animalePierduteLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="72dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_horizontal">
+
+        <ImageButton
+            android:id="@+id/animalePierduteButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:backgroundTint="#A5D6A7"
+            android:background="@drawable/fab_background"
+            android:contentDescription="Animale Pierdute"
+            android:padding="8dp"
+            android:src="@drawable/ic_dog"
+            android:elevation="6dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Animale Pierdute"
+            android:textSize="12sp"
+            android:textColor="@android:color/black"
+            android:paddingTop="4dp" />
+    </LinearLayout>
+
 </FrameLayout>
 
     <com.google.android.material.navigation.NavigationView

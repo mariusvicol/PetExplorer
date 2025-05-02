@@ -17,10 +17,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import domain.AnimalPierdut;
 import domain.Parc;
@@ -35,6 +38,9 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
     private RecyclerView recyclerView;
     private Button btnVeziPierdute, btnVeziGasite;
 
+    private AnimalAdapter adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +48,13 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
 
         recyclerView = findViewById(R.id.animalsListRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter = new AnimalAdapter(new ArrayList<>(), animal -> {
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                    new LatLng(animal.getLatitudine(), animal.getLongitudine()), 16));
+        });
+        recyclerView.setAdapter(adapter);
+
 
         btnVeziPierdute = findViewById(R.id.btnVeziPierdute);
         btnVeziGasite = findViewById(R.id.btnVeziGasite);
@@ -56,6 +69,7 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_design));
         mMap = googleMap;
         mMap.getUiSettings().setZoomControlsEnabled(true);
         LatLng initialLoc = new LatLng(45.7489, 21.2087); // de ex. Timișoara
@@ -74,14 +88,18 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
                     List<AnimalPierdut> animaleList = response.body();
                     mMap.clear();
                     for (AnimalPierdut animal : animaleList) {
-                        if(Objects.equals(animal.getTip_caz(), "pierdut")) {
+                        if(Objects.equals(animal.getTipCaz(), "pierdut")) {
                             LatLng animalLocation = new LatLng(animal.getLatitudine(), animal.getLongitudine());
                             mMap.addMarker(new MarkerOptions()
                                     .position(animalLocation)
-                                    .title(animal.getNume_animal())
+                                    .title(animal.getNumeAnimal())
                                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                         }
                     }
+                    adapter.updateData(animaleList.stream()
+                            .filter(a -> "pierdut".equals(a.getTipCaz()))
+                            .collect(Collectors.toList()));
+
                 } else {
                     Toast.makeText(LostAnimalsActivity.this, "Eroare la obținerea animalelor pierdute", Toast.LENGTH_SHORT).show();
                 }
@@ -108,16 +126,20 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
                     List<AnimalPierdut> animaleList = response.body();
                     mMap.clear();
                     for (AnimalPierdut animal : animaleList) {
-                        if(Objects.equals(animal.getTip_caz(), "vazut")) {
+                        if(Objects.equals(animal.getTipCaz(), "vazut")) {
                             LatLng loc = new LatLng(animal.getLatitudine(), animal.getLongitudine());
                             mMap.addMarker(new MarkerOptions()
                                     .position(loc)
-                                    .title(animal.getNume_animal())
+                                    .title(animal.getNumeAnimal())
                                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                         }
                     }
+                    adapter.updateData(animaleList.stream()
+                            .filter(a -> "vazut".equals(a.getTipCaz()))
+                            .collect(Collectors.toList()));
+
                 } else {
-                    Toast.makeText(LostAnimalsActivity.this, "Eroare la obținerea animalelor pierdute", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LostAnimalsActivity.this, "Eroare la obținerea animalelor vazute", Toast.LENGTH_SHORT).show();
                 }
             }
 
