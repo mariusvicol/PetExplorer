@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="petexplorerclients">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-04-29T21:56:22.633473Z">
+        <DropdownSelection timestamp="2025-05-04T18:31:14.631708700Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\Alexandra\.android\avd\Medium_Phone.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\maria\.android\avd\Medium_Phone.avd" />
             </handle>
           </Target>
         </DropdownSelection>

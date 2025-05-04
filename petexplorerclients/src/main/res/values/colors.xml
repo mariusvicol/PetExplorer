@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="brown">#4C392D</color>
+    <color name="lightbrown">#BEB5AC</color>
+    <color name="fallow">#C19A6B</color>
+    <color name="wheat">#F5DEB3</color>
+    <color name="cinnamon">#D27D2D</color>
+    <color name="almond">#EADDCA</color>
+    <color name="copper">#B87333</color>
 </resources>
