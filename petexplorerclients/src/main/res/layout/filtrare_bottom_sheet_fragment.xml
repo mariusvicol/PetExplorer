@@ -3,7 +3,7 @@
     android:id="@+id/filterLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
+    android:background="@drawable/custom_filter_menu"
     android:orientation="vertical"
     android:padding="24dp">
 
@@ -21,6 +21,7 @@
         android:id="@+id/buttonsLayout"
         android:layout_width="match_parent"
         android:layout_height="333dp"
+        android:gravity="center"
         android:orientation="vertical">
 
         <!-- prima linie de butoane -->
@@ -50,7 +51,8 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="42dp"
+                    android:fontFamily="casual"
                     android:text="@string/cabinete_veterinare"
                     android:textAlignment="center"
                     android:textColor="#000"
@@ -204,18 +206,22 @@
 
         </LinearLayout>
 
-<!--        <Button-->
-<!--            android:id="@+id/filterButton4"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Toate animalele" />-->
+        <!--        <Button-->
+        <!--            android:id="@+id/filterButton4"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Toate animalele" />-->
 
         <Button
             android:id="@+id/closeButton"
-            android:layout_width="match_parent"
+            android:layout_width="187dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="Inchide" />
+            android:background="@drawable/custom_button"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="@string/inchide"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 </LinearLayout>
