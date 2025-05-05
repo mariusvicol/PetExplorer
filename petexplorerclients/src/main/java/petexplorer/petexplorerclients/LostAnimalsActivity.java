@@ -72,7 +72,7 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
         googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_design));
         mMap = googleMap;
         mMap.getUiSettings().setZoomControlsEnabled(true);
-        LatLng initialLoc = new LatLng(45.7489, 21.2087); // de ex. Timișoara
+        LatLng initialLoc = new LatLng(46.770519, 23.590103);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(initialLoc, 12));
     }
 
