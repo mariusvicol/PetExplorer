@@ -8,8 +8,11 @@ import domain.Magazin;
 import domain.Parc;
 import domain.PensiuneCanina;
 import domain.Salon;
+import domain.User;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 public interface ApiService {
     @GET("api/cabinete")
@@ -29,5 +32,8 @@ public interface ApiService {
 
     @GET("api/saloane")
     Call<List<Salon>> getSaloane();
+
+    @POST("/api/users/login")
+    Call<User> login(@Body User loginRequest);
 
 }
