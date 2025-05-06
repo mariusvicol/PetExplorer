@@ -2,10 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:background="?attr/colorPrimary"
+    android:background="@color/fallow"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="20dp"
     android:gravity="bottom">
+    
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:src="@drawable/paws"/>
 
     <TextView
         android:id="@+id/nav_header_title"
