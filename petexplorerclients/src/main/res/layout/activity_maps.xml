@@ -9,28 +9,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- CONȚINUT PRINCIPAL CU TOOLBAR + HARTĂ -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/lightbrown"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                android:title="Pet Explorer" />
-
+        <!-- HARTĂ -->
             <fragment
                 android:id="@+id/map"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1" />
-        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/menuButton"
+            android:layout_width="59dp"
+            android:layout_height="59dp"
+            android:layout_gravity="top|start"
+            android:layout_margin="16dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Deschide Meniul"
+            android:scaleType="fitCenter"
+            android:src="@drawable/award" />
 
         <!-- BUTON FILTRARE -->
         <Button
