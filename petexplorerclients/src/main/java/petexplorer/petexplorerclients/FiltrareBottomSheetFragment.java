@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.SearchView;
+import androidx.appcompat.widget.SearchView;
 
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -39,7 +40,7 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
         ImageButton filterParcuriButton = rootView.findViewById(R.id.filterParcuriButton);
 
         LinearLayout buttonsLayout = rootView.findViewById(R.id.buttonsLayout);
-
+        ConstraintLayout resultsLayout = rootView.findViewById(R.id.resultsLayout);
         SearchView searchView = rootView.findViewById(R.id.searchView);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -52,7 +53,9 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
             public boolean onQueryTextChange(String newText) {
                 if (!newText.trim().isEmpty()) {
                     buttonsLayout.setVisibility(View.GONE);
+                    resultsLayout.setVisibility(View.VISIBLE);
                 } else {
+                    resultsLayout.setVisibility(View.GONE);
                     buttonsLayout.setVisibility(View.VISIBLE);
                 }
                 return true;

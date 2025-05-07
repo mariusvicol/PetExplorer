@@ -49,11 +49,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/searchbar_custom"
+            android:elegantTextHeight="false"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:padding="12dp"
             android:textAlignment="center"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/nameEditText"
