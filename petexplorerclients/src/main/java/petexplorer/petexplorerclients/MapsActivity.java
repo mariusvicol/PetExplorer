@@ -66,18 +66,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+        ImageButton menuButton = findViewById(R.id.menuButton);
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawerLayout, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        toolbar.setNavigationOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
+        menuButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
         ImageButton animalePierduteButton = findViewById(R.id.animalePierduteButton);
 
