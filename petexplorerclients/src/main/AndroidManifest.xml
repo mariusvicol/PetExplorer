@@ -45,6 +45,12 @@
             android:label="@string/login_activity">
         </activity>
 
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true"
+            android:label="Register">
+        </activity>
+
     </application>
 
 </manifest>

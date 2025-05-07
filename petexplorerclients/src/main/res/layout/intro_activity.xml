@@ -45,12 +45,12 @@
         app:layout_constraintVertical_bias="0.278" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/registerOptionBtn"
         android:layout_width="255dp"
         android:layout_height="46dp"
         android:layout_marginBottom="144dp"
         android:background="@drawable/custom_button2"
-        android:text="Register (nu merge =)) )"
+        android:text="Register"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
