@@ -16,15 +16,20 @@ public class IntroActivity extends AppCompatActivity {
         setContentView(R.layout.intro_activity);
 
         loginOptionBtn = findViewById(R.id.loginOptionBtn);
-        // TODO - add register option button id
+        registerOptionBtn = findViewById(R.id.registerOptionBtn);
 
         loginOptionBtn.setOnClickListener(v -> onLoginOptionChosen());
-        // TODO - add register option button listener
+        registerOptionBtn.setOnClickListener(v -> onRegisterOptionChosen());
     }
 
 
     private void onLoginOptionChosen() {
         Intent intent = new Intent(IntroActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    private void onRegisterOptionChosen() {
+        Intent intent = new Intent(IntroActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
 
