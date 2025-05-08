@@ -8,11 +8,13 @@ import domain.Magazin;
 import domain.Parc;
 import domain.PensiuneCanina;
 import domain.Salon;
+import domain.SearchResultWrapper;
 import domain.User;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiService {
     @GET("api/cabinete")
@@ -32,6 +34,9 @@ public interface ApiService {
 
     @GET("api/saloane")
     Call<List<Salon>> getSaloane();
+
+    @GET("api/search")
+    Call<List<SearchResultWrapper>> getSearchResults(@Query("text") String text);
 
     @POST("/api/users/login")
     Call<User> login(@Body User loginRequest);

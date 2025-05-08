@@ -1,7 +1,11 @@
 package petexplorer.petexplorerclients;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,14 +20,39 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import domain.CabinetVeterinar;
+import domain.Farmacie;
+import domain.Magazin;
+import domain.Parc;
+import domain.PensiuneCanina;
+import domain.Salon;
+import domain.SearchResultWrapper;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import service.ApiService;
 
 public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
 
-    public FiltrareBottomSheetFragment() {
-        // Constructorul implicit
-    }
+    protected RecyclerView resultsRV;
+
+    private Handler debounceHandler = new Handler();
+    private Runnable debounceRunnable;
+    private final long DEBOUNCE_DELAY = 300;
+
+    public FiltrareBottomSheetFragment() {}
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -43,6 +72,14 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
         ConstraintLayout resultsLayout = rootView.findViewById(R.id.resultsLayout);
         SearchView searchView = rootView.findViewById(R.id.searchView);
 
+        resultsRV = rootView.findViewById(R.id.resultsRecyclerView);
+        resultsRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        SearchAdapter adapter = new SearchAdapter(new ArrayList<>(), item -> {
+            Toast.makeText(getContext(), "Ai selectat: " + item.getName(), Toast.LENGTH_SHORT).show();
+        });
+
+        resultsRV.setAdapter(adapter);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -51,13 +88,24 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (!newText.trim().isEmpty()) {
-                    buttonsLayout.setVisibility(View.GONE);
-                    resultsLayout.setVisibility(View.VISIBLE);
-                } else {
-                    resultsLayout.setVisibility(View.GONE);
-                    buttonsLayout.setVisibility(View.VISIBLE);
+                // stergere cerere
+                if (debounceRunnable != null) {
+                    debounceHandler.removeCallbacks(debounceRunnable);
                 }
+
+                // noua cerere cu delay sa nu se suprapuna sesiunile
+                debounceRunnable = () -> {
+                    if (newText.trim().length() >= 3) {
+                        buttonsLayout.setVisibility(View.GONE);
+                        resultsLayout.setVisibility(View.VISIBLE);
+                        handleSearchAction(newText);
+                    } else {
+                        resultsLayout.setVisibility(View.GONE);
+                        buttonsLayout.setVisibility(View.VISIBLE);
+                    }
+                };
+
+                debounceHandler.postDelayed(debounceRunnable, DEBOUNCE_DELAY);
                 return true;
             }
         });
@@ -124,6 +172,38 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
 
         return rootView;
     }
+
+
+    private void handleSearchAction(String text) {
+        ApiService apiService = RetrofitClient.getApiService();
+
+        apiService.getSearchResults(text).enqueue(new Callback<List<SearchResultWrapper>>() {
+            @Override
+            public void onResponse(Call<List<SearchResultWrapper>> call, Response<List<SearchResultWrapper>> response) {
+                if (response.isSuccessful() && response.body() != null){
+                    List<SearchResultWrapper> all = response.body();
+
+                    // actualizare lista in adapter
+                    if (resultsRV.getAdapter() instanceof SearchAdapter) {
+                        SearchAdapter adapter = (SearchAdapter) resultsRV.getAdapter();
+                        adapter.submitList(all);
+                    }
+
+                    Log.d("DEBUG", "Rezultate primite: " + all.size());
+                } else {
+                    Log.e("ERROR", "Eroare la server: " + response.code());
+                    Toast.makeText(getContext(), "Eroare la cautare", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SearchResultWrapper>> call, Throwable t) {
+                Log.e("ERROR", "Eroare la conectarea cu serverul: " + t);
+                Toast.makeText(getContext(), "Eroare la retea", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     // Funcție pentru a permite mișcarea butoanelor
     @SuppressLint("ClickableViewAccessibility")
