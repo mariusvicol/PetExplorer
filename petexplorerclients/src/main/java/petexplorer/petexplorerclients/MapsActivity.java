@@ -150,10 +150,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     mMap.clear();
                     mMap.addMarker(new MarkerOptions().position(userLocation).title("Locația curentă"));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
-
-                    // Încărcăm cabinetele veterinare pe hartă
-                    //loadVeterinaryOffices();
-                    // loadParcuri();
                 } else {
                     Toast.makeText(MapsActivity.this, "Locația curentă nu poate fi obținută", Toast.LENGTH_SHORT).show();
                 }

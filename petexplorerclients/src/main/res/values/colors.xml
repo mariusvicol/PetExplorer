@@ -18,4 +18,8 @@
     <color name="copper">#B87333</color>
     <color name="burnt_umber">#6E260E</color>
     <color name="buff">#DAA06D</color>
+
+    <color name="selected_button">#FFBB86FC</color>
+    <color name="default_button">#DDDDDD</color>
+
 </resources>

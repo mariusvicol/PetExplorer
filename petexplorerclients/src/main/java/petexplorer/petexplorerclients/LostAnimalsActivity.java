@@ -2,12 +2,14 @@ package petexplorer.petexplorerclients;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -58,13 +60,35 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
 
         btnVeziPierdute = findViewById(R.id.btnVeziPierdute);
         btnVeziGasite = findViewById(R.id.btnVeziGasite);
+        Button btnAddAnimal = findViewById(R.id.btnAddAnimal);
 
-        btnVeziPierdute.setOnClickListener(v -> loadAnimalePierdute());
-        btnVeziGasite.setOnClickListener(v -> loadAnimaleGasite());
+        btnVeziPierdute.setOnClickListener(v -> {
+            loadAnimalePierdute();
+            btnAddAnimal.setText("+ Animal Pierdut");
+            btnVeziPierdute.setBackgroundColor(ContextCompat.getColor(this, R.color.selected_button));
+            btnVeziGasite.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button));
+        });
+
+        btnVeziGasite.setOnClickListener(v -> {
+            loadAnimaleGasite();
+            btnAddAnimal.setText("+ Am găsit un animal");
+            btnVeziGasite.setBackgroundColor(ContextCompat.getColor(this, R.color.selected_button));
+            btnVeziPierdute.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button));
+        });
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.lost_animals_map);
         mapFragment.getMapAsync(this);
+
+        loadAnimalePierdute();
+        btnVeziPierdute.setBackgroundColor(ContextCompat.getColor(this, R.color.selected_button));
+        btnVeziGasite.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button));
+
+        btnAddAnimal.setOnClickListener(v -> {
+            Intent intent = new Intent(LostAnimalsActivity.this, AddAnimalActivity.class);
+            intent.putExtra("tipCaz", btnVeziPierdute.getCurrentTextColor() == getResources().getColor(R.color.selected_button) ? "pierdut" : "vazut");
+            startActivity(intent);
+        });
     }
 
     @Override
