@@ -59,6 +59,15 @@
             android:label="Register">
         </activity>
 
+        <activity
+            android:name=".MyAccountActivity"
+            android:exported="true"
+            android:label="Setari"/>
+
+        <activity android:name=".SettingsGeneralActivity"
+            android:exported="true"
+            android:label="Setari generale"/>
+
         <activity android:name=".AddAnimalActivity"/>
 
     </application>

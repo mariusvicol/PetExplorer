@@ -2,14 +2,13 @@ package petexplorer.petexplorerclients;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,11 +32,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import domain.CabinetVeterinar;
-import domain.Entity;
 import domain.Farmacie;
 import domain.Magazin;
 import domain.Parc;
@@ -52,6 +49,8 @@ import service.ApiService;
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private int currentUserId;
+
     private ActivityMapsBinding binding;
     private Button filterButton;
     private final int FINE_PERMISSION_CODE = 1;
@@ -61,6 +60,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
+        this.currentUserId = prefs.getInt("user_id", -1);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
@@ -79,15 +80,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_account) {
-                Toast.makeText(this, "Contul tau", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, MyAccountActivity.class);
+                intent.putExtra("USER_ID", currentUserId);
+                startActivity(intent);
             } else if (id == R.id.nav_favorites) {
                 Toast.makeText(this, "Favorite", Toast.LENGTH_SHORT).show();
             } else if (id == R.id.nav_lost_pets) {
                 animalePierduteButton.performClick();
                 Toast.makeText(this, "Animale pierdute", Toast.LENGTH_SHORT).show();
-            } else if (id == R.id.nav_settings) {
-                Toast.makeText(this, "Setari", Toast.LENGTH_SHORT).show();
-            } else if (id == R.id.nav_logout) {
+            }else if (id == R.id.nav_settings) {
+                    Intent intent = new Intent(this, SettingsGeneralActivity.class);
+                    startActivity(intent);
+                }
+            else if (id == R.id.nav_logout) {
                 Toast.makeText(this, "Delogare", Toast.LENGTH_SHORT).show();
                 finish();
             }

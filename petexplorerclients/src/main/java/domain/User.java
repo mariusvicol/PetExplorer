@@ -13,12 +13,12 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(Integer id, String email, String password, String nume, String nrTelefon) {
+    public User(Integer id, String email, String password, String nume, String nr_Telefon) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.nume = nume;
-        this.nr_telefon = nrTelefon;
+        this.nr_telefon = nr_Telefon;
     }
 
     // Getters și Setters
@@ -54,11 +54,11 @@ public class User implements Serializable {
         this.nume = nume;
     }
 
-    public String getNrTelefon() {
+    public String getNr_Telefon() {
         return nr_telefon;
     }
 
-    public void setNrTelefon(String nrTelefon) {
+    public void setNr_Telefon(String nrTelefon) {
         this.nr_telefon = nrTelefon;
     }
 
