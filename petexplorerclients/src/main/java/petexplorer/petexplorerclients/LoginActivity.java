@@ -50,9 +50,14 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     User user = response.body();
                     SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
-                    prefs.edit().putString("email", user.getEmail()).apply();
+                    prefs.edit()
+                            .putInt("user_id", user.getId())
+                            .putString("email", user.getEmail())
+                            .apply();
+
                     Intent intent = new Intent(LoginActivity.this, MapsActivity.class);
                     startActivity(intent);
+
                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Email sau parola greșita!", Toast.LENGTH_SHORT).show();
