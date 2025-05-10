@@ -52,9 +52,10 @@ public class MyAccountActivity extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     User user = response.body();
+                    Log.d("DEBUG_API", "User primit: " + user.toString());
                     emailEdit.setText(user.getEmail());
                     nameEdit.setText(user.getNume());
-                    phoneEdit.setText(user.getNr_Telefon());
+                    phoneEdit.setText(user.getNrTelefon());
                 } else {
                     Toast.makeText(MyAccountActivity.this, "Eroare la incarcarea datelor", Toast.LENGTH_SHORT).show();
                 }
@@ -71,7 +72,7 @@ public class MyAccountActivity extends AppCompatActivity {
         User updatedUser = new User();
         updatedUser.setEmail(emailEdit.getText().toString());
         updatedUser.setNume(nameEdit.getText().toString());
-        updatedUser.setNr_Telefon(phoneEdit.getText().toString());
+        updatedUser.setNrTelefon(phoneEdit.getText().toString());
         updatedUser.setPassword(passwordEdit.getText().toString());
 
         api.updateUser(userId, updatedUser).enqueue(new Callback<User>() {

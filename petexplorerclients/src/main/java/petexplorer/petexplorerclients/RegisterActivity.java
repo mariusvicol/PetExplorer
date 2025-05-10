@@ -2,6 +2,7 @@ package petexplorer.petexplorerclients;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,43 +37,45 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void register() {
-        if(emailEditText.getText().isEmpty() || passwordEditText.getText().isEmpty() || nameEditText.getText().isEmpty() || phoneEditText.getText().isEmpty()){
-            Toast.makeText(RegisterActivity.this, "Eroare inregistrare! Fieldurile nu pot fi goale!", Toast.LENGTH_SHORT).show();
-        }else{
-            if(phoneEditText.getText().length()>9){
-                ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-                User registerRequest=new User();
-                registerRequest.setEmail(emailEditText.getText().toString());
-                registerRequest.setPassword(passwordEditText.getText().toString());
-                registerRequest.setNr_Telefon(phoneEditText.getText().toString());
-                registerRequest.setNume(nameEditText.getText().toString());
-                apiService.register(registerRequest).enqueue(new Callback<User>() {
-                        @Override
-                        public void onResponse(Call<User> call, Response<User> response) {
-                            if (response.isSuccessful()) {
-                                User user = response.body();
-                                SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
-                                prefs.edit()
-                                        .putInt("user_id", user.getId())
-                                        .putString("email", user.getEmail())
-                                        .apply();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            if(emailEditText.getText().isEmpty() || passwordEditText.getText().isEmpty() || nameEditText.getText().isEmpty() || phoneEditText.getText().isEmpty()){
+                Toast.makeText(RegisterActivity.this, "Eroare inregistrare! Fieldurile nu pot fi goale!", Toast.LENGTH_SHORT).show();
+            }else{
+                if(phoneEditText.getText().length()>9){
+                    ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+                    User registerRequest=new User();
+                    registerRequest.setEmail(emailEditText.getText().toString());
+                    registerRequest.setPassword(passwordEditText.getText().toString());
+                    registerRequest.setNrTelefon(phoneEditText.getText().toString());
+                    registerRequest.setNume(nameEditText.getText().toString());
+                    apiService.register(registerRequest).enqueue(new Callback<User>() {
+                            @Override
+                            public void onResponse(Call<User> call, Response<User> response) {
+                                if (response.isSuccessful()) {
+                                    User user = response.body();
+                                    SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
+                                    prefs.edit()
+                                            .putInt("user_id", user.getId())
+                                            .putString("email", user.getEmail())
+                                            .apply();
 
-                                Intent intent = new Intent(RegisterActivity.this, MapsActivity.class);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                Toast.makeText(RegisterActivity.this, "User deja existent!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(RegisterActivity.this, MapsActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Toast.makeText(RegisterActivity.this, "User deja existent!", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onFailure(Call<User> call, Throwable t) {
-                            Toast.makeText(RegisterActivity.this, "Eroare de rețea!", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }else{
-                    Toast.makeText(RegisterActivity.this,"Eroare inregistrare! Numarul de telefon nu poate fi mai mic de 9 cifre",Toast.LENGTH_SHORT).show();
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+                                Toast.makeText(RegisterActivity.this, "Eroare de rețea!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }else{
+                        Toast.makeText(RegisterActivity.this,"Eroare inregistrare! Numarul de telefon nu poate fi mai mic de 9 cifre",Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
         }
+    }
 }
