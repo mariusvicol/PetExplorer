@@ -67,7 +67,6 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
             tvDescriere.setText(animal.getDescriere());
             tvTelefon.setText(animal.getNrTelefon());
 
-            // TREBUIE SA VAD CUM FAC CU URL -urile pt imagini
             if (animal.getPoza() != null && !animal.getPoza().isEmpty()) {
                 String imageUrl = "http://10.0.2.2:8080" + animal.getPoza(); // pentru emulator
                 Glide.with(itemView.getContext())

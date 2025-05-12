@@ -65,7 +65,8 @@ public interface ApiService {
             @Part("latitudine") RequestBody lat,
             @Part("longitudine") RequestBody lng,
             @Part("tip_caz") RequestBody tipCaz,
-            @Part("nr_telefon") RequestBody telefon
+            @Part("nr_telefon") RequestBody telefon,
+            @Part("id_user") RequestBody userId
     );
 
 }

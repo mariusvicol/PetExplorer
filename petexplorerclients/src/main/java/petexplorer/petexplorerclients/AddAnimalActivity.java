@@ -1,11 +1,13 @@
 package petexplorer.petexplorerclients;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -41,6 +43,12 @@ public class AddAnimalActivity extends AppCompatActivity implements OnMapReadyCa
     private Uri selectedImageUri;
     private String tipCaz;
 
+    private String getIdUserFromPreferences() {
+        SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
+        int userId = prefs.getInt("user_id", -1);
+        return userId != -1 ? String.valueOf(userId) : null;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +62,13 @@ public class AddAnimalActivity extends AppCompatActivity implements OnMapReadyCa
 
         findViewById(R.id.btnSubmit).setOnClickListener(v -> submitAnimal());
         findViewById(R.id.btnUploadPhoto).setOnClickListener(v -> showImagePickerOptions());
+
+        ImageButton btnBack = findViewById(R.id.btnBackToLostAnimals);
+        btnBack.setOnClickListener(v -> {
+            setResult(RESULT_CANCELED); // opțional
+            finish(); // închide AddAnimalActivity și revine la LostAnimalsActivity
+        });
+
     }
 
     private void showImagePickerOptions() {
@@ -126,25 +141,34 @@ public class AddAnimalActivity extends AppCompatActivity implements OnMapReadyCa
 
 
     private void submitAnimal() {
-        if (selectedLatLng == null || selectedImageUri == null) {
+        if (selectedLatLng == null) {
             Toast.makeText(this, "Completează toate câmpurile", Toast.LENGTH_SHORT).show();
             return;
         }
 
         try {
-            File imageFile = createTempFileFromUri(selectedImageUri);
-            RequestBody requestFile = RequestBody.create(imageFile, MediaType.parse("image/*"));
-            MultipartBody.Part imagePart = MultipartBody.Part.createFormData("imagine", imageFile.getName(), requestFile);
+            MultipartBody.Part imagePart = null;
+            if (selectedImageUri != null) {
+                File imageFile = createTempFileFromUri(selectedImageUri);
+                RequestBody requestFile = RequestBody.create(imageFile, MediaType.parse("image/*"));
+                imagePart = MultipartBody.Part.createFormData("imagine", imageFile.getName(), requestFile);
+            }
 
             RequestBody nume = RequestBody.create(getTextFromField(R.id.editNume), MediaType.parse("text/plain"));
             RequestBody descriere = RequestBody.create(getTextFromField(R.id.editDescriere), MediaType.parse("text/plain"));
             RequestBody lat = RequestBody.create(String.valueOf(selectedLatLng.latitude), MediaType.parse("text/plain"));
             RequestBody lng = RequestBody.create(String.valueOf(selectedLatLng.longitude), MediaType.parse("text/plain"));
             RequestBody caz = RequestBody.create(tipCaz, MediaType.parse("text/plain"));
-            RequestBody telefon = RequestBody.create("0744000000", MediaType.parse("text/plain")); // Poți adăuga câmp input pentru el
+            String telefonText = getTextFromField(R.id.editTelefon);
+            RequestBody telefon = RequestBody.create(telefonText, MediaType.parse("text/plain"));
+            String idUser = getIdUserFromPreferences();
+            RequestBody id_user = idUser != null
+                    ? RequestBody.create(idUser, MediaType.parse("text/plain"))
+                    : RequestBody.create("", MediaType.parse("text/plain"));
+
 
             ApiService apiService = RetrofitClient.getApiService();
-            Call<AnimalPierdut> call = apiService.uploadAnimal(imagePart, nume, descriere, lat, lng, caz, telefon);
+            Call<AnimalPierdut> call = apiService.uploadAnimal(imagePart, nume, descriere, lat, lng, caz, telefon, id_user);
 
             call.enqueue(new Callback<AnimalPierdut>() {
                 @Override
@@ -152,7 +176,10 @@ public class AddAnimalActivity extends AppCompatActivity implements OnMapReadyCa
                     if (response.isSuccessful()) {
                         AnimalPierdut animal = response.body();
                         Toast.makeText(AddAnimalActivity.this, "Animal adăugat: " + animal.getNumeAnimal(), Toast.LENGTH_SHORT).show();
+                        Intent resultIntent = new Intent();
+                        setResult(RESULT_OK, resultIntent);
                         finish();
+
                     } else {
                         Toast.makeText(AddAnimalActivity.this, "Eroare la trimitere", Toast.LENGTH_SHORT).show();
                     }

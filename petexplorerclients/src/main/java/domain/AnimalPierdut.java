@@ -32,10 +32,13 @@ public class AnimalPierdut implements Serializable {
     @SerializedName("data_caz")
     private String dataCaz; // Recomandat ca String dacă nu configurezi un adapter pentru LocalDate
 
+    @SerializedName("id_caz")
+    private Integer idCaz;
+
     public AnimalPierdut() {}
 
     public AnimalPierdut(Integer id, Float latitudine, Float longitudine, String numeAnimal, String descriere,
-                         String tipCaz, String poza, String nrTelefon, String dataCaz) {
+                         String tipCaz, String poza, String nrTelefon, String dataCaz, Integer idCaz) {
         this.id = id;
         this.latitudine = latitudine;
         this.longitudine = longitudine;
@@ -45,6 +48,7 @@ public class AnimalPierdut implements Serializable {
         this.poza = poza;
         this.nrTelefon = nrTelefon;
         this.dataCaz = dataCaz;
+        this.idCaz = idCaz;
     }
 
     public Integer getId() {
@@ -119,6 +123,10 @@ public class AnimalPierdut implements Serializable {
         this.dataCaz = dataCaz;
     }
 
+    public Integer getIdCaz(){return idCaz;}
+
+    public void setIdCaz(Integer idCaz) {this.idCaz = idCaz;}
+
     @Override
     public String toString() {
         return "AnimalPierdut{" +
@@ -131,6 +139,7 @@ public class AnimalPierdut implements Serializable {
                 ", poza='" + poza + '\'' +
                 ", nrTelefon='" + nrTelefon + '\'' +
                 ", dataCaz='" + dataCaz + '\'' +
+                ", idCaz='" + idCaz +'\''+
                 '}';
     }
 }
