@@ -1,17 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-
-    <stroke
-        android:width="5dp"
-        android:color="@color/fallow"/>
-
-    <corners
-        android:radius="90dp"/>
-
-
-    <solid
-        android:color="@color/wheat"/>
-
+    <stroke android:width="5dp" android:color="@color/searchbar_border"/>
+    <corners android:radius="90dp"/>
+    <solid android:color="@color/background_color"/>
 
 </shape>

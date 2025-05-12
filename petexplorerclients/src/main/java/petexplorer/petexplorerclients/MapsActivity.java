@@ -10,6 +10,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -114,6 +116,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             Intent intent = new Intent(MapsActivity.this, LostAnimalsActivity.class);
             startActivity(intent);
         });
+
+
     }
 
 
@@ -160,7 +164,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
         });
+
+        if (isDarkModeEnabled()) {
+            try {
+                boolean success = googleMap.setMapStyle(
+                        MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style_dark));
+                if (!success) {
+                    Log.e("MapsActivity", "Style parsing failed.");
+                }
+            } catch (Resources.NotFoundException e) {
+                Log.e("MapsActivity", "Can't find style. Error: ", e);
+            }
+        }
     }
+
+    private boolean isDarkModeEnabled() {
+        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        return currentNightMode == Configuration.UI_MODE_NIGHT_YES;
+    }
+
 
 
     @Override

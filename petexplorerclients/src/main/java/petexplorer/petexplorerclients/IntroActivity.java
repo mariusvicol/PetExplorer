@@ -1,10 +1,12 @@
 package petexplorer.petexplorerclients;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 public class IntroActivity extends AppCompatActivity {
 
@@ -12,6 +14,12 @@ public class IntroActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences prefs = getSharedPreferences("app_settings", MODE_PRIVATE);
+        boolean darkMode = prefs.getBoolean("dark_mode", false);
+        AppCompatDelegate.setDefaultNightMode(
+                darkMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO
+        );
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intro_activity);
 
@@ -21,6 +29,7 @@ public class IntroActivity extends AppCompatActivity {
         loginOptionBtn.setOnClickListener(v -> onLoginOptionChosen());
         registerOptionBtn.setOnClickListener(v -> onRegisterOptionChosen());
     }
+
 
 
     private void onLoginOptionChosen() {
