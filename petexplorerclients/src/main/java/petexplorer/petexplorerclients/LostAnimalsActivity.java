@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,8 +40,9 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
     private GoogleMap mMap;
     private RecyclerView recyclerView;
     private Button btnVeziPierdute, btnVeziGasite;
-
+    private String cazCurent = "pierdut";
     private AnimalAdapter adapter;
+    private static final int REQUEST_ADD_ANIMAL = 1001;
 
 
     @Override
@@ -63,6 +65,7 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
         Button btnAddAnimal = findViewById(R.id.btnAddAnimal);
 
         btnVeziPierdute.setOnClickListener(v -> {
+            cazCurent = "pierdut";
             loadAnimalePierdute();
             btnAddAnimal.setText("+ Animal Pierdut");
             btnVeziPierdute.setBackgroundColor(ContextCompat.getColor(this, R.color.selected_button));
@@ -70,11 +73,13 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
         });
 
         btnVeziGasite.setOnClickListener(v -> {
+            cazCurent = "vazut";
             loadAnimaleGasite();
             btnAddAnimal.setText("+ Am găsit un animal");
             btnVeziGasite.setBackgroundColor(ContextCompat.getColor(this, R.color.selected_button));
             btnVeziPierdute.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button));
         });
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.lost_animals_map);
@@ -86,9 +91,18 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
 
         btnAddAnimal.setOnClickListener(v -> {
             Intent intent = new Intent(LostAnimalsActivity.this, AddAnimalActivity.class);
-            intent.putExtra("tipCaz", btnVeziPierdute.getCurrentTextColor() == getResources().getColor(R.color.selected_button) ? "pierdut" : "vazut");
-            startActivity(intent);
+            intent.putExtra("tipCaz", cazCurent);
+            startActivityForResult(intent, REQUEST_ADD_ANIMAL);
         });
+
+        ImageButton btnBackToMap = findViewById(R.id.btnBackToMap);
+        btnBackToMap.setOnClickListener(v -> {
+            Intent intent = new Intent(LostAnimalsActivity.this, MapsActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish(); // optional, dacă vreau sa scoț LostAnimalsActivity din back stack
+        });
+
     }
 
     @Override
@@ -181,5 +195,18 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
                 Toast.makeText(LostAnimalsActivity.this, "Eroare la conectarea la server", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_ADD_ANIMAL && resultCode == RESULT_OK) {
+            if ("pierdut".equals(cazCurent)) {
+                loadAnimalePierdute();
+            } else {
+                loadAnimaleGasite();
+            }
+        }
     }
 }

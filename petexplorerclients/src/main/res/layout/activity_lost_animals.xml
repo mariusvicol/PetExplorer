@@ -13,9 +13,21 @@
         android:layout_height="300dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
-    <!-- Butoane -->
+    <ImageButton
+        android:id="@+id/btnBackToMap"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_revert"
+        android:contentDescription="Înapoi la hartă"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <!-- Butoane de filtrare -->
     <LinearLayout
         android:id="@+id/buttonContainer"
         android:layout_width="0dp"
@@ -42,24 +54,26 @@
             android:text="Animale Găsite" />
     </LinearLayout>
 
+    <!-- Buton de adăugare animal -->
     <Button
         android:id="@+id/btnAddAnimal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+ Animal Pierdut"
+        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@id/buttonContainer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- RecyclerView (optional pentru lista text) -->
+    <!-- Lista de animale -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/animalsListRecycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/buttonContainer"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@id/btnAddAnimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

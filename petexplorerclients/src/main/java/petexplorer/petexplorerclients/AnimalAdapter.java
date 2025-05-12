@@ -9,7 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -66,12 +67,18 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
             tvDescriere.setText(animal.getDescriere());
             tvTelefon.setText(animal.getNrTelefon());
 
-            // TREBUIE SA VAD CUM FAC CU URL -urile pt imagini
             if (animal.getPoza() != null && !animal.getPoza().isEmpty()) {
-                Picasso.get().load(animal.getPoza()).into(imgPoza);
+                String imageUrl = "http://10.0.2.2:8080" + animal.getPoza(); // pentru emulator
+                Glide.with(itemView.getContext())
+                        .load(imageUrl)
+                        .placeholder(R.drawable.dog2) // imagine default
+                        .error(R.drawable.error_image)
+                        .fallback(R.drawable.dog2)
+                        .into(imgPoza);
             } else {
-                imgPoza.setVisibility(View.INVISIBLE);
+                imgPoza.setImageResource(R.drawable.dog2);
             }
+
 
 
             itemView.setOnClickListener(v -> listener.onItemClick(animal));

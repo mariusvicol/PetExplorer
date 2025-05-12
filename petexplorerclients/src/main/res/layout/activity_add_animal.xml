@@ -7,10 +7,21 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <ImageButton
+            android:id="@+id/btnBackToLostAnimals"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="start"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_revert"
+            android:contentDescription="Inapoi" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Selectează locația pe hartă" />
+
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/map_fragment"
@@ -37,6 +48,16 @@
             android:padding="8dp"
             android:inputType="textMultiLine"
             android:autofillHints="description" />
+
+        <EditText
+            android:id="@+id/editTelefon"
+            android:hint="Număr de telefon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:inputType="phone"
+            android:autofillHints="phone" />
 
         <Button
             android:id="@+id/btnUploadPhoto"
