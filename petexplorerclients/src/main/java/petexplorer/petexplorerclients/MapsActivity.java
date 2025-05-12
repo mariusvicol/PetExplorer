@@ -2,16 +2,19 @@ package petexplorer.petexplorerclients;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -116,8 +119,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             Intent intent = new Intent(MapsActivity.this, LostAnimalsActivity.class);
             startActivity(intent);
         });
-
-
     }
 
 
@@ -155,34 +156,34 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if (location != null) {
                     LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
 
-                    // Adăugăm un marker pe hartă și mutăm camera
+                    // Adăugăm un marker (personalizat) pe hartă și mutăm camera
                     mMap.clear();
-                    mMap.addMarker(new MarkerOptions().position(userLocation).title("Locația curentă"));
+                    var markerCustom = new MarkerOptions().position(userLocation);
+                    markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.userloc)));
+
+                    mMap.addMarker(markerCustom.title("Locația curentă"));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
                 } else {
                     Toast.makeText(MapsActivity.this, "Locația curentă nu poate fi obținută", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
 
-        if (isDarkModeEnabled()) {
-            try {
-                boolean success = googleMap.setMapStyle(
-                        MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style_dark));
-                if (!success) {
-                    Log.e("MapsActivity", "Style parsing failed.");
-                }
-            } catch (Resources.NotFoundException e) {
-                Log.e("MapsActivity", "Can't find style. Error: ", e);
-            }
+
+    private Bitmap getBitmapFromDrawable(@DrawableRes int resId) {
+        Bitmap bitmap = null;
+        Drawable drawable = ResourcesCompat.getDrawable(getResources(), resId, null);
+
+        if (drawable != null) {
+            bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            drawable.draw(canvas);
         }
-    }
 
-    private boolean isDarkModeEnabled() {
-        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-        return currentNightMode == Configuration.UI_MODE_NIGHT_YES;
+        return bitmap;
     }
-
 
 
     @Override
@@ -213,9 +214,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     for (CabinetVeterinar cabinet : cabinetVeterinarList) {
                         LatLng cabinetLocation = new LatLng(cabinet.getLatitudine(), cabinet.getLongitudine());
                         Log.d("DEBUG", "Cabinet: " + cabinet.getNumeCabinet() + " Lat: " + cabinet.getLatitudine() + " Long: " + cabinet.getLongitudine());
-                        mMap.addMarker(new MarkerOptions()
-                                .position(cabinetLocation)
-                                .title(cabinet.getNumeCabinet()));
+
+                        var markerCustom = new MarkerOptions().position(cabinetLocation);
+                        markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.hospital)));
+
+                        mMap.addMarker(markerCustom.title(cabinet.getNumeCabinet()));
                     }
                     if (!cabinetVeterinarList.isEmpty()) {
                         LatLng firstLocation = new LatLng(cabinetVeterinarList.get(0).getLatitudine(), cabinetVeterinarList.get(0).getLongitudine());
@@ -249,9 +252,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     for (PensiuneCanina p : pensiuniList) {
                         LatLng pLoc = new LatLng(p.getLatitude(), p.getLongitude());
                         Log.d("DEBUG", "Pensiune: " + p.getName()+ " Lat: " + p.getLatitude() + " Long: " + p.getLongitude());
-                        mMap.addMarker(new MarkerOptions()
-                                .position(pLoc)
-                                .title(p.getName()));
+
+                        var markerCustom = new MarkerOptions().position(pLoc);
+                        markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.hotels)));
+
+                        mMap.addMarker(markerCustom.title(p.getName()));
                     }
                     if (!pensiuniList.isEmpty()) {
                         LatLng firstLocation = new LatLng(pensiuniList.get(0).getLatitude(), pensiuniList.get(0).getLongitude());
@@ -283,11 +288,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                      List<Salon> saloaneList = response.body();
                      mMap.clear();
                      for (Salon s : saloaneList) {
-                         LatLng pLoc = new LatLng(s.getLatitude(), s.getLongitude());
+                         LatLng sLoc = new LatLng(s.getLatitude(), s.getLongitude());
                          Log.d("DEBUG", "Salon: " + s.getName()+ " Lat: " + s.getLatitude() + " Long: " + s.getLongitude());
-                         mMap.addMarker(new MarkerOptions()
-                                 .position(pLoc)
-                                 .title(s.getName()));
+
+                         var markerCustom = new MarkerOptions().position(sLoc);
+                         markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.saloons)));
+
+                         mMap.addMarker(markerCustom.title(s.getName()));
                      }
                      if (!saloaneList.isEmpty()) {
                          LatLng firstLocation = new LatLng(saloaneList.get(0).getLatitude(), saloaneList.get(0).getLongitude());
@@ -320,9 +327,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     for (Magazin magazin : magazinList) {
                         LatLng magazinLocation = new LatLng(magazin.getLatitudine(), magazin.getLongitudine());
                         Log.d("DEBUG", "Magazin: " + magazin.getNume() + " Lat: " + magazin.getLatitudine() + " Long: " + magazin.getLongitudine());
-                        mMap.addMarker(new MarkerOptions()
-                                .position(magazinLocation)
-                                .title(magazin.getNume()));
+
+                        var markerCustom = new MarkerOptions().position(magazinLocation);
+                        markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.petshops)));
+
+                        mMap.addMarker(markerCustom.title(magazin.getNume()));
                     }
                     if (!magazinList.isEmpty()) {
                         LatLng firstLocation = new LatLng(magazinList.get(0).getLatitudine(), magazinList.get(0).getLongitudine());
@@ -357,9 +366,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     mMap.clear();
                     for (Farmacie farmacie:farmacieList) {
                         LatLng farmacieLocation = new LatLng(farmacie.getLatitudine(), farmacie.getLongitudine());
-                        mMap.addMarker(new MarkerOptions()
-                                .position(farmacieLocation)
-                                .title(farmacie.getNume()));
+
+                        var markerCustom = new MarkerOptions().position(farmacieLocation);
+                        markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.farmacy)));
+
+                        mMap.addMarker(markerCustom.title(farmacie.getNume()));
                     }
                     if (!farmacieList.isEmpty()) {
                         LatLng firstLocation = new LatLng(farmacieList.get(0).getLatitudine(), farmacieList.get(0).getLongitudine());
@@ -393,10 +404,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     for (Parc parc : parcList) {
                         LatLng parcLocation = new LatLng(parc.getLatitudine(), parc.getLongitudine());
 
-                        mMap.addMarker(new MarkerOptions()
-                                .position(parcLocation)
-                                .title(parc.getNume())
-                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))); // culoare verde
+                        var markerCustom = new MarkerOptions().position(parcLocation);
+                        markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.parks)));
+
+                        mMap.addMarker(markerCustom.title(parc.getNume()));
                     }
                     if (!parcList.isEmpty()) {
                         LatLng firstLocation = new LatLng(parcList.get(0).getLatitudine(), parcList.get(0).getLongitudine());
