@@ -29,7 +29,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import domain.AnimalPierdut;
-import domain.Parc;
+import petexplorer.petexplorerclients.adapters.AnimalAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

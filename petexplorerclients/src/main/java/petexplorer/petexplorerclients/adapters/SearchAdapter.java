@@ -1,4 +1,4 @@
-package petexplorer.petexplorerclients;
+package petexplorer.petexplorerclients.adapters;
 
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.AnimalPierdut;
-import domain.SearchResultWrapper;
+import domain.utils.SearchResultWrapper;
+import petexplorer.petexplorerclients.R;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
 

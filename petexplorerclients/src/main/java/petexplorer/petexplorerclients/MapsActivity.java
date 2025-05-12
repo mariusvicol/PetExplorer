@@ -45,6 +45,8 @@ import domain.Magazin;
 import domain.Parc;
 import domain.PensiuneCanina;
 import domain.Salon;
+import domain.utils.CustomInfoWindowData;
+import petexplorer.petexplorerclients.adapters.CustomInfoWindowAdapter;
 import petexplorer.petexplorerclients.databinding.ActivityMapsBinding;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -218,7 +220,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         var markerCustom = new MarkerOptions().position(cabinetLocation);
                         markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.hospital)));
 
-                        mMap.addMarker(markerCustom.title(cabinet.getNumeCabinet()));
+                        var marker = mMap.addMarker(markerCustom.title(cabinet.getNumeCabinet()));
+                        if (marker != null) {
+                            String programText = cabinet.getNonStop()
+                                    ? "Program non-stop"
+                                    : "Disponibil în timpul programului de lucru";
+
+                            String nrTel = cabinet.getNrTelefon() != null
+                                    ? cabinet.getNrTelefon()
+                                    : "Număr de telefon neafișat.";
+
+                            marker.setTag(new CustomInfoWindowData
+                                    (cabinet.getNumeCabinet(), nrTel, programText, R.drawable.cabinete_banner));
+                        }
+
+                        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this));
+
                     }
                     if (!cabinetVeterinarList.isEmpty()) {
                         LatLng firstLocation = new LatLng(cabinetVeterinarList.get(0).getLatitudine(), cabinetVeterinarList.get(0).getLongitudine());

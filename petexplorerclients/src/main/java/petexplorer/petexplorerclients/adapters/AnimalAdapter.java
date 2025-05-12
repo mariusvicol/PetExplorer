@@ -1,4 +1,4 @@
-package petexplorer.petexplorerclients;
+package petexplorer.petexplorerclients.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import domain.AnimalPierdut;
+import petexplorer.petexplorerclients.R;
 
 public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder> {
 

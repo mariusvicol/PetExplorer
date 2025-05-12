@@ -55,10 +55,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="42dp"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/playfair_display"
                     android:text="@string/cabinete_veterinare"
                     android:textAlignment="center"
-                    android:textColor="#000"
+                    android:textColor="@color/taupe"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -82,10 +82,11 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="41dp"
+                    android:fontFamily="@font/playfair_display"
                     android:text="@string/farmacii_veterinare"
                     android:textAlignment="center"
-                    android:textColor="#000"
+                    android:textColor="@color/taupe"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -110,9 +111,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/playfair_display"
                     android:text="@string/saloane"
                     android:textAlignment="center"
-                    android:textColor="#000"
+                    android:textColor="@color/taupe"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -147,9 +149,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/playfair_display"
                     android:text="@string/pensiuni"
                     android:textAlignment="center"
-                    android:textColor="#000"
+                    android:textColor="@color/taupe"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -174,9 +177,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/playfair_display"
                     android:text="@string/magazine"
                     android:textAlignment="center"
-                    android:textColor="#000"
+                    android:textColor="@color/taupe"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -201,9 +205,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/playfair_display"
                     android:text="@string/parcuri"
                     android:textAlignment="center"
-                    android:textColor="#000"
+                    android:textColor="@color/taupe"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -221,7 +226,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:background="@drawable/custom_button"
-            android:fontFamily="casual"
+            android:fontFamily="@font/playfair_display"
             android:gravity="center"
             android:text="@string/inchide"
             android:textColor="@color/white" />
