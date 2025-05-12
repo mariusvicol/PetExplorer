@@ -39,7 +39,7 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
     private GoogleMap mMap;
     private RecyclerView recyclerView;
     private Button btnVeziPierdute, btnVeziGasite;
-
+    private String cazCurent = "pierdut";
     private AnimalAdapter adapter;
 
 
@@ -63,6 +63,7 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
         Button btnAddAnimal = findViewById(R.id.btnAddAnimal);
 
         btnVeziPierdute.setOnClickListener(v -> {
+            cazCurent = "pierdut";
             loadAnimalePierdute();
             btnAddAnimal.setText("+ Animal Pierdut");
             btnVeziPierdute.setBackgroundColor(ContextCompat.getColor(this, R.color.selected_button));
@@ -70,11 +71,13 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
         });
 
         btnVeziGasite.setOnClickListener(v -> {
+            cazCurent = "vazut";
             loadAnimaleGasite();
             btnAddAnimal.setText("+ Am găsit un animal");
             btnVeziGasite.setBackgroundColor(ContextCompat.getColor(this, R.color.selected_button));
             btnVeziPierdute.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button));
         });
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.lost_animals_map);
@@ -86,7 +89,7 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
 
         btnAddAnimal.setOnClickListener(v -> {
             Intent intent = new Intent(LostAnimalsActivity.this, AddAnimalActivity.class);
-            intent.putExtra("tipCaz", btnVeziPierdute.getCurrentTextColor() == getResources().getColor(R.color.selected_button) ? "pierdut" : "vazut");
+            intent.putExtra("tipCaz", cazCurent);
             startActivity(intent);
         });
     }

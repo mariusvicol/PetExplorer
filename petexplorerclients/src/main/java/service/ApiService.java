@@ -10,11 +10,15 @@ import domain.PensiuneCanina;
 import domain.Salon;
 import domain.SearchResultWrapper;
 import domain.User;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -52,5 +56,16 @@ public interface ApiService {
     @PUT("/api/users/{id}")
     Call<User> updateUser(@Path("id") int id, @Body User user);
 
+    @Multipart
+    @POST("/api/animale_pierdute")
+    Call<AnimalPierdut> uploadAnimal(
+            @Part MultipartBody.Part imagine,
+            @Part("nume_animal") RequestBody nume,
+            @Part("descriere") RequestBody descriere,
+            @Part("latitudine") RequestBody lat,
+            @Part("longitudine") RequestBody lng,
+            @Part("tip_caz") RequestBody tipCaz,
+            @Part("nr_telefon") RequestBody telefon
+    );
 
 }
