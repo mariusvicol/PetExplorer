@@ -1,5 +1,7 @@
 package domain;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class CabinetVeterinar implements Serializable {
@@ -7,9 +9,9 @@ public class CabinetVeterinar implements Serializable {
     private Integer id;
     private Float latitudine;
     private Float longitudine;
-    private String nume_cabinet;
+    private String numeCabinet;
     private String nrTelefon;
-    private Boolean non_stop;
+    private Boolean nonStop;
 
     public CabinetVeterinar() {
     }
@@ -18,9 +20,9 @@ public class CabinetVeterinar implements Serializable {
         this.id = id;
         this.latitudine = latitudine;
         this.longitudine = longitudine;
-        this.nume_cabinet = numeCabinet;
+        this.numeCabinet = numeCabinet;
         this.nrTelefon = nrTelefon;
-        this.non_stop = nonStop;
+        this.nonStop = nonStop;
     }
 
     public Integer getId() {
@@ -47,12 +49,12 @@ public class CabinetVeterinar implements Serializable {
         this.longitudine = longitudine;
     }
 
-    public String getNume_cabinet() {
-        return nume_cabinet;
+    public String getNumeCabinet() {
+        return numeCabinet;
     }
 
-    public void setNume_cabinet(String numeCabinet) {
-        this.nume_cabinet = numeCabinet;
+    public void setNumeCabinet(String numeCabinet) {
+        this.numeCabinet = numeCabinet;
     }
 
     public String getNrTelefon() {
@@ -63,12 +65,12 @@ public class CabinetVeterinar implements Serializable {
         this.nrTelefon = nrTelefon;
     }
 
-    public Boolean getNon_stop() {
-        return non_stop;
+    public Boolean getNonStop() {
+        return nonStop;
     }
 
-    public void setNon_stop(Boolean nonStop) {
-        this.non_stop = nonStop;
+    public void setNonStop(Boolean nonStop) {
+        this.nonStop = nonStop;
     }
 
     @Override
@@ -77,9 +79,9 @@ public class CabinetVeterinar implements Serializable {
                 "id=" + id +
                 ", latitudine=" + latitudine +
                 ", longitudine=" + longitudine +
-                ", nume_cabinet='" + nume_cabinet + '\'' +
+                ", numeCabinet='" + numeCabinet + '\'' +
                 ", nrTelefon='" + nrTelefon + '\'' +
-                ", non_stop=" + non_stop +
+                ", non_stop=" + nonStop +
                 '}';
     }
 }

@@ -190,10 +190,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     mMap.clear();
                     for (CabinetVeterinar cabinet : cabinetVeterinarList) {
                         LatLng cabinetLocation = new LatLng(cabinet.getLatitudine(), cabinet.getLongitudine());
-                        Log.d("DEBUG", "Cabinet: " + cabinet.getNume_cabinet() + " Lat: " + cabinet.getLatitudine() + " Long: " + cabinet.getLongitudine());
+                        Log.d("DEBUG", "Cabinet: " + cabinet.getNumeCabinet() + " Lat: " + cabinet.getLatitudine() + " Long: " + cabinet.getLongitudine());
                         mMap.addMarker(new MarkerOptions()
                                 .position(cabinetLocation)
-                                .title(cabinet.getNume_cabinet()));
+                                .title(cabinet.getNumeCabinet()));
                     }
                     if (!cabinetVeterinarList.isEmpty()) {
                         LatLng firstLocation = new LatLng(cabinetVeterinarList.get(0).getLatitudine(), cabinetVeterinarList.get(0).getLongitudine());
