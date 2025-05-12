@@ -22,4 +22,12 @@
     <color name="selected_button">#FFBB86FC</color>
     <color name="default_button">#DDDDDD</color>
 
+    <color name="background_color">#FCEFD9</color>
+    <color name="input_background">#FFE8B6</color>
+    <color name="input_border">#DAB58B</color>
+    <color name="text_primary">#000000</color>
+    <color name="text_hint">#888888</color>
+    <color name="searchbar_bg">#FFE8B6</color>
+    <color name="searchbar_border">#DAB58B</color>
+    <color name="search_text_color">#000000</color>
 </resources>
