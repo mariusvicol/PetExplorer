@@ -1,0 +1,10 @@
+<resources>
+    <color name="background_color">#121212</color>
+    <color name="input_background">#1E1E1E</color>
+    <color name="input_border">#3C3C3C</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_hint">#AAAAAA</color>
+    <color name="searchbar_bg">#2C2C2C</color>
+    <color name="searchbar_border">#666666</color>
+    <color name="search_text_color">#FFFFFF</color>
+</resources>
