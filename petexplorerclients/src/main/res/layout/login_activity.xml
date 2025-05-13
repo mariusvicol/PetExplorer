@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Login to your Account"
+        android:fontFamily="@font/playfair_display"
         android:textColor="@color/burnt_umber"
         android:textSize="28dp"
         android:textStyle="bold"

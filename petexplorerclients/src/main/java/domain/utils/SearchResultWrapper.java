@@ -1,4 +1,4 @@
-package domain;
+package domain.utils;
 
 public class SearchResultWrapper {
     private String name;

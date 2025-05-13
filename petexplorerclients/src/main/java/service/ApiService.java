@@ -8,7 +8,7 @@ import domain.Magazin;
 import domain.Parc;
 import domain.PensiuneCanina;
 import domain.Salon;
-import domain.SearchResultWrapper;
+import domain.utils.SearchResultWrapper;
 import domain.User;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;

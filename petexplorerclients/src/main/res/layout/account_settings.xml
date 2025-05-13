@@ -23,6 +23,7 @@
             android:text="Setările contului"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:fontFamily="@font/playfair_display"
             android:textColor="#A0522D"
             android:layout_marginBottom="24dp"/>
 
@@ -56,6 +57,7 @@
         <EditText
             android:id="@+id/passwordEditText"
             android:hint="Parolă nouă"
+            android:fontFamily="sans-serif"
             android:inputType="textPassword"
             android:background="@drawable/custom_input"
             android:layout_width="match_parent"
