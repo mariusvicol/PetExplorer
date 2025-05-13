@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import domain.utils.CustomInfoWindowData;
 import petexplorer.petexplorerclients.R;
@@ -37,7 +38,7 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         TextView title = view.findViewById(R.id.infoWindowTitle);
         TextView nrTel = view.findViewById(R.id.infoWindowNrTel);
         TextView program = view.findViewById(R.id.infoWindowProgram);
-        ImageView image = view.findViewById(R.id.infoWindowIv);
+        RoundedImageView image = view.findViewById(R.id.infoWindowIv);
 
         var tag = marker.getTag();
         if (tag instanceof CustomInfoWindowData) {
