@@ -273,7 +273,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         var markerCustom = new MarkerOptions().position(pLoc);
                         markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.hotels)));
 
-                        mMap.addMarker(markerCustom.title(p.getName()));
+                        var marker = mMap.addMarker(markerCustom.title(p.getName()));
+                        if (marker != null) {
+                            String programText = p.getNon_stop()
+                                    ? "Program non-stop"
+                                    : "Disponibil în timpul programului de lucru";
+
+                            String nrTel = p.getNrTel() != null
+                                    ? p.getNrTel()
+                                    : "Număr de telefon neafișat.";
+
+                            marker.setTag(new CustomInfoWindowData
+                                    (p.getName(), nrTel, programText, R.drawable.hotel_banner));
+                        }
+
+                        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this));
                     }
                     if (!pensiuniList.isEmpty()) {
                         LatLng firstLocation = new LatLng(pensiuniList.get(0).getLatitude(), pensiuniList.get(0).getLongitude());
@@ -311,7 +325,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                          var markerCustom = new MarkerOptions().position(sLoc);
                          markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.saloons)));
 
-                         mMap.addMarker(markerCustom.title(s.getName()));
+                         var marker = mMap.addMarker(markerCustom.title(s.getName()));
+                         if (marker != null) {
+                             String programText = s.getNon_stop()
+                                     ? "Program non-stop"
+                                     : "Disponibil în timpul programului de lucru";
+
+                             String nrTel = s.getNrTel() != null
+                                     ? s.getNrTel()
+                                     : "Număr de telefon neafișat.";
+
+                             marker.setTag(new CustomInfoWindowData
+                                     (s.getName(), nrTel, programText, R.drawable.saloane_banner));
+                         }
+
+                         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this));
                      }
                      if (!saloaneList.isEmpty()) {
                          LatLng firstLocation = new LatLng(saloaneList.get(0).getLatitude(), saloaneList.get(0).getLongitude());
@@ -348,7 +376,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         var markerCustom = new MarkerOptions().position(magazinLocation);
                         markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.petshops)));
 
-                        mMap.addMarker(markerCustom.title(magazin.getNume()));
+                        var marker = mMap.addMarker(markerCustom.title(magazin.getNume()));
+                        if (marker != null) {
+                            String programText = magazin.getNon_stop()
+                                    ? "Program non-stop"
+                                    : "Disponibil în timpul programului de lucru";
+
+                            marker.setTag(new CustomInfoWindowData
+                                    (magazin.getNume(),"Număr de telefon neafișat.", programText, R.drawable.petshop_banner));
+                        }
                     }
                     if (!magazinList.isEmpty()) {
                         LatLng firstLocation = new LatLng(magazinList.get(0).getLatitudine(), magazinList.get(0).getLongitudine());
@@ -387,7 +423,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         var markerCustom = new MarkerOptions().position(farmacieLocation);
                         markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.farmacy)));
 
-                        mMap.addMarker(markerCustom.title(farmacie.getNume()));
+                        var marker = mMap.addMarker(markerCustom.title(farmacie.getNume()));
+                        if (marker != null) {
+                            String programText = farmacie.getNon_stop()
+                                    ? "Program non-stop"
+                                    : "Disponibil în timpul programului de lucru";
+
+                            marker.setTag(new CustomInfoWindowData
+                                    (farmacie.getNume(), "Număr de telefon neafișat.", programText, R.drawable.farmacie_banner));
+                        }
+
+                        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this));
                     }
                     if (!farmacieList.isEmpty()) {
                         LatLng firstLocation = new LatLng(farmacieList.get(0).getLatitudine(), farmacieList.get(0).getLongitudine());
@@ -424,7 +470,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         var markerCustom = new MarkerOptions().position(parcLocation);
                         markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.parks)));
 
-                        mMap.addMarker(markerCustom.title(parc.getNume()));
+                        var marker = mMap.addMarker(markerCustom.title(parc.getNume()));
+                        if (marker != null) {
+                            String programText = parc.getNonStop()
+                                    ? "Program non-stop"
+                                    : "Disponibil în timpul programului de lucru";
+
+                            marker.setTag(new CustomInfoWindowData
+                                    (parc.getNume(), "Număr de telefon neafișat.", programText, R.drawable.parcuri_banner));
+                        }
+
+                        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this));
                     }
                     if (!parcList.isEmpty()) {
                         LatLng firstLocation = new LatLng(parcList.get(0).getLatitudine(), parcList.get(0).getLongitudine());

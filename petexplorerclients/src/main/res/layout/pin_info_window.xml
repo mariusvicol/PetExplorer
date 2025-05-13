@@ -27,25 +27,26 @@
             android:paddingVertical="8dp">
 
 
-            <ImageView
+            <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/infoWindowIv"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
                 android:layout_marginHorizontal="8dp"
                 android:scaleType="fitXY"
+                android:src="@drawable/farmacie_banner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:riv_corner_radius="16dp"
                 tools:layout_editor_absoluteY="8dp" />
-
             <TextView
                 android:id="@+id/infoWindowTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="9dp"
                 android:layout_marginTop="3dp"
-                android:text="New Entity"
+                android:text="N/A"
                 android:textColor="@color/black"
                 android:fontFamily="@font/playfair_display"
                 android:textSize="20sp"
@@ -61,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="9dp"
                 android:layout_marginTop="3dp"
-                android:text="Numar de telefon"
+                android:text="N/A"
                 android:fontFamily="@font/playfair_display"
                 android:textColor="@color/black"
                 android:textSize="14sp"
@@ -75,7 +76,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="9dp"
-                android:text="Non-stop"
+                android:text="N/A"
                 android:textColor="@color/black"
                 android:fontFamily="@font/playfair_display"
                 android:textSize="14sp"
