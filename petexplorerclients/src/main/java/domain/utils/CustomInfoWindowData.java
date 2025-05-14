@@ -5,12 +5,22 @@ public class CustomInfoWindowData {
     private String nrTel;
     private String program;
     private int image; // resource id
+    private boolean checked;
 
     public CustomInfoWindowData(String title, String nrTel, String program, int image) {
         this.title = title;
         this.nrTel = nrTel;
         this.program = program;
         this.image = image;
+        this.checked=false;
+    }
+
+    public CustomInfoWindowData(String title, String nrTel, String program, int image, boolean checked) {
+        this.title = title;
+        this.nrTel = nrTel;
+        this.program = program;
+        this.image = image;
+        this.checked = checked;
     }
 
     public String getTitle() {
@@ -43,5 +53,13 @@ public class CustomInfoWindowData {
 
     public void setProgram(String program) {
         this.program = program;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }
