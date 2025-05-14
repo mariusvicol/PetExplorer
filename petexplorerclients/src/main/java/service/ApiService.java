@@ -8,6 +8,7 @@ import domain.Magazin;
 import domain.Parc;
 import domain.PensiuneCanina;
 import domain.Salon;
+import domain.utils.LocatieFavoritaDTO;
 import domain.utils.SearchResultWrapper;
 import domain.User;
 import okhttp3.MultipartBody;
@@ -43,6 +44,9 @@ public interface ApiService {
 
     @GET("api/search")
     Call<List<SearchResultWrapper>> getSearchResults(@Query("text") String text);
+
+    @GET("api/locatii/favorites/{userId}")
+    Call<List<LocatieFavoritaDTO>> getFavLocationsForUser(@Path("userId") Integer userId);
 
     @POST("/api/users/login")
     Call<User> login(@Body User loginRequest);

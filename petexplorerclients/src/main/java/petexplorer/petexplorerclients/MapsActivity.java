@@ -46,6 +46,7 @@ import domain.Parc;
 import domain.PensiuneCanina;
 import domain.Salon;
 import domain.utils.CustomInfoWindowData;
+import domain.utils.LocatieFavoritaDTO;
 import petexplorer.petexplorerclients.databinding.ActivityMapsBinding;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -89,16 +90,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Intent intent = new Intent(this, MyAccountActivity.class);
                 intent.putExtra("USER_ID", currentUserId);
                 startActivity(intent);
+
             } else if (id == R.id.nav_favorites) {
                 Toast.makeText(this, "Favorite", Toast.LENGTH_SHORT).show();
+                loadFavLocationsForUser();
+
             } else if (id == R.id.nav_lost_pets) {
                 animalePierduteButton.performClick();
                 Toast.makeText(this, "Animale pierdute", Toast.LENGTH_SHORT).show();
-            }else if (id == R.id.nav_settings) {
-                    Intent intent = new Intent(this, SettingsGeneralActivity.class);
-                    startActivity(intent);
-                }
-            else if (id == R.id.nav_logout) {
+
+            } else if (id == R.id.nav_settings) {
+                Intent intent = new Intent(this, SettingsGeneralActivity.class);
+                startActivity(intent);
+
+            } else if (id == R.id.nav_logout) {
                 Toast.makeText(this, "Delogare", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -217,7 +222,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Log.d("DEBUG", "Cabinet: " + cabinet.getNumeCabinet() + " Lat: " + cabinet.getLatitudine() + " Long: " + cabinet.getLongitudine());
 
                         var markerCustom = new MarkerOptions().position(cabinetLocation);
-                        markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.hospital)));
+                        markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.cabinet)));
 
                         var marker = mMap.addMarker(markerCustom.title(cabinet.getNumeCabinet()));
                         if (marker != null) {
@@ -230,7 +235,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     : "Număr de telefon neafișat.";
 
                             marker.setTag(new CustomInfoWindowData
-                                    (cabinet.getNumeCabinet(), nrTel, programText, R.drawable.hospital));
+                                    (cabinet.getNumeCabinet(), nrTel, programText, R.drawable.cabinet));
                         }
 
                         // listener dupa ce markerii sunt adaugati
@@ -281,7 +286,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Log.d("DEBUG", "Pensiune: " + p.getName()+ " Lat: " + p.getLatitude() + " Long: " + p.getLongitude());
 
                         var markerCustom = new MarkerOptions().position(pLoc);
-                        markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.hotels)));
+                        markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.pensiune)));
 
                         var marker = mMap.addMarker(markerCustom.title(p.getName()));
                         if (marker != null) {
@@ -294,7 +299,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     : "Număr de telefon neafișat.";
 
                             marker.setTag(new CustomInfoWindowData
-                                    (p.getName(), nrTel, programText, R.drawable.hotels));
+                                    (p.getName(), nrTel, programText, R.drawable.pensiune));
                         }
 
                         // listener dupa ce markerii sunt adaugati
@@ -344,7 +349,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                          Log.d("DEBUG", "Salon: " + s.getName()+ " Lat: " + s.getLatitude() + " Long: " + s.getLongitude());
 
                          var markerCustom = new MarkerOptions().position(sLoc);
-                         markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.saloons)));
+                         markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.salon)));
 
                          var marker = mMap.addMarker(markerCustom.title(s.getName()));
                          if (marker != null) {
@@ -357,7 +362,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                      : "Număr de telefon neafișat.";
 
                              marker.setTag(new CustomInfoWindowData
-                                     (s.getName(), nrTel, programText, R.drawable.saloons));
+                                     (s.getName(), nrTel, programText, R.drawable.salon));
                          }
 
                          // listener dupa ce markerii sunt adaugati
@@ -406,7 +411,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Log.d("DEBUG", "Magazin: " + magazin.getNume() + " Lat: " + magazin.getLatitudine() + " Long: " + magazin.getLongitudine());
 
                         var markerCustom = new MarkerOptions().position(magazinLocation);
-                        markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.petshops)));
+                        markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.magazin)));
 
                         var marker = mMap.addMarker(markerCustom.title(magazin.getNume()));
                         if (marker != null) {
@@ -415,7 +420,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     : "Disponibil în timpul programului de lucru";
 
                             marker.setTag(new CustomInfoWindowData
-                                    (magazin.getNume(),"Număr de telefon neafișat.", programText, R.drawable.petshops));
+                                    (magazin.getNume(),"Număr de telefon neafișat.", programText, R.drawable.magazin));
                         }
 
                         // listener dupa ce markerii sunt adaugati
@@ -466,7 +471,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         LatLng farmacieLocation = new LatLng(farmacie.getLatitudine(), farmacie.getLongitudine());
 
                         var markerCustom = new MarkerOptions().position(farmacieLocation);
-                        markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.farmacy)));
+                        markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.farmacie)));
 
                         var marker = mMap.addMarker(markerCustom.title(farmacie.getNume()));
                         if (marker != null) {
@@ -475,7 +480,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     : "Disponibil în timpul programului de lucru";
 
                             marker.setTag(new CustomInfoWindowData
-                                    (farmacie.getNume(), "Număr de telefon neafișat.", programText, R.drawable.farmacy));
+                                    (farmacie.getNume(), "Număr de telefon neafișat.", programText, R.drawable.farmacie));
                         }
 
                         // listener dupa ce markerii sunt adaugati
@@ -525,7 +530,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         LatLng parcLocation = new LatLng(parc.getLatitudine(), parc.getLongitudine());
 
                         var markerCustom = new MarkerOptions().position(parcLocation);
-                        markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.parks)));
+                        markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.parc)));
 
                         var marker = mMap.addMarker(markerCustom.title(parc.getNume()));
                         if (marker != null) {
@@ -534,7 +539,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     : "Disponibil în timpul programului de lucru";
 
                             marker.setTag(new CustomInfoWindowData
-                                    (parc.getNume(), "Număr de telefon neafișat.", programText, R.drawable.parks));
+                                    (parc.getNume(), "Număr de telefon neafișat.", programText, R.drawable.parc));
                         }
 
                         // listener dupa ce markerii sunt adaugati
@@ -569,6 +574,68 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
+    public void loadFavLocationsForUser() {
+        ApiService apiService = RetrofitClient.getApiService();
+        Call<List<LocatieFavoritaDTO>> call = apiService.getFavLocationsForUser(this.currentUserId);
+
+        call.enqueue(new Callback<List<LocatieFavoritaDTO>>() {
+            @Override
+            public void onResponse(Call<List<LocatieFavoritaDTO>> call, Response<List<LocatieFavoritaDTO>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d(TAG, "Răspunsul serverului: " + response.body().toString());
+                    List<LocatieFavoritaDTO> theList = response.body();
+                    mMap.clear();
+
+                    for (var place : theList) {
+                        LatLng placeLocation = new LatLng(place.getLatitude(), place.getLongitude());
+
+                        var markerCustom = new MarkerOptions().position(placeLocation);
+                        String drawableName = place.getType().toLowerCase();
+                        int drawableResId = getResources().getIdentifier(drawableName, "drawable", getPackageName());
+
+                        if (drawableResId != 0) {
+                            markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(drawableResId)));
+                        } else {
+                            markerCustom.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                        }
+
+                        var marker = mMap.addMarker(markerCustom);
+                        if (marker != null) {
+                            String programText = place.isNonStop()
+                                    ? "Program non-stop"
+                                    : "Disponibil în timpul programului de lucru";
+
+                            String nrTel = place.getPhone() != null
+                                    ? place.getPhone()
+                                    : "Număr de telefon neafișat.";
+
+                            marker.setTag(new CustomInfoWindowData
+                                    (place.getTitle(), nrTel, programText, drawableResId, true));
+                        }
+
+                        // listener dupa ce markerii sunt adaugati
+                        mMap.setOnMarkerClickListener(m -> {
+                            Object tag = m.getTag();
+                            if (tag instanceof CustomInfoWindowData) {
+                                CustomInfoWindowData data = (CustomInfoWindowData) tag;
+
+                                PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
+                                bottomSheet.setData(data);
+                                bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
+                            }
+                            return true;
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<LocatieFavoritaDTO>> call, Throwable t) {
+                Log.e(TAG, "Eroare la conectarea la server: ", t);
+                Toast.makeText(MapsActivity.this, "Eroare la conectarea la server", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     private void getLastLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
