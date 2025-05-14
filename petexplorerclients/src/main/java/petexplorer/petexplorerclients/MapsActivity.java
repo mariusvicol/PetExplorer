@@ -46,7 +46,6 @@ import domain.Parc;
 import domain.PensiuneCanina;
 import domain.Salon;
 import domain.utils.CustomInfoWindowData;
-import petexplorer.petexplorerclients.adapters.CustomInfoWindowAdapter;
 import petexplorer.petexplorerclients.databinding.ActivityMapsBinding;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -231,10 +230,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     : "Număr de telefon neafișat.";
 
                             marker.setTag(new CustomInfoWindowData
-                                    (cabinet.getNumeCabinet(), nrTel, programText, R.drawable.cabinete_banner));
+                                    (cabinet.getNumeCabinet(), nrTel, programText, R.drawable.hospital));
                         }
 
-                        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this));
+                        // listener dupa ce markerii sunt adaugati
+                        mMap.setOnMarkerClickListener(m -> {
+                            Object tag = m.getTag();
+                            if (tag instanceof CustomInfoWindowData) {
+                                CustomInfoWindowData data = (CustomInfoWindowData) tag;
+
+                                PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
+                                bottomSheet.setData(data);
+                                bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
+                            }
+                            return true;
+                        });
 
                     }
                     if (!cabinetVeterinarList.isEmpty()) {
@@ -284,10 +294,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     : "Număr de telefon neafișat.";
 
                             marker.setTag(new CustomInfoWindowData
-                                    (p.getName(), nrTel, programText, R.drawable.hotel_banner));
+                                    (p.getName(), nrTel, programText, R.drawable.hotels));
                         }
 
-                        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this));
+                        // listener dupa ce markerii sunt adaugati
+                        mMap.setOnMarkerClickListener(m -> {
+                            Object tag = m.getTag();
+                            if (tag instanceof CustomInfoWindowData) {
+                                CustomInfoWindowData data = (CustomInfoWindowData) tag;
+
+                                PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
+                                bottomSheet.setData(data);
+                                bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
+                            }
+                            return true;
+                        });
                     }
                     if (!pensiuniList.isEmpty()) {
                         LatLng firstLocation = new LatLng(pensiuniList.get(0).getLatitude(), pensiuniList.get(0).getLongitude());
@@ -336,10 +357,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                      : "Număr de telefon neafișat.";
 
                              marker.setTag(new CustomInfoWindowData
-                                     (s.getName(), nrTel, programText, R.drawable.saloane_banner));
+                                     (s.getName(), nrTel, programText, R.drawable.saloons));
                          }
 
-                         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this));
+                         // listener dupa ce markerii sunt adaugati
+                         mMap.setOnMarkerClickListener(m -> {
+                             Object tag = m.getTag();
+                             if (tag instanceof CustomInfoWindowData) {
+                                 CustomInfoWindowData data = (CustomInfoWindowData) tag;
+
+                                 PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
+                                 bottomSheet.setData(data);
+                                 bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
+                             }
+                             return true;
+                         });
                      }
                      if (!saloaneList.isEmpty()) {
                          LatLng firstLocation = new LatLng(saloaneList.get(0).getLatitude(), saloaneList.get(0).getLongitude());
@@ -383,8 +415,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     : "Disponibil în timpul programului de lucru";
 
                             marker.setTag(new CustomInfoWindowData
-                                    (magazin.getNume(),"Număr de telefon neafișat.", programText, R.drawable.petshop_banner));
+                                    (magazin.getNume(),"Număr de telefon neafișat.", programText, R.drawable.petshops));
                         }
+
+                        // listener dupa ce markerii sunt adaugati
+                        mMap.setOnMarkerClickListener(m -> {
+                            Object tag = m.getTag();
+                            if (tag instanceof CustomInfoWindowData) {
+                                CustomInfoWindowData data = (CustomInfoWindowData) tag;
+
+                                PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
+                                bottomSheet.setData(data);
+                                bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
+                            }
+                            return true;
+                        });
                     }
                     if (!magazinList.isEmpty()) {
                         LatLng firstLocation = new LatLng(magazinList.get(0).getLatitudine(), magazinList.get(0).getLongitudine());
@@ -430,11 +475,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     : "Disponibil în timpul programului de lucru";
 
                             marker.setTag(new CustomInfoWindowData
-                                    (farmacie.getNume(), "Număr de telefon neafișat.", programText, R.drawable.farmacie_banner));
+                                    (farmacie.getNume(), "Număr de telefon neafișat.", programText, R.drawable.farmacy));
                         }
 
-                        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this));
+                        // listener dupa ce markerii sunt adaugati
+                        mMap.setOnMarkerClickListener(m -> {
+                            Object tag = m.getTag();
+                            if (tag instanceof CustomInfoWindowData) {
+                                CustomInfoWindowData data = (CustomInfoWindowData) tag;
+
+                                PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
+                                bottomSheet.setData(data);
+                                bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
+                            }
+                            return true; // consumăm evenimentul (nu se mai afișează info window)
+                        });
                     }
+
                     if (!farmacieList.isEmpty()) {
                         LatLng firstLocation = new LatLng(farmacieList.get(0).getLatitudine(), farmacieList.get(0).getLongitudine());
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstLocation, 12));
@@ -477,10 +534,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     : "Disponibil în timpul programului de lucru";
 
                             marker.setTag(new CustomInfoWindowData
-                                    (parc.getNume(), "Număr de telefon neafișat.", programText, R.drawable.parcuri_banner));
+                                    (parc.getNume(), "Număr de telefon neafișat.", programText, R.drawable.parks));
                         }
 
-                        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this));
+                        // listener dupa ce markerii sunt adaugati
+                        mMap.setOnMarkerClickListener(m -> {
+                            Object tag = m.getTag();
+                            if (tag instanceof CustomInfoWindowData) {
+                                CustomInfoWindowData data = (CustomInfoWindowData) tag;
+
+                                PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
+                                bottomSheet.setData(data);
+                                bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
+                            }
+                            return true;
+                        });
+
                     }
                     if (!parcList.isEmpty()) {
                         LatLng firstLocation = new LatLng(parcList.get(0).getLatitudine(), parcList.get(0).getLongitudine());
