@@ -50,7 +50,7 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/cabinete_veterinare"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/cabinet" />
+                    app:srcCompat="@drawable/cabinet_icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -78,7 +78,7 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/farmacii_veterinare"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/farmacie" />
+                    app:srcCompat="@drawable/farmacie_icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -106,7 +106,7 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/saloane"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/salon" />
+                    app:srcCompat="@drawable/salon_icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -144,7 +144,7 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/pensiuni"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/pensiuni" />
+                    app:srcCompat="@drawable/pensiuni_icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -172,7 +172,7 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/magazine"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/magazin" />
+                    app:srcCompat="@drawable/magazin_icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -200,7 +200,7 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/parcuri"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/parc" />
+                    app:srcCompat="@drawable/parc_icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
