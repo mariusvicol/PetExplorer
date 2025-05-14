@@ -74,7 +74,7 @@
                     android:fontFamily="@font/playfair_display"
                     android:text="Name"
                     android:textColor="@color/taupe"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <CheckBox
@@ -113,6 +113,7 @@
                 android:textColor="@color/taupe"
                 android:layout_marginLeft="30dp"
                 android:layout_toRightOf="@id/iconImageView"
+                android:layout_marginBottom="2dp"
                 android:textStyle="bold"
                 android:fontFamily="@font/playfair_display"/>
 
