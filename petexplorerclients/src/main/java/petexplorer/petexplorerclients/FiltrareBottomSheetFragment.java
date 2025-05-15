@@ -36,6 +36,8 @@ import service.ApiService;
 public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
 
     protected RecyclerView resultsRV;
+    private View rootView;
+    private LinearLayout noResultsLayout;
 
     private Handler debounceHandler = new Handler();
     private Runnable debounceRunnable;
@@ -47,7 +49,7 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         // Inflatează layout-ul pentru BottomSheet
-        View rootView = inflater.inflate(R.layout.filtrare_bottom_sheet_fragment, container, false);
+        rootView = inflater.inflate(R.layout.filtrare_bottom_sheet_fragment, container, false);
 
         // Butoane pentru filtrare
         ImageButton filterCabineteButton = rootView.findViewById(R.id.filterCabineteButton);
@@ -89,6 +91,7 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
                         resultsLayout.setVisibility(View.VISIBLE);
                         handleSearchAction(newText);
                     } else {
+                        noResultsLayout.setVisibility(View.GONE);
                         resultsLayout.setVisibility(View.GONE);
                         buttonsLayout.setVisibility(View.VISIBLE);
                     }
@@ -165,6 +168,7 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
 
     private void handleSearchAction(String text) {
         ApiService apiService = RetrofitClient.getApiService();
+        noResultsLayout = rootView.findViewById(R.id.noResultsLayout);
 
         apiService.getSearchResults(text).enqueue(new Callback<List<SearchResultWrapper>>() {
             @Override
@@ -176,6 +180,14 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
                     if (resultsRV.getAdapter() instanceof SearchAdapter) {
                         SearchAdapter adapter = (SearchAdapter) resultsRV.getAdapter();
                         adapter.submitList(all);
+                    }
+
+                    if (all.isEmpty()) {
+                        resultsRV.setVisibility(View.GONE);
+                        noResultsLayout.setVisibility(View.VISIBLE);
+                    } else {
+                        resultsRV.setVisibility(View.VISIBLE);
+                        noResultsLayout.setVisibility(View.GONE);
                     }
 
                     Log.d("DEBUG", "Rezultate primite: " + all.size());
