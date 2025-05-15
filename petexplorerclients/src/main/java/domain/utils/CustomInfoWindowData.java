@@ -6,15 +6,18 @@ public class CustomInfoWindowData {
     private String program;
     private int image; // resource id
     private boolean checked;
+    private String locationType;
+    private Integer entityId;
 
-    public CustomInfoWindowData(String title, String nrTel, String program, int image) {
+    public CustomInfoWindowData(String title, String nrTel, String program, int image, boolean checked, String locationType, int entityId) {
         this.title = title;
         this.nrTel = nrTel;
         this.program = program;
         this.image = image;
-        this.checked=false;
+        this.checked = checked;
+        this.locationType = locationType;
+        this.entityId = entityId;
     }
-
     public CustomInfoWindowData(String title, String nrTel, String program, int image, boolean checked) {
         this.title = title;
         this.nrTel = nrTel;
@@ -61,5 +64,21 @@ public class CustomInfoWindowData {
 
     public void setChecked(boolean checked) {
         this.checked = checked;
+    }
+
+    public String getLocationType() {
+        return locationType;
+    }
+
+    public void setLocationType(String locationType) {
+        this.locationType = locationType;
+    }
+
+    public Integer getEntityId() {
+        return entityId;
+    }
+
+    public void setEntityId(Integer entityId) {
+        this.entityId = entityId;
     }
 }

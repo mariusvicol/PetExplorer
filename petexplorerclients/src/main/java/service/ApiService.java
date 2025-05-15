@@ -15,6 +15,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -45,8 +46,18 @@ public interface ApiService {
     @GET("api/search")
     Call<List<SearchResultWrapper>> getSearchResults(@Query("text") String text);
 
-    @GET("api/locatii/favorites/{userId}")
-    Call<List<LocatieFavoritaDTO>> getFavLocationsForUser(@Path("userId") Integer userId);
+    @GET("api/locatii/favoritesDTO/{userId}")
+    Call<List<LocatieFavoritaDTO>> getFavLocationsForUserDTO(@Path("userId") Integer userId);
+
+    @POST("api/locatii/add")
+    Call<Void> addFavoritePlace(@Body LocatieFavoritaDTO place);
+
+    @DELETE("api/locatii/delete")
+    Call<Void> deleteFavoritePlace(
+            @Query("idUser") int userId,
+            @Query("idLocation") int locationId,
+            @Query("type") String type
+    );
 
     @POST("/api/users/login")
     Call<User> login(@Body User loginRequest);

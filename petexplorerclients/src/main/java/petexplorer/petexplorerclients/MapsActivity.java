@@ -22,10 +22,12 @@ import android.widget.Toast;
 import android.Manifest;
 import android.widget.Button;
 
+import com.google.android.gms.common.api.Api;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.tasks.OnSuccessListener;
 import android.location.Location;
 
@@ -37,7 +39,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import domain.CabinetVeterinar;
 import domain.Farmacie;
@@ -64,11 +69,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
 
+    private Map<String, List<Integer>> favoritePlaces = new HashMap<>();
+    private List<LocatieFavoritaDTO> favoritePlacesList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
         this.currentUserId = prefs.getInt("user_id", -1);
+
+        initializeFavoritePlacesMap(); // sa n-o incarc de fiecare data
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
@@ -234,8 +244,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     ? cabinet.getNrTelefon()
                                     : "Număr de telefon neafișat.";
 
-                            marker.setTag(new CustomInfoWindowData
-                                    (cabinet.getNumeCabinet(), nrTel, programText, R.drawable.cabinet));
+                            boolean isFavorite = favoritePlaces.containsKey("cabinet") &&
+                                                favoritePlaces.get("cabinet").contains(cabinet.getId());
+
+                            marker.setTag(new CustomInfoWindowData(
+                                    cabinet.getNumeCabinet(),
+                                    nrTel,
+                                    programText,
+                                    R.drawable.cabinet,
+                                    isFavorite,
+                                    "cabinet",
+                                    cabinet.getId()));
                         }
 
                         // listener dupa ce markerii sunt adaugati
@@ -245,7 +264,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 CustomInfoWindowData data = (CustomInfoWindowData) tag;
 
                                 PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
-                                bottomSheet.setData(data);
+                                bottomSheet.setData(data, currentUserId);
+
+                                bottomSheet.setFavoriteChangedListener((locatie, added) -> {
+                                    if (added) {
+                                        String type = locatie.getType().toLowerCase();
+                                        favoritePlaces.putIfAbsent(type, new ArrayList<>());
+                                        favoritePlaces.get(type).add(locatie.getIdLocation());
+                                    } else {
+                                        String type = locatie.getType().toLowerCase();
+                                        if (favoritePlaces.containsKey(type)) {
+                                            favoritePlaces.get(type).remove(locatie.getIdLocation());
+                                            if (favoritePlaces.get(type).isEmpty()) {
+                                                favoritePlaces.remove(type);
+                                            }
+                                        }
+                                    }
+                                });
+
                                 bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
                             }
                             return true;
@@ -283,7 +319,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     mMap.clear();
                     for (PensiuneCanina p : pensiuniList) {
                         LatLng pLoc = new LatLng(p.getLatitude(), p.getLongitude());
-                        Log.d("DEBUG", "Pensiune: " + p.getName()+ " Lat: " + p.getLatitude() + " Long: " + p.getLongitude());
+                        Log.d("DEBUG", "Pensiune: " + p.getName() + " Lat: " + p.getLatitude() + " Long: " + p.getLongitude());
 
                         var markerCustom = new MarkerOptions().position(pLoc);
                         markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.pensiune)));
@@ -298,8 +334,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     ? p.getNrTel()
                                     : "Număr de telefon neafișat.";
 
-                            marker.setTag(new CustomInfoWindowData
-                                    (p.getName(), nrTel, programText, R.drawable.pensiune));
+                            boolean isFavorite = favoritePlaces.containsKey("pensiune") &&
+                                    favoritePlaces.get("pensiune").contains(p.getId());
+
+                            marker.setTag(new CustomInfoWindowData(
+                                    p.getName(),
+                                    nrTel,
+                                    programText,
+                                    R.drawable.pensiune,
+                                    isFavorite,
+                                    "pensiune",
+                                    p.getId()));
                         }
 
                         // listener dupa ce markerii sunt adaugati
@@ -309,7 +354,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 CustomInfoWindowData data = (CustomInfoWindowData) tag;
 
                                 PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
-                                bottomSheet.setData(data);
+                                bottomSheet.setData(data, currentUserId);
+
+                                bottomSheet.setFavoriteChangedListener((locatie, added) -> {
+                                    if (added) {
+                                        String type = locatie.getType().toLowerCase();
+                                        favoritePlaces.putIfAbsent(type, new ArrayList<>());
+                                        favoritePlaces.get(type).add(locatie.getIdLocation());
+                                    } else {
+                                        String type = locatie.getType().toLowerCase();
+                                        if (favoritePlaces.containsKey(type)) {
+                                            favoritePlaces.get(type).remove(locatie.getIdLocation());
+                                            if (favoritePlaces.get(type).isEmpty()) {
+                                                favoritePlaces.remove(type);
+                                            }
+                                        }
+                                    }
+                                });
+
                                 bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
                             }
                             return true;
@@ -361,8 +423,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                      ? s.getNrTel()
                                      : "Număr de telefon neafișat.";
 
-                             marker.setTag(new CustomInfoWindowData
-                                     (s.getName(), nrTel, programText, R.drawable.salon));
+                             boolean isFavorite = favoritePlaces.containsKey("salon") &&
+                                     favoritePlaces.get("salon").contains(s.getId());
+
+                             marker.setTag(new CustomInfoWindowData(
+                                     s.getName(),
+                                     nrTel,
+                                     programText,
+                                     R.drawable.salon,
+                                     isFavorite,
+                                     "salon",
+                                     s.getId()));
                          }
 
                          // listener dupa ce markerii sunt adaugati
@@ -372,7 +443,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                  CustomInfoWindowData data = (CustomInfoWindowData) tag;
 
                                  PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
-                                 bottomSheet.setData(data);
+                                 bottomSheet.setData(data, currentUserId);
+
+                                 bottomSheet.setFavoriteChangedListener((locatie, added) -> {
+                                     if (added) {
+                                         String type = locatie.getType().toLowerCase();
+                                         favoritePlaces.putIfAbsent(type, new ArrayList<>());
+                                         favoritePlaces.get(type).add(locatie.getIdLocation());
+                                     } else {
+                                         String type = locatie.getType().toLowerCase();
+                                         if (favoritePlaces.containsKey(type)) {
+                                             favoritePlaces.get(type).remove(locatie.getIdLocation());
+                                             if (favoritePlaces.get(type).isEmpty()) {
+                                                 favoritePlaces.remove(type);
+                                             }
+                                         }
+                                     }
+                                 });
+
                                  bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
                              }
                              return true;
@@ -419,8 +507,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     ? "Program non-stop"
                                     : "Disponibil în timpul programului de lucru";
 
-                            marker.setTag(new CustomInfoWindowData
-                                    (magazin.getNume(),"Număr de telefon neafișat.", programText, R.drawable.magazin));
+                            boolean isFavorite = favoritePlaces.containsKey("magazin") &&
+                                    favoritePlaces.get("magazin").contains(magazin.getId());
+
+                            marker.setTag(new CustomInfoWindowData(
+                                    magazin.getNume(),
+                                    "Număr de telefon neafișat.",
+                                    programText,
+                                    R.drawable.magazin,
+                                    isFavorite,
+                                    "magazin",
+                                    magazin.getId()));
                         }
 
                         // listener dupa ce markerii sunt adaugati
@@ -430,7 +527,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 CustomInfoWindowData data = (CustomInfoWindowData) tag;
 
                                 PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
-                                bottomSheet.setData(data);
+                                bottomSheet.setData(data, currentUserId);
+
+                                bottomSheet.setFavoriteChangedListener((locatie, added) -> {
+                                    if (added) {
+                                        String type = locatie.getType().toLowerCase();
+                                        favoritePlaces.putIfAbsent(type, new ArrayList<>());
+                                        favoritePlaces.get(type).add(locatie.getIdLocation());
+                                    } else {
+                                        String type = locatie.getType().toLowerCase();
+                                        if (favoritePlaces.containsKey(type)) {
+                                            favoritePlaces.get(type).remove(locatie.getIdLocation());
+                                            if (favoritePlaces.get(type).isEmpty()) {
+                                                favoritePlaces.remove(type);
+                                            }
+                                        }
+                                    }
+                                });
+
                                 bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
                             }
                             return true;
@@ -479,8 +593,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     ? "Program non-stop"
                                     : "Disponibil în timpul programului de lucru";
 
-                            marker.setTag(new CustomInfoWindowData
-                                    (farmacie.getNume(), "Număr de telefon neafișat.", programText, R.drawable.farmacie));
+                            boolean isFavorite = favoritePlaces.containsKey("farmacie") &&
+                                    favoritePlaces.get("farmacie").contains(farmacie.getId());
+
+                            marker.setTag(new CustomInfoWindowData(
+                                    farmacie.getNume(),
+                                    "Număr de telefon neafișat.",
+                                    programText,
+                                    R.drawable.farmacie,
+                                    isFavorite,
+                                    "farmacie",
+                                    farmacie.getId()));
                         }
 
                         // listener dupa ce markerii sunt adaugati
@@ -490,7 +613,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 CustomInfoWindowData data = (CustomInfoWindowData) tag;
 
                                 PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
-                                bottomSheet.setData(data);
+                                bottomSheet.setData(data, currentUserId);
+
+                                bottomSheet.setFavoriteChangedListener((locatie, added) -> {
+                                    if (added) {
+                                        String type = locatie.getType().toLowerCase();
+                                        favoritePlaces.putIfAbsent(type, new ArrayList<>());
+                                        favoritePlaces.get(type).add(locatie.getIdLocation());
+                                    } else {
+                                        String type = locatie.getType().toLowerCase();
+                                        if (favoritePlaces.containsKey(type)) {
+                                            favoritePlaces.get(type).remove(locatie.getIdLocation());
+                                            if (favoritePlaces.get(type).isEmpty()) {
+                                                favoritePlaces.remove(type);
+                                            }
+                                        }
+                                    }
+                                });
+
                                 bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
                             }
                             return true; // consumăm evenimentul (nu se mai afișează info window)
@@ -538,8 +678,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     ? "Program non-stop"
                                     : "Disponibil în timpul programului de lucru";
 
-                            marker.setTag(new CustomInfoWindowData
-                                    (parc.getNume(), "Număr de telefon neafișat.", programText, R.drawable.parc));
+                            boolean isFavorite = favoritePlaces.containsKey("parc") &&
+                                    favoritePlaces.get("parc").contains(parc.getId());
+
+                            marker.setTag(new CustomInfoWindowData(
+                                    parc.getNume(),
+                                    "Număr de telefon neafișat.",
+                                    programText,
+                                    R.drawable.parc,
+                                    isFavorite,
+                                    "parc",
+                                    parc.getId()));
                         }
 
                         // listener dupa ce markerii sunt adaugati
@@ -549,7 +698,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 CustomInfoWindowData data = (CustomInfoWindowData) tag;
 
                                 PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
-                                bottomSheet.setData(data);
+                                bottomSheet.setData(data, currentUserId);
+
+                                bottomSheet.setFavoriteChangedListener((locatie, added) -> {
+                                    if (added) {
+                                        String type = locatie.getType().toLowerCase();
+                                        favoritePlaces.putIfAbsent(type, new ArrayList<>());
+                                        favoritePlaces.get(type).add(locatie.getIdLocation());
+                                    } else {
+                                        String type = locatie.getType().toLowerCase();
+                                        if (favoritePlaces.containsKey(type)) {
+                                            favoritePlaces.get(type).remove(locatie.getIdLocation());
+                                            if (favoritePlaces.get(type).isEmpty()) {
+                                                favoritePlaces.remove(type);
+                                            }
+                                        }
+                                    }
+                                });
+
                                 bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
                             }
                             return true;
@@ -574,9 +740,45 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
+    private void initializeFavoritePlacesMap() {
+        ApiService apiService = RetrofitClient.getApiService();
+        Call<List<LocatieFavoritaDTO>> call = apiService.getFavLocationsForUserDTO(this.currentUserId);
+
+        call.enqueue(new Callback<List<LocatieFavoritaDTO>>() {
+            @Override
+            public void onResponse(Call<List<LocatieFavoritaDTO>> call, Response<List<LocatieFavoritaDTO>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d(TAG, "Răspunsul serverului: " + response.body().toString());
+                    List<LocatieFavoritaDTO> theList = response.body();
+                    favoritePlacesList.clear();
+                    favoritePlacesList.addAll(theList);
+
+                    for (var dto : theList) {
+                        String type = dto.getType().toLowerCase();
+                        Integer id = dto.getIdLocation();
+
+                        favoritePlaces
+                                .computeIfAbsent(type, k -> new ArrayList<>())
+                                .add(id);
+                    }
+
+                    Log.d(TAG, "Favorite Places Map loaded with succes!" + favoritePlaces);
+                } else {
+                    Log.e(TAG, "Eroare la raspunsul serverului (favorit)" + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<LocatieFavoritaDTO>> call, Throwable t) {
+                Log.e(TAG, "Eroare la conectarea la server: ", t);
+                Toast.makeText(MapsActivity.this, "Eroare la conectarea la server", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void loadFavLocationsForUser() {
         ApiService apiService = RetrofitClient.getApiService();
-        Call<List<LocatieFavoritaDTO>> call = apiService.getFavLocationsForUser(this.currentUserId);
+        Call<List<LocatieFavoritaDTO>> call = apiService.getFavLocationsForUserDTO(this.currentUserId);
 
         call.enqueue(new Callback<List<LocatieFavoritaDTO>>() {
             @Override
@@ -609,8 +811,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     ? place.getPhone()
                                     : "Număr de telefon neafișat.";
 
-                            marker.setTag(new CustomInfoWindowData
-                                    (place.getTitle(), nrTel, programText, drawableResId, true));
+                            marker.setTag(new CustomInfoWindowData(
+                                    place.getTitle(),
+                                    nrTel,
+                                    programText,
+                                    drawableResId,
+                                    true,
+                                    place.getType().toLowerCase(),
+                                    place.getIdLocation()));
                         }
 
                         // listener dupa ce markerii sunt adaugati
@@ -620,7 +828,28 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 CustomInfoWindowData data = (CustomInfoWindowData) tag;
 
                                 PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
-                                bottomSheet.setData(data);
+                                bottomSheet.setData(data, currentUserId);
+
+                                final Marker finalMarker = m;
+
+                                bottomSheet.setFavoriteChangedListener((locatie, added) -> {
+                                    if (added) {
+                                        String type = locatie.getType().toLowerCase();
+                                        favoritePlaces.putIfAbsent(type, new ArrayList<>());
+                                        favoritePlaces.get(type).add(locatie.getIdLocation());
+                                    } else {
+                                        String type = locatie.getType().toLowerCase();
+                                        if (favoritePlaces.containsKey(type)) {
+                                            favoritePlaces.get(type).remove(locatie.getIdLocation());
+                                            if (favoritePlaces.get(type).isEmpty()) {
+                                                favoritePlaces.remove(type);
+                                            }
+                                        }
+
+                                        finalMarker.remove();
+                                    }
+                                });
+
                                 bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
                             }
                             return true;
