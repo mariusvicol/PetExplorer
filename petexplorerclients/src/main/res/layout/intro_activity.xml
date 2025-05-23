@@ -63,7 +63,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Probabil o scurta descriere a aplicatiei, TODO"
+        android:text="Localizează, explorează și ai grijă de animăluțul tău."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

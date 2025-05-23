@@ -100,7 +100,7 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
             Intent intent = new Intent(LostAnimalsActivity.this, MapsActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
-            finish(); // optional, dacă vreau sa scoț LostAnimalsActivity din back stack
+            finish();
         });
 
     }
