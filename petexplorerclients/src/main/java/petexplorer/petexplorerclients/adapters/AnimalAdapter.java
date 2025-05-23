@@ -8,10 +8,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.format.DateTimeFormatter;
+import org.threeten.bp.format.DateTimeParseException;
+import java.util.Locale;
 
 import com.bumptech.glide.Glide;
-
 import java.util.List;
 
 import domain.AnimalPierdut;
@@ -55,6 +57,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
 
         public AnimalViewHolder(@NonNull View itemView) {
             super(itemView);
+
             tvNume = itemView.findViewById(R.id.tvNume);
             tvData = itemView.findViewById(R.id.tvData);
             tvDescriere = itemView.findViewById(R.id.tvDescriere);
@@ -64,16 +67,31 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
 
         public void bind(AnimalPierdut animal, OnItemClickListener listener) {
             tvNume.setText(animal.getNumeAnimal());
-            tvData.setText(animal.getDataCaz() != null ? animal.getDataCaz().toString() : "fără dată");
+
+            String dataRaw = animal.getDataCaz();
+            String dataFormatted;
+            if (dataRaw != null && !dataRaw.isEmpty()) {
+                try {
+                    LocalDateTime data = LocalDateTime.parse(dataRaw);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm", new Locale("ro"));
+                    dataFormatted = data.format(formatter);
+                } catch (Exception e) {
+                    dataFormatted = "data invalida";
+                }
+            } else {
+                dataFormatted = "fără dată";
+            }
+
+            tvData.setText(dataFormatted);
             tvDescriere.setText(animal.getDescriere());
             tvTelefon.setText(animal.getNrTelefon());
 
             if (animal.getPoza() != null && !animal.getPoza().isEmpty()) {
-                String imageUrl = "http://192.168.39.224:8080" + animal.getPoza();
+                String imageUrl = "http://10.0.2.2:8080" + animal.getPoza();
                 Glide.with(itemView.getContext())
                         .load(imageUrl)
                         .placeholder(R.drawable.dog2) // imagine default
-                        .error(R.drawable.error_image)
+                        .error(R.drawable.warning)
                         .fallback(R.drawable.dog2)
                         .into(imgPoza);
             } else {

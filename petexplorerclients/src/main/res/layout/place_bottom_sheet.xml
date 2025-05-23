@@ -125,11 +125,12 @@
 
     <Button
         android:id="@+id/openInMapsButton"
-        android:layout_width="match_parent"
+        android:layout_width="267dp"
         android:layout_height="wrap_content"
-        android:text="Du-mă acolo"
+        android:layout_gravity="center"
         android:layout_marginTop="12dp"
         android:background="@drawable/custom_button"
+        android:text="Du-mă acolo"
         android:textColor="@color/white" />
 
     <Button
@@ -140,7 +141,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
         android:background="@drawable/custom_button"
-        android:fontFamily="@font/playfair_display"
         android:text="@string/inchide"
         android:textColor="@color/white" />
 
