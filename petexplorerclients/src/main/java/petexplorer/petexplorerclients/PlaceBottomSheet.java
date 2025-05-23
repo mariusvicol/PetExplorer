@@ -1,6 +1,8 @@
 package petexplorer.petexplorerclients;
 
+import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -125,6 +127,25 @@ public class PlaceBottomSheet extends BottomSheetDialogFragment {
 
         Button closeButton = rootView.findViewById(R.id.closeButton);
         closeButton.setOnClickListener(v -> dismiss());
+
+        Button openInMapsButton = rootView.findViewById(R.id.openInMapsButton);
+        openInMapsButton.setOnClickListener(v -> {
+            if (data != null) {
+                double lat = data.getLatitude();
+                double lng = data.getLongitude();
+
+                String uri = "google.navigation:q=" + lat + "," + lng;
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                intent.setPackage("com.google.android.apps.maps");
+
+                if (intent.resolveActivity(requireActivity().getPackageManager()) != null) {
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getContext(), "Google Maps nu este instalat.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
         return rootView;
     }

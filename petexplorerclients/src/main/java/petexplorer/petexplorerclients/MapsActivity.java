@@ -262,6 +262,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             Object tag = m.getTag();
                             if (tag instanceof CustomInfoWindowData) {
                                 CustomInfoWindowData data = (CustomInfoWindowData) tag;
+                                data.setLatitude(marker.getPosition().latitude);
+                                data.setLongitude(marker.getPosition().longitude);
 
                                 PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
                                 bottomSheet.setData(data, currentUserId);
@@ -352,7 +354,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             Object tag = m.getTag();
                             if (tag instanceof CustomInfoWindowData) {
                                 CustomInfoWindowData data = (CustomInfoWindowData) tag;
-
+                                data.setLatitude(marker.getPosition().latitude);
+                                data.setLongitude(marker.getPosition().longitude);
                                 PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
                                 bottomSheet.setData(data, currentUserId);
 
@@ -441,7 +444,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                              Object tag = m.getTag();
                              if (tag instanceof CustomInfoWindowData) {
                                  CustomInfoWindowData data = (CustomInfoWindowData) tag;
-
+                                 data.setLatitude(marker.getPosition().latitude);
+                                 data.setLongitude(marker.getPosition().longitude);
                                  PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
                                  bottomSheet.setData(data, currentUserId);
 
@@ -525,7 +529,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             Object tag = m.getTag();
                             if (tag instanceof CustomInfoWindowData) {
                                 CustomInfoWindowData data = (CustomInfoWindowData) tag;
-
+                                data.setLatitude(marker.getPosition().latitude);
+                                data.setLongitude(marker.getPosition().longitude);
                                 PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
                                 bottomSheet.setData(data, currentUserId);
 
@@ -611,7 +616,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             Object tag = m.getTag();
                             if (tag instanceof CustomInfoWindowData) {
                                 CustomInfoWindowData data = (CustomInfoWindowData) tag;
-
+                                data.setLatitude(marker.getPosition().latitude);
+                                data.setLongitude(marker.getPosition().longitude);
                                 PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
                                 bottomSheet.setData(data, currentUserId);
 
@@ -696,7 +702,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             Object tag = m.getTag();
                             if (tag instanceof CustomInfoWindowData) {
                                 CustomInfoWindowData data = (CustomInfoWindowData) tag;
-
+                                data.setLatitude(marker.getPosition().latitude);
+                                data.setLongitude(marker.getPosition().longitude);
                                 PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
                                 bottomSheet.setData(data, currentUserId);
 
@@ -826,7 +833,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             Object tag = m.getTag();
                             if (tag instanceof CustomInfoWindowData) {
                                 CustomInfoWindowData data = (CustomInfoWindowData) tag;
-
+                                data.setLatitude(marker.getPosition().latitude);
+                                data.setLongitude(marker.getPosition().longitude);
                                 PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
                                 bottomSheet.setData(data, currentUserId);
 
