@@ -69,7 +69,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
             tvTelefon.setText(animal.getNrTelefon());
 
             if (animal.getPoza() != null && !animal.getPoza().isEmpty()) {
-                String imageUrl = "http://192.168.43.39:8080" + animal.getPoza(); // pentru emulator
+                String imageUrl = "http://192.168.39.224:8080" + animal.getPoza();
                 Glide.with(itemView.getContext())
                         .load(imageUrl)
                         .placeholder(R.drawable.dog2) // imagine default

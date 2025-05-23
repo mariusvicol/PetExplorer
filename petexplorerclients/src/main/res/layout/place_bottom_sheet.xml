@@ -124,6 +124,15 @@
     </androidx.cardview.widget.CardView>
 
     <Button
+        android:id="@+id/openInMapsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Du-mă acolo"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/white" />
+
+    <Button
         android:layout_marginBottom="10dp"
         android:id="@+id/closeButton"
         android:layout_width="267dp"
