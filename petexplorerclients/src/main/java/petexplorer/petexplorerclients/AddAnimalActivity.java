@@ -66,7 +66,7 @@ public class AddAnimalActivity extends AppCompatActivity implements OnMapReadyCa
         ImageButton btnBack = findViewById(R.id.btnBackToLostAnimals);
         btnBack.setOnClickListener(v -> {
             setResult(RESULT_CANCELED); // opțional
-            finish(); // închide AddAnimalActivity și revine la LostAnimalsActivity
+            finish();
         });
 
     }
@@ -162,13 +162,14 @@ public class AddAnimalActivity extends AppCompatActivity implements OnMapReadyCa
             String telefonText = getTextFromField(R.id.editTelefon);
             RequestBody telefon = RequestBody.create(telefonText, MediaType.parse("text/plain"));
             String idUser = getIdUserFromPreferences();
+            RequestBody rezolvat = RequestBody.create("false", MediaType.parse("text/plain"));
             RequestBody id_user = idUser != null
                     ? RequestBody.create(idUser, MediaType.parse("text/plain"))
                     : RequestBody.create("", MediaType.parse("text/plain"));
 
 
             ApiService apiService = RetrofitClient.getApiService();
-            Call<AnimalPierdut> call = apiService.uploadAnimal(imagePart, nume, descriere, lat, lng, caz, telefon, id_user);
+            Call<AnimalPierdut> call = apiService.uploadAnimal(imagePart, nume, descriere, lat, lng, caz, telefon, id_user, rezolvat);
 
             call.enqueue(new Callback<AnimalPierdut>() {
                 @Override

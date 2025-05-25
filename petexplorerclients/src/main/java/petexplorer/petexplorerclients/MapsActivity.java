@@ -106,8 +106,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 loadFavLocationsForUser();
 
             } else if (id == R.id.nav_lost_pets) {
-                animalePierduteButton.performClick();
-                Toast.makeText(this, "Animale pierdute", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Anunțurile mele", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MapsActivity.this, MyAnnouncementsActivity.class);
+                startActivity(intent);
 
             } else if (id == R.id.nav_settings) {
                 Intent intent = new Intent(this, SettingsGeneralActivity.class);

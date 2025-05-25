@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/nav_lost_pets"
-        android:title="Animale pierdute"
+        android:title="Anunțurile mele"
         android:icon="@drawable/ic_dog" />
 
     <item

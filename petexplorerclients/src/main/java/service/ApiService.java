@@ -18,6 +18,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
@@ -81,7 +82,12 @@ public interface ApiService {
             @Part("longitudine") RequestBody lng,
             @Part("tip_caz") RequestBody tipCaz,
             @Part("nr_telefon") RequestBody telefon,
-            @Part("id_user") RequestBody userId
+            @Part("id_user") RequestBody userId,
+            @Part("rezolvat") RequestBody rezolvat
     );
+
+    @PATCH("api/animale_pierdute/{id}/rezolvat")
+    Call<Void> markAsResolved(@Path("id") int id);
+
 
 }
