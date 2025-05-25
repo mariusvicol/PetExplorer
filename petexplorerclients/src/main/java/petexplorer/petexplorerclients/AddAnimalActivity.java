@@ -2,6 +2,9 @@ package petexplorer.petexplorerclients;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -11,12 +14,16 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.File;
@@ -102,13 +109,17 @@ public class AddAnimalActivity extends AppCompatActivity implements OnMapReadyCa
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_design));
         map = googleMap;
         LatLng cluj = new LatLng(46.770439, 23.591423);
         map.moveCamera(com.google.android.gms.maps.CameraUpdateFactory.newLatLngZoom(cluj, 13));
         map.setOnMapClickListener(latLng -> {
             selectedLatLng = latLng;
             map.clear();
-            map.addMarker(new MarkerOptions().position(latLng).title("Locație selectată"));
+            map.addMarker(new MarkerOptions()
+                    .position(latLng)
+                    .title("Locație selectată")
+                    .icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.location))));
         });
     }
 
@@ -222,4 +233,17 @@ public class AddAnimalActivity extends AppCompatActivity implements OnMapReadyCa
         return field.getText().toString().trim();
     }
 
+    private Bitmap getBitmapFromDrawable(@DrawableRes int resId) {
+        Bitmap bitmap = null;
+        Drawable drawable = ResourcesCompat.getDrawable(getResources(), resId, null);
+
+        if (drawable != null) {
+            bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            drawable.draw(canvas);
+        }
+
+        return bitmap;
+    }
 }

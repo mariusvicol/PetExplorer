@@ -16,7 +16,7 @@
         android:id="@+id/nav_header_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Salut, utilizator!"
+        android:text="ERR_NOT_FOUND"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 </LinearLayout>

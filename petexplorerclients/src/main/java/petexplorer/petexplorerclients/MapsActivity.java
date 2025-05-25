@@ -19,7 +19,9 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
 import android.widget.Button;
@@ -81,6 +83,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
         this.currentUserId = prefs.getInt("user_id", -1);
+        String fullName = prefs.getString("full_name", "utilizator");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
@@ -105,9 +108,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
+        // pentru numele custom la deschiderea meniului
+        View headerView = navigationView.getHeaderView(0);
+        TextView navHeaderTitle = headerView.findViewById(R.id.nav_header_title);
+        navHeaderTitle.setText("Salut, " + fullName + "!");
+
         menuButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
         ImageButton animalePierduteButton = findViewById(R.id.animalePierduteButton);
+
 
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();

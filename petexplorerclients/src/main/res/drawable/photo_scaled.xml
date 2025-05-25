@@ -1,0 +1,7 @@
+<!-- res/drawable/photo_scaled.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:width="50dp"
+        android:height="50dp"
+        android:drawable="@drawable/photography" />
+</layer-list>
