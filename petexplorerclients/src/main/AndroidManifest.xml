@@ -67,6 +67,11 @@
             android:exported="true"
             android:label="Setari"/>
 
+        <activity
+            android:name=".MyAnnouncementsActivity"
+            android:exported="true"
+            android:label="Anunturile mele"/>
+
         <activity android:name=".SettingsGeneralActivity"
             android:exported="true"
             android:label="Setari generale"/>

@@ -1,0 +1,132 @@
+package petexplorer.petexplorerclients;
+
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import domain.AnimalPierdut;
+import petexplorer.petexplorerclients.adapters.AnimalAdapter;
+import petexplorer.petexplorerclients.adapters.AnimalUserAdapter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import service.ApiService;
+
+public class MyAnnouncementsActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private Button btnVeziPierdute, btnVeziGasite;
+    private AnimalUserAdapter adapter;
+    private String cazCurent = "pierdut";
+    private List<AnimalPierdut> allAnimals = new ArrayList<>();
+    private int currentUserId;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_my_announcements);
+
+        SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
+        currentUserId = prefs.getInt("user_id", -1);
+
+        if (currentUserId == -1) {
+            Toast.makeText(this, "User ID invalid! Nu ești logat!", Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
+
+
+        TextView title = findViewById(R.id.tvTitle);
+        title.setText("Anunțurile tale");
+
+        recyclerView = findViewById(R.id.recyclerMyAnimals);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter = new AnimalUserAdapter(new ArrayList<>(), this::markAnimalAsResolved);
+        recyclerView.setAdapter(adapter);
+
+
+        btnVeziPierdute = findViewById(R.id.btnUserPierdute);
+        btnVeziGasite = findViewById(R.id.btnUserGasite);
+
+        btnVeziPierdute.setOnClickListener(v -> {
+            cazCurent = "pierdut";
+            updateFilteredList();
+        });
+
+        btnVeziGasite.setOnClickListener(v -> {
+            cazCurent = "vazut";
+            updateFilteredList();
+        });
+
+        loadUserAnimals();
+    }
+
+    private void updateFilteredList() {
+        List<AnimalPierdut> filtered = allAnimals.stream()
+                .filter(a -> a.getTipCaz().equalsIgnoreCase(cazCurent))
+                .sorted((a, b) -> {
+                    if (a.getRezolvat()) return 1;
+                    if (b.getRezolvat()) return -1;
+                    return 0;
+                })
+                .collect(Collectors.toList());
+        adapter.updateData(filtered);
+    }
+
+
+    private void loadUserAnimals() {
+        ApiService apiService = RetrofitClient.getApiService();
+        Call<List<AnimalPierdut>> call = apiService.getAnimalePierdute();
+
+        call.enqueue(new Callback<List<AnimalPierdut>>() {
+            @Override
+            public void onResponse(Call<List<AnimalPierdut>> call, Response<List<AnimalPierdut>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    allAnimals = response.body().stream()
+                            .filter(a -> a.getIdUser() == currentUserId)
+                            .collect(Collectors.toList());
+                    updateFilteredList();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<AnimalPierdut>> call, Throwable t) {
+                Toast.makeText(MyAnnouncementsActivity.this, "Eroare la conectarea la server", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void markAnimalAsResolved(AnimalPierdut animal) {
+        ApiService apiService = RetrofitClient.getApiService();
+        Call<Void> call = apiService.markAsResolved(animal.getId());
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(MyAnnouncementsActivity.this, "Marcat ca rezolvat", Toast.LENGTH_SHORT).show();
+                    animal.setRezolvat(true); // actualizezi local
+                    updateFilteredList();
+                } else {
+                    Toast.makeText(MyAnnouncementsActivity.this, "Eroare la actualizare", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(MyAnnouncementsActivity.this, "Eroare la conectare", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
