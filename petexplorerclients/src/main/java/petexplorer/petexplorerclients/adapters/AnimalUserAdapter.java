@@ -13,10 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.format.DateTimeFormatter;
+
 import java.util.List;
+import java.util.Locale;
 
 import domain.AnimalPierdut;
 import petexplorer.petexplorerclients.R;
+import petexplorer.petexplorerclients.utils.ServerConfig;
 
 public class AnimalUserAdapter extends RecyclerView.Adapter<AnimalUserAdapter.AnimalUserViewHolder> {
 
@@ -73,21 +78,36 @@ public class AnimalUserAdapter extends RecyclerView.Adapter<AnimalUserAdapter.An
 
         public void bind(AnimalPierdut animal, OnResolveClickListener resolveClickListener) {
             tvNume.setText(animal.getNumeAnimal());
-            tvData.setText(animal.getDataCaz() != null ? animal.getDataCaz().toString() : "fără dată");
+            String dataRaw = animal.getDataCaz();
+            String dataFormatted;
+            if (dataRaw != null && !dataRaw.isEmpty()) {
+                try {
+                    LocalDateTime data = LocalDateTime.parse(dataRaw);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm", new Locale("ro"));
+                    dataFormatted = data.format(formatter);
+                } catch (Exception e) {
+                    dataFormatted = "data invalida";
+                }
+            } else {
+                dataFormatted = "fără dată";
+            }
+
+            tvData.setText(dataFormatted);
             tvDescriere.setText(animal.getDescriere());
             tvTelefon.setText(animal.getNrTelefon());
 
             if (animal.getPoza() != null && !animal.getPoza().isEmpty()) {
-                String imageUrl = "http://10.0.2.2:8080" + animal.getPoza();
+                String imageUrl = ServerConfig.BASE_URL + animal.getPoza();
                 Glide.with(itemView.getContext())
                         .load(imageUrl)
-                        .placeholder(R.drawable.dog2)
-                        .error(R.drawable.error_image)
+                        .placeholder(R.drawable.dog2) // imagine default
+                        .error(R.drawable.warning)
                         .fallback(R.drawable.dog2)
                         .into(imgPoza);
             } else {
                 imgPoza.setImageResource(R.drawable.dog2);
             }
+
 
             if (animal.getRezolvat()) {
                 itemView.setAlpha(0.7f);

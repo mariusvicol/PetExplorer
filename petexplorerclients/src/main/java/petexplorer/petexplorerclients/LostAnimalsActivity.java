@@ -29,6 +29,8 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
+import org.threeten.bp.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -118,6 +120,7 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
             startActivity(intent);
             finish();
         });
+
     }
 
     @Override
@@ -154,9 +157,11 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
                         LatLng firstLocation = new LatLng(animaleList.get(0).getLatitudine(), animaleList.get(0).getLongitudine());
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstLocation, 12));
                     }
-                    adapter.updateData(animaleList.stream()
-                            .filter(a -> "pierdut".equals(a.getTipCaz()))
-                            .collect(Collectors.toList()));
+                    adapter.updateData(
+                            sorteazaLista(animaleList.stream()
+                                    .filter(a -> "pierdut".equals(a.getTipCaz()))
+                                    .collect(Collectors.toList()))
+                    );
 
                 } else {
                     Toast.makeText(LostAnimalsActivity.this, "Eroare la obținerea animalelor pierdute", Toast.LENGTH_SHORT).show();
@@ -196,9 +201,11 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
                         LatLng firstLocation = new LatLng(animaleList.get(0).getLatitudine(), animaleList.get(0).getLongitudine());
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstLocation, 12));
                     }
-                    adapter.updateData(animaleList.stream()
-                            .filter(a -> "vazut".equals(a.getTipCaz()))
-                            .collect(Collectors.toList()));
+                    adapter.updateData(
+                            sorteazaLista(animaleList.stream()
+                                    .filter(a -> "vazut".equals(a.getTipCaz()))
+                                    .collect(Collectors.toList()))
+                    );
 
                 } else {
                     Toast.makeText(LostAnimalsActivity.this, "Eroare la obținerea animalelor vazute", Toast.LENGTH_SHORT).show();
@@ -239,4 +246,24 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
 
         return bitmap;
     }
+
+    private List<AnimalPierdut> sorteazaLista(List<AnimalPierdut> lista) {
+        return lista.stream()
+                .sorted((a, b) -> {
+                    try {
+                        LocalDateTime dataA = LocalDateTime.parse(a.getDataCaz());
+                        LocalDateTime dataB = LocalDateTime.parse(b.getDataCaz());
+
+                        if (a.getRezolvat() && !b.getRezolvat()) return 1;
+                        if (!a.getRezolvat() && b.getRezolvat()) return -1;
+
+                        return dataB.compareTo(dataA);
+
+                    } catch (Exception e) {
+                        return 0;
+                    }
+                })
+                .collect(Collectors.toList());
+    }
+
 }

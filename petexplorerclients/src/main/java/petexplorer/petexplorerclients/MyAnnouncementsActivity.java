@@ -1,14 +1,21 @@
 package petexplorer.petexplorerclients;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.maps.SupportMapFragment;
+
+import org.threeten.bp.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,27 +69,51 @@ public class MyAnnouncementsActivity extends AppCompatActivity {
         btnVeziPierdute.setOnClickListener(v -> {
             cazCurent = "pierdut";
             updateFilteredList();
+
+            btnVeziPierdute.setBackground(ContextCompat.getDrawable(this, R.drawable.custom_button));
+            btnVeziGasite.setBackground(ContextCompat.getDrawable(this, R.drawable.not_focused_button));
         });
 
         btnVeziGasite.setOnClickListener(v -> {
             cazCurent = "vazut";
             updateFilteredList();
+
+            btnVeziGasite.setBackground(ContextCompat.getDrawable(this, R.drawable.custom_button));
+            btnVeziPierdute.setBackground(ContextCompat.getDrawable(this, R.drawable.not_focused_button));
         });
 
+
+        btnVeziPierdute.setBackground(ContextCompat.getDrawable(this, R.drawable.custom_button));
+        btnVeziGasite.setBackground(ContextCompat.getDrawable(this, R.drawable.not_focused_button));
+
         loadUserAnimals();
+
+        ImageButton btnBackToMap = findViewById(R.id.btnBackToMap);
+        btnBackToMap.setOnClickListener(v -> {
+            Intent intent = new Intent(MyAnnouncementsActivity.this, MapsActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void updateFilteredList() {
         List<AnimalPierdut> filtered = allAnimals.stream()
                 .filter(a -> a.getTipCaz().equalsIgnoreCase(cazCurent))
                 .sorted((a, b) -> {
-                    if (a.getRezolvat()) return 1;
-                    if (b.getRezolvat()) return -1;
-                    return 0;
+                    LocalDateTime dataA = LocalDateTime.parse(a.getDataCaz());
+                    LocalDateTime dataB = LocalDateTime.parse(b.getDataCaz());
+
+                    if (!a.getRezolvat() && b.getRezolvat()) return -1;
+                    if (a.getRezolvat() && !b.getRezolvat()) return 1;
+
+                    return dataB.compareTo(dataA);
                 })
                 .collect(Collectors.toList());
+
         adapter.updateData(filtered);
     }
+
 
 
     private void loadUserAnimals() {
@@ -116,7 +147,7 @@ public class MyAnnouncementsActivity extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(MyAnnouncementsActivity.this, "Marcat ca rezolvat", Toast.LENGTH_SHORT).show();
-                    animal.setRezolvat(true); // actualizezi local
+                    animal.setRezolvat(true);
                     updateFilteredList();
                 } else {
                     Toast.makeText(MyAnnouncementsActivity.this, "Eroare la actualizare", Toast.LENGTH_SHORT).show();
