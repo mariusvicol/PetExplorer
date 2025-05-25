@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PetExplorerClient</string>
+    <string name="app_name">PetExplorer</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="login_activity">Login</string>
     <string name="navigation_drawer_open">Deschide meniul</string>
