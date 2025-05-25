@@ -18,6 +18,7 @@ import java.util.List;
 
 import domain.AnimalPierdut;
 import petexplorer.petexplorerclients.R;
+import petexplorer.petexplorerclients.utils.ServerConfig;
 
 public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder> {
 
@@ -87,7 +88,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
             tvTelefon.setText(animal.getNrTelefon());
 
             if (animal.getPoza() != null && !animal.getPoza().isEmpty()) {
-                String imageUrl = "http://10.0.2.2:8080" + animal.getPoza();
+                String imageUrl = ServerConfig.BASE_URL + animal.getPoza();
                 Glide.with(itemView.getContext())
                         .load(imageUrl)
                         .placeholder(R.drawable.dog2) // imagine default

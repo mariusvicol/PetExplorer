@@ -1,5 +1,7 @@
 package petexplorer.petexplorerclients;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,11 +23,21 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import domain.CabinetVeterinar;
+import domain.Farmacie;
+import domain.Magazin;
+import domain.Parc;
+import domain.PensiuneCanina;
+import domain.Salon;
 import domain.utils.SearchResultWrapper;
 import petexplorer.petexplorerclients.adapters.SearchAdapter;
 import retrofit2.Call;

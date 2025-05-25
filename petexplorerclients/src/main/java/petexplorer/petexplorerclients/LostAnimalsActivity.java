@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +31,19 @@ import java.util.stream.Collectors;
 
 import domain.AnimalPierdut;
 import petexplorer.petexplorerclients.adapters.AnimalAdapter;
+import petexplorer.petexplorerclients.notification.WebSocketStompClientManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import service.ApiService;
+
+// import pentru STOMP
+import ua.naiksoftware.stomp.Stomp;
+import ua.naiksoftware.stomp.StompClient;
+import ua.naiksoftware.stomp.dto.LifecycleEvent;
+import ua.naiksoftware.stomp.dto.StompMessage;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 public class LostAnimalsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -43,6 +53,7 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
     private String cazCurent = "pierdut";
     private AnimalAdapter adapter;
     private static final int REQUEST_ADD_ANIMAL = 1001;
+
 
 
     @Override
@@ -102,7 +113,6 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
             startActivity(intent);
             finish();
         });
-
     }
 
     @Override

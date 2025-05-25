@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -15,6 +16,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -53,6 +55,7 @@ import domain.Salon;
 import domain.utils.CustomInfoWindowData;
 import domain.utils.LocatieFavoritaDTO;
 import petexplorer.petexplorerclients.databinding.ActivityMapsBinding;
+import petexplorer.petexplorerclients.notification.WebSocketStompClientManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -71,12 +74,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private Map<String, List<Integer>> favoritePlaces = new HashMap<>();
     private List<LocatieFavoritaDTO> favoritePlacesList = new ArrayList<>();
+    private WebSocketStompClientManager stompClientManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
         this.currentUserId = prefs.getInt("user_id", -1);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
+            }
+        }
+
+        stompClientManager = new WebSocketStompClientManager();
+        stompClientManager.connect(this);
 
         initializeFavoritePlacesMap(); // sa n-o incarc de fiecare data
 
@@ -893,6 +908,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Toast.makeText(MapsActivity.this, "Nu s-a putut obtine locatia curenta", Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stompClientManager.disconnect();
     }
 
 
