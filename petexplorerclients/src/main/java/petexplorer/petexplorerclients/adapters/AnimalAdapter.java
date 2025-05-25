@@ -53,7 +53,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
     }
 
     public static class AnimalViewHolder extends RecyclerView.ViewHolder {
-        TextView tvNume, tvData, tvDescriere, tvTelefon;
+        TextView tvNume, tvData, tvDescriere, tvTelefon, tvRezolvat;
         ImageView imgPoza;
 
         public AnimalViewHolder(@NonNull View itemView) {
@@ -64,6 +64,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
             tvDescriere = itemView.findViewById(R.id.tvDescriere);
             tvTelefon = itemView.findViewById(R.id.tvTelefon);
             imgPoza = itemView.findViewById(R.id.imgPoza);
+            tvRezolvat = itemView.findViewById(R.id.tvRezolvat);
         }
 
         public void bind(AnimalPierdut animal, OnItemClickListener listener) {
@@ -99,9 +100,15 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
                 imgPoza.setImageResource(R.drawable.dog2);
             }
 
-
-
             itemView.setOnClickListener(v -> listener.onItemClick(animal));
+
+            if (animal.getRezolvat()) {
+                itemView.setAlpha(0.7f);
+                tvRezolvat.setVisibility(View.VISIBLE);
+            } else {
+                itemView.setAlpha(1f);
+                tvRezolvat.setVisibility(View.GONE);
+            }
         }
     }
 
