@@ -3,14 +3,19 @@ package petexplorer.petexplorerclients;
 import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -79,16 +84,16 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
             cazCurent = "pierdut";
             loadAnimalePierdute();
             btnAddAnimal.setText("+ Animal Pierdut");
-            btnVeziPierdute.setBackgroundColor(ContextCompat.getColor(this, R.color.selected_button));
-            btnVeziGasite.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button));
+            btnVeziPierdute.setBackground(ContextCompat.getDrawable(this, R.drawable.custom_button));
+            btnVeziGasite.setBackground(ContextCompat.getDrawable(this, R.drawable.not_focused_button));
         });
 
         btnVeziGasite.setOnClickListener(v -> {
             cazCurent = "vazut";
             loadAnimaleGasite();
             btnAddAnimal.setText("+ Am găsit un animal");
-            btnVeziGasite.setBackgroundColor(ContextCompat.getColor(this, R.color.selected_button));
-            btnVeziPierdute.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button));
+            btnVeziGasite.setBackground(ContextCompat.getDrawable(this, R.drawable.custom_button));
+            btnVeziPierdute.setBackground(ContextCompat.getDrawable(this, R.drawable.not_focused_button));
         });
 
 
@@ -97,8 +102,8 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
         mapFragment.getMapAsync(this);
 
         loadAnimalePierdute();
-        btnVeziPierdute.setBackgroundColor(ContextCompat.getColor(this, R.color.selected_button));
-        btnVeziGasite.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button));
+        btnVeziPierdute.setBackground(ContextCompat.getDrawable(this, R.drawable.custom_button));
+        btnVeziGasite.setBackground(ContextCompat.getDrawable(this, R.drawable.not_focused_button));
 
         btnAddAnimal.setOnClickListener(v -> {
             Intent intent = new Intent(LostAnimalsActivity.this, AddAnimalActivity.class);
@@ -138,10 +143,11 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
                     for (AnimalPierdut animal : animaleList) {
                         if(Objects.equals(animal.getTipCaz(), "pierdut")) {
                             LatLng animalLocation = new LatLng(animal.getLatitudine(), animal.getLongitudine());
+
                             mMap.addMarker(new MarkerOptions()
                                     .position(animalLocation)
                                     .title(animal.getNumeAnimal())
-                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                                    .icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.location))));
                         }
                     }
                     if (!animaleList.isEmpty()) {
@@ -183,7 +189,7 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
                             mMap.addMarker(new MarkerOptions()
                                     .position(loc)
                                     .title(animal.getNumeAnimal())
-                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                                    .icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(R.drawable.location))));
                         }
                     }
                     if (!animaleList.isEmpty()) {
@@ -218,5 +224,19 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
                 loadAnimaleGasite();
             }
         }
+    }
+
+    private Bitmap getBitmapFromDrawable(@DrawableRes int resId) {
+        Bitmap bitmap = null;
+        Drawable drawable = ResourcesCompat.getDrawable(getResources(), resId, null);
+
+        if (drawable != null) {
+            bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            drawable.draw(canvas);
+        }
+
+        return bitmap;
     }
 }
