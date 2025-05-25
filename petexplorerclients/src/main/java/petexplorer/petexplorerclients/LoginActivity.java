@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                     prefs.edit()
                             .putInt("user_id", user.getId())
                             .putString("email", user.getEmail())
+                            .putString("full_name", user.getNume())
                             .apply();
 
                     Intent intent = new Intent(LoginActivity.this, MapsActivity.class);
