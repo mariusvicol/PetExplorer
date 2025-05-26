@@ -61,12 +61,23 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
     private AnimalAdapter adapter;
     private static final int REQUEST_ADD_ANIMAL = 1001;
 
-
+    private WebSocketStompClientManager stompClientManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lost_animals);
+
+        stompClientManager = WebSocketStompClientManager.getInstance(this);
+        stompClientManager.setOnAnimalReceivedListener(animal -> {
+            runOnUiThread(() -> {
+                if ("pierdut".equals(cazCurent)) {
+                    loadAnimalePierdute();
+                } else {
+                    loadAnimaleGasite();
+                }
+            });
+        });
 
         recyclerView = findViewById(R.id.animalsListRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -93,8 +93,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         }
 
-        stompClientManager = new WebSocketStompClientManager();
-        stompClientManager.connect(this);
+        stompClientManager = WebSocketStompClientManager.getInstance(this);
 
         initializeFavoritePlacesMap(); // sa n-o incarc de fiecare data
 
