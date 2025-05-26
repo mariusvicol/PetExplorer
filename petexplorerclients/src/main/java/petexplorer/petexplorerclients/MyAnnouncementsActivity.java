@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 import domain.AnimalPierdut;
 import petexplorer.petexplorerclients.adapters.AnimalAdapter;
 import petexplorer.petexplorerclients.adapters.AnimalUserAdapter;
+import petexplorer.petexplorerclients.notification.WebSocketStompClientManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,10 +39,17 @@ public class MyAnnouncementsActivity extends AppCompatActivity {
     private List<AnimalPierdut> allAnimals = new ArrayList<>();
     private int currentUserId;
 
+    private WebSocketStompClientManager stompClientManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_announcements);
+
+        stompClientManager = WebSocketStompClientManager.getInstance(this);
+        stompClientManager.setOnAnimalReceivedListener(animal -> {
+            updateFilteredList();
+        });
 
         SharedPreferences prefs = getSharedPreferences("user_data", MODE_PRIVATE);
         currentUserId = prefs.getInt("user_id", -1);

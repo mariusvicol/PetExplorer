@@ -86,6 +86,15 @@ public class WebSocketStompClientManager {
             }
         });
 
+        stompClient.topic("/topic/animale-pierdute/rezolved").subscribe(topicMessage -> {
+            String json = topicMessage.getPayload();
+            AnimalPierdut animal = new Gson().fromJson(json, AnimalPierdut.class);
+
+            if (animalReceivedListener != null) {
+                animalReceivedListener.onAnimalReceived(animal);
+            }
+        });
+
         stompClient.connect();
     }
 
