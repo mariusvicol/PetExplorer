@@ -116,7 +116,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         menuButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
-        ImageButton animalePierduteButton = findViewById(R.id.animalePierduteButton);
+        Button animalePierduteButton = findViewById(R.id.animalePierduteButton);
 
 
         navigationView.setNavigationItemSelectedListener(item -> {

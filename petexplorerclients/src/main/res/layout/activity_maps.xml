@@ -50,21 +50,21 @@
             android:layout_marginEnd="16dp"
             android:gravity="center_horizontal">
 
-            <ImageButton
+            <Button
                 android:id="@+id/animalePierduteButton"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:backgroundTint="#A5D6A7"
+                android:layout_width="76dp"
+                android:layout_height="70dp"
                 android:background="@drawable/fab_background"
-                android:contentDescription="Animale Pierdute"
-                android:padding="8dp"
-                android:src="@drawable/ic_dog"
-                android:elevation="6dp" />
+                android:backgroundTint="#8A9A5B"
+                android:drawableStart="@drawable/lost_animal_icon_scaled"
+                android:elevation="6dp"
+                android:padding="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Animale Pierdute"
+                android:fontFamily="@font/playfair_display"
                 android:textSize="12sp"
                 android:textColor="@android:color/black"
                 android:paddingTop="4dp" />
