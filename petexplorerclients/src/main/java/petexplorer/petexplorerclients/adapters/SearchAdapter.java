@@ -13,25 +13,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.utils.SearchResultWrapper;
+import domain.utils.SearchResultDTO;
 import petexplorer.petexplorerclients.R;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
 
     public interface OnItemClickListener {
-        void onItemClick(SearchResultWrapper item);
+        void onItemClick(SearchResultDTO item);
     }
 
     private final OnItemClickListener listener;
-    private List<SearchResultWrapper> searchResults;
+    private List<SearchResultDTO> searchResults;
 
-    public SearchAdapter(List<SearchResultWrapper> resultWrappers, OnItemClickListener listener) {
+    public SearchAdapter(List<SearchResultDTO> resultWrappers, OnItemClickListener listener) {
         this.listener = listener;
         this.searchResults = resultWrappers != null ? resultWrappers : new ArrayList<>();
     }
 
 
-    public void submitList(List<SearchResultWrapper> newList) {
+    public void submitList(List<SearchResultDTO> newList) {
         if (newList == null) {
             newList = new ArrayList<>();
         }
@@ -69,9 +69,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             categoryTextView = itemView.findViewById(R.id.categoryTextView);
         }
 
-        public void bind(SearchResultWrapper item, OnItemClickListener listener) {
+        public void bind(SearchResultDTO item, OnItemClickListener listener) {
             Context context = itemView.getContext();
-            String category = item.getCategory();
+            String name = item.getTitle() != null ? item.getTitle() : "N/A";
+            String category = item.getType() != null ? item.getType() : "Unknown";
             String drawableName = category != null ? category.split(" ")[0].toLowerCase() : "";
             int drawableResId = context.getResources().getIdentifier(drawableName, "drawable", context.getPackageName());
 
@@ -81,8 +82,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                 System.out.println("eroare");
             }
 
-            nameTextView.setText(item.getName() != null ? item.getName() : "N/A");
-            categoryTextView.setText(item.getCategory() != null ? item.getCategory() : "Unknown");
+            nameTextView.setText(name);
+            categoryTextView.setText(category);
 
             itemView.setOnClickListener(v -> listener.onItemClick(item));
         }

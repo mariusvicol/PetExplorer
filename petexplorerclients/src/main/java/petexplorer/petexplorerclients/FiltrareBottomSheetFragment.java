@@ -1,7 +1,5 @@
 package petexplorer.petexplorerclients;
 
-import static android.content.ContentValues.TAG;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,22 +21,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.CabinetVeterinar;
-import domain.Farmacie;
-import domain.Magazin;
-import domain.Parc;
-import domain.PensiuneCanina;
-import domain.Salon;
-import domain.utils.SearchResultWrapper;
+import domain.utils.SearchResultDTO;
 import petexplorer.petexplorerclients.adapters.SearchAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -75,11 +63,20 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
         ConstraintLayout resultsLayout = rootView.findViewById(R.id.resultsLayout);
         SearchView searchView = rootView.findViewById(R.id.searchView);
 
+        noResultsLayout = rootView.findViewById(R.id.noResultsLayout);
         resultsRV = rootView.findViewById(R.id.resultsRecyclerView);
         resultsRV.setLayoutManager(new LinearLayoutManager(getContext()));
+
         SearchAdapter adapter = new SearchAdapter(new ArrayList<>(), item -> {
-            Toast.makeText(getContext(), "Ai selectat: " + item.getName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Ai selectat: " + item.getTitle(), Toast.LENGTH_SHORT).show();
+
+            MapsActivity mapsActivity = (MapsActivity) getActivity();
+            if (mapsActivity != null) {
+                mapsActivity.focusOnLocation(item); // trimite pinul selectat
+                dismiss(); // inchidere fragment
+            }
         });
+
 
         resultsRV.setAdapter(adapter);
 
@@ -182,11 +179,11 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
         ApiService apiService = RetrofitClient.getApiService();
         noResultsLayout = rootView.findViewById(R.id.noResultsLayout);
 
-        apiService.getSearchResults(text).enqueue(new Callback<List<SearchResultWrapper>>() {
+        apiService.getSearchResults(text).enqueue(new Callback<List<SearchResultDTO>>() {
             @Override
-            public void onResponse(Call<List<SearchResultWrapper>> call, Response<List<SearchResultWrapper>> response) {
+            public void onResponse(Call<List<SearchResultDTO>> call, Response<List<SearchResultDTO>> response) {
                 if (response.isSuccessful() && response.body() != null){
-                    List<SearchResultWrapper> all = response.body();
+                    List<SearchResultDTO> all = response.body();
 
                     // actualizare lista in adapter
                     if (resultsRV.getAdapter() instanceof SearchAdapter) {
@@ -205,12 +202,12 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
                     Log.d("DEBUG", "Rezultate primite: " + all.size());
                 } else {
                     Log.e("ERROR", "Eroare la server: " + response.code());
-                    Toast.makeText(getContext(), "Eroare la cautare", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getContext(), "Eroare la cautare", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<SearchResultWrapper>> call, Throwable t) {
+            public void onFailure(Call<List<SearchResultDTO>> call, Throwable t) {
                 Log.e("ERROR", "Eroare la conectarea cu serverul: " + t);
                 Toast.makeText(getContext(), "Eroare la retea", Toast.LENGTH_SHORT).show();
             }

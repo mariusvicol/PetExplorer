@@ -47,6 +47,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import domain.CabinetVeterinar;
 import domain.Farmacie;
@@ -56,6 +57,7 @@ import domain.PensiuneCanina;
 import domain.Salon;
 import domain.utils.CustomInfoWindowData;
 import domain.utils.LocatieFavoritaDTO;
+import domain.utils.SearchResultDTO;
 import petexplorer.petexplorerclients.databinding.ActivityMapsBinding;
 import petexplorer.petexplorerclients.notification.WebSocketStompClientManager;
 import retrofit2.Call;
@@ -663,7 +665,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                                 bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
                             }
-                            return true; // consumăm evenimentul (nu se mai afișează info window)
+                            return true;
                         });
                     }
 
@@ -925,5 +927,77 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         stompClientManager.disconnect();
     }
 
+    public void focusOnLocation(SearchResultDTO item) {
+        LatLng position = new LatLng(item.getLatitude(), item.getLongitude());
+        mMap.clear();
+
+        var markerCustom = new MarkerOptions().position(position);
+        String rawType = item.getType() != null ? item.getType().split(" ")[0].toLowerCase() : "";
+        int drawableResId = getResources().getIdentifier(rawType, "drawable", getPackageName());
+
+        if (drawableResId != 0) {
+            markerCustom.icon(BitmapDescriptorFactory.fromBitmap(getBitmapFromDrawable(drawableResId)));
+        } else {
+            markerCustom.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        }
+
+        var marker = mMap.addMarker(markerCustom);
+        if (marker != null) {
+            String programText = item.isNonStop()
+                    ? "Program non-stop"
+                    : "Disponibil în timpul programului de lucru";
+
+            String nrTel = !Objects.equals(item.getPhone(), "")
+                    ? item.getPhone()
+                    : "Număr de telefon neafișat.";
+
+            boolean isFavorite = favoritePlaces.containsKey(rawType) &&
+                    favoritePlaces.get(rawType).contains(item.getIdLocation());
+
+            marker.setTag(new CustomInfoWindowData(
+                    item.getTitle(),
+                    nrTel,
+                    programText,
+                    drawableResId,
+                    isFavorite,
+                    rawType,
+                    item.getIdLocation()));
+        }
+
+        // listener dupa ce markerii sunt adaugati
+        mMap.setOnMarkerClickListener(m -> {
+            Object tag = m.getTag();
+            if (tag instanceof CustomInfoWindowData) {
+                CustomInfoWindowData data = (CustomInfoWindowData) tag;
+                data.setLatitude(marker.getPosition().latitude);
+                data.setLongitude(marker.getPosition().longitude);
+                PlaceBottomSheet bottomSheet = new PlaceBottomSheet();
+                bottomSheet.setData(data, currentUserId);
+
+                final Marker finalMarker = m;
+
+                bottomSheet.setFavoriteChangedListener((locatie, added) -> {
+                    if (added) {
+                        String type = locatie.getType().toLowerCase();
+                        favoritePlaces.putIfAbsent(type, new ArrayList<>());
+                        favoritePlaces.get(type).add(locatie.getIdLocation());
+                    } else {
+                        String type = locatie.getType().toLowerCase();
+                        if (favoritePlaces.containsKey(type)) {
+                            favoritePlaces.get(type).remove(locatie.getIdLocation());
+                            if (favoritePlaces.get(type).isEmpty()) {
+                                favoritePlaces.remove(type);
+                            }
+                        }
+                    }
+                });
+
+                bottomSheet.show(getSupportFragmentManager(), "placeBottomSheet");
+            }
+            return true;
+        });
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 16));
+    }
 
 }

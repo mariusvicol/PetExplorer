@@ -9,7 +9,7 @@ import domain.Parc;
 import domain.PensiuneCanina;
 import domain.Salon;
 import domain.utils.LocatieFavoritaDTO;
-import domain.utils.SearchResultWrapper;
+import domain.utils.SearchResultDTO;
 import domain.User;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -45,7 +45,7 @@ public interface ApiService {
     Call<List<Salon>> getSaloane();
 
     @GET("api/search")
-    Call<List<SearchResultWrapper>> getSearchResults(@Query("text") String text);
+    Call<List<SearchResultDTO>> getSearchResults(@Query("text") String text);
 
     @GET("api/locatii/favoritesDTO/{userId}")
     Call<List<LocatieFavoritaDTO>> getFavLocationsForUserDTO(@Path("userId") Integer userId);
