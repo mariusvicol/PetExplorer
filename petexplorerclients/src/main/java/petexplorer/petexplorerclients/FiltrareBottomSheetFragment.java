@@ -117,6 +117,7 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
             MapsActivity mapsActivity = (MapsActivity) getActivity();
             if (mapsActivity != null) {
                 mapsActivity.loadMagazine();
+                dismiss();
             }
         });
 
@@ -126,6 +127,7 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
              MapsActivity mapsActivity = (MapsActivity) getActivity();
             if (mapsActivity != null) {
                 mapsActivity.loadFarmaciiVeterinare();
+                dismiss();
             }
         });
 
@@ -135,6 +137,7 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
             MapsActivity mapsActivity = (MapsActivity) getActivity();
             if (mapsActivity != null) {
                 mapsActivity.loadVeterinaryOffices();
+                dismiss();
             }
         });
 
@@ -143,6 +146,7 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
             MapsActivity mapsActivity = (MapsActivity) getActivity();
             if (mapsActivity != null) {
                 mapsActivity.loadParcuri();
+                dismiss();
             }
         });
 
@@ -150,16 +154,20 @@ public class FiltrareBottomSheetFragment extends BottomSheetDialogFragment {
             Toast.makeText(getContext(), "Filtrare 7 activata: PensiuniCanine", Toast.LENGTH_SHORT).show();
             MapsActivity mapsActivity = (MapsActivity) getActivity();
 
-            if (mapsActivity != null)
+            if (mapsActivity != null) {
                 mapsActivity.loadPensiuni();
+                dismiss();
+            }
         });
 
         filterSaloaneButton.setOnClickListener(v -> {
             Toast.makeText(getContext(), "Filtrare 8 activata: Saloane", Toast.LENGTH_SHORT).show();
             MapsActivity mapsActivity = (MapsActivity) getActivity();
 
-            if (mapsActivity != null)
+            if (mapsActivity != null) {
                 mapsActivity.loadSaloane();
+                dismiss();
+            }
         });
 
 
