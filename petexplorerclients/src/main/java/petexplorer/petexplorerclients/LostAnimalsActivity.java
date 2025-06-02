@@ -155,7 +155,7 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
                     List<AnimalPierdut> animaleList = response.body();
                     mMap.clear();
                     for (AnimalPierdut animal : animaleList) {
-                        if(Objects.equals(animal.getTipCaz(), "pierdut")) {
+                        if ("pierdut".equals(animal.getTipCaz()) && !animal.getRezolvat()) {
                             LatLng animalLocation = new LatLng(animal.getLatitudine(), animal.getLongitudine());
 
                             mMap.addMarker(new MarkerOptions()
@@ -200,7 +200,7 @@ public class LostAnimalsActivity extends AppCompatActivity implements OnMapReady
                     List<AnimalPierdut> animaleList = response.body();
                     mMap.clear();
                     for (AnimalPierdut animal : animaleList) {
-                        if(Objects.equals(animal.getTipCaz(), "vazut")) {
+                        if ("vazut".equals(animal.getTipCaz()) && !animal.getRezolvat()) {
                             LatLng loc = new LatLng(animal.getLatitudine(), animal.getLongitudine());
                             mMap.addMarker(new MarkerOptions()
                                     .position(loc)
